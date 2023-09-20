@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SDG.SpookyWisconsin.BL.Models\SDG.SpookyWisconsin.BL.Models.csproj" />
+    <ProjectReference Include="..\SDG.SpookyWisconsin.BL\SDG.SpookyWisconsin.BL.csproj" />
   </ItemGroup>
 
 </Project>
