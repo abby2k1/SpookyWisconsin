@@ -8,5 +8,8 @@ namespace SDG.SpookyWisconsin.BL.Models
 {
     public class Tier
     {
+        public Guid Id { get; set; }
+        public string TierName { get; set; }
+        public string TierLevel { get; set; }
     }
 }

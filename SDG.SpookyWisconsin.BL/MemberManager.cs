@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SDG.SpookyWisconsin.BL
 {
-    internal class MemberManager
+    public class MemberManager
     {
     }
 }

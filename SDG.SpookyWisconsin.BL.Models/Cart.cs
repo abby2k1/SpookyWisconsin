@@ -8,5 +8,10 @@ namespace SDG.SpookyWisconsin.BL.Models
 {
     public class Cart
     {
+        public Guid Id { get; set; }
+        public Guid CustomerId { get; set; }
+        public Guid MerchId { get; set; }
+        public int Quantity { get; set; }
+        public double TotalCost { get; set; }
     }
 }

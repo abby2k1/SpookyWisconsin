@@ -8,5 +8,9 @@ namespace SDG.SpookyWisconsin.BL.Models
 {
     public class Tour
     {
+        public Guid Id { get; set; }
+        public Guid HauntedLocationId { get; set; }
+        public string TourName { get; set; }
+        public string Description { get; set; }
     }
 }

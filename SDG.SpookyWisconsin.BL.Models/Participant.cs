@@ -8,5 +8,8 @@ namespace SDG.SpookyWisconsin.BL.Models
 {
     public class Participant
     {
+        public Guid Id { get; set; }
+        public Guid HauntedEventId { get; set; }
+        public Guid CustomerId { get; set; }
     }
 }

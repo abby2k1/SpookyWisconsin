@@ -8,5 +8,10 @@ namespace SDG.SpookyWisconsin.BL.Models
 {
     public class Order
     {
+        public Guid Id { get; set; }
+        public Guid CartId { get; set; }
+        public Guid CustomerId { get; set; }
+        public DateTime OrderDate { get; set; }
+        public DateTime DeliverDate { get; set; }
     }
 }

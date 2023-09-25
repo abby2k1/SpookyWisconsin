@@ -8,5 +8,12 @@ namespace SDG.SpookyWisconsin.BL.Models
 {
     public class Customer
     {
+        public Guid Id { get; set; }
+        public Guid MemberId { get; set; }
+        public Guid UserId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Address { get; set; }
+        public string Email { get; set; }
     }
 }
