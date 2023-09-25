@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SDG.SpookyWisconsin.BL.Models
+namespace SDG.SpookyWisconsin.BL
 {
-    public class Cart
+    internal class ParticipantManager
     {
     }
 }

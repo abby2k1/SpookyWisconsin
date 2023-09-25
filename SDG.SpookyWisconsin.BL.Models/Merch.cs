@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SDG.SpookyWisconsin.BL.Models
 {
-    internal class Merch
+    public class Merch
     {
     }
 }
