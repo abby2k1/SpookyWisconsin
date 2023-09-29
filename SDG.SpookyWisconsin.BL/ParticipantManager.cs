@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml;
-
+using SDG.SpookyWisconsin.PL.Entities;
 
 namespace SDG.SpookyWisconsin.BL
 {
@@ -33,7 +33,7 @@ namespace SDG.SpookyWisconsin.BL
 
 
                     participant.Id = row.Id;
-                    dc.tblParticipant.Add(row);
+                    dc.tblParticipants.Add(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();
@@ -57,7 +57,7 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblParticipant row = dc.tblParticipant.FirstOrDefault(d => d.Id == participant.Id);
+                    tblParticipant row = dc.tblParticipants.FirstOrDefault(d => d.Id == participant.Id);
 
                     //TODO: Fill in the updated fields once the database is completed
                     //ex: row.State = participant.State...
@@ -82,7 +82,7 @@ namespace SDG.SpookyWisconsin.BL
             {
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
-                    var row = (from pd in dc.tblParticipant
+                    var row = (from pd in dc.tblParticipants
                                where pd.Id == id
                                select new
                                {
@@ -116,7 +116,7 @@ namespace SDG.SpookyWisconsin.BL
 
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
-                var participantes = (from pd in dc.tblParticipant
+                var participantes = (from pd in dc.tblParticipants
                                       orderby pd.FirstName
                                       select new
                                       {
@@ -143,9 +143,9 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblParticipant row = dc.tblParticipant.FirstOrDefault(d => d.Id == id);
+                    tblParticipant row = dc.tblParticipants.FirstOrDefault(d => d.Id == id);
 
-                    dc.tblParticipant.Remove(row);
+                    dc.tblParticipants.Remove(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();
