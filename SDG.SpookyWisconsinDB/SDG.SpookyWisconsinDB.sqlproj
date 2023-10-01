@@ -91,8 +91,12 @@
     <Build Include="PostDeploy\DefaultData\Tiers.sql" />
     <Build Include="PostDeploy\DefaultData\Tours.sql" />
     <Build Include="Tables\tblMerch.sql" />
+    <Build Include="PostDeploy\DefaultData\Merchs.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PostDeploy\DefaultData\NewsLetters.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="SDG.SpookyWisconsinDB.refactorlog" />
   </ItemGroup>
 </Project>

@@ -15,6 +15,7 @@ Post-Deployment Script Template
 :r .\DefaultData\HauntedEvents.sql
 :r .\DefaultData\HauntedLocations.sql
 :r .\DefaultData\Members.sql
+:r .\DefaultData\Merchs.sql
 :r .\DefaultData\NewsLetters.sql
 :r .\DefaultData\Orders.sql
 :r .\DefaultData\Participants.sql
