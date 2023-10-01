@@ -90,6 +90,7 @@
     <Build Include="PostDeploy\DefaultData\Participants.sql" />
     <Build Include="PostDeploy\DefaultData\Tiers.sql" />
     <Build Include="PostDeploy\DefaultData\Tours.sql" />
+    <Build Include="Tables\tblMerch.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PostDeploy\DefaultData\NewsLetters.sql" />

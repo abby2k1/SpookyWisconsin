@@ -3,6 +3,6 @@
 	[Id] INT NOT NULL PRIMARY KEY, 
     [InCartId] INT NOT NULL, 
     [CustomerId] INT NOT NULL, 
-    [OrderDate] DATE NOT NULL, 
-    [DeliverDate] DATE NOT NULL
+    [OrderDate] DATETIME NOT NULL, 
+    [DeliverDate] DATETIME NOT NULL
 )
