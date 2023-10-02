@@ -10,6 +10,6 @@ namespace SDG.SpookyWisconsin.BL.Models
     {
         public Guid Id { get; set; }
         public string TierName { get; set; }
-        public string TierLevel { get; set; }
+        public int TierLevel { get; set; }
     }
 }

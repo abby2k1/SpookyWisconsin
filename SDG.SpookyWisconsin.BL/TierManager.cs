@@ -28,8 +28,10 @@ namespace SDG.SpookyWisconsin.BL
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
                     tblTier row = new tblTier();
-                    //Fill the table - TODO: Fill in other columns when the database is connected
+                    //Fill the table 
                     row.Id = new Guid();
+                    row.TierLevel = tier.TierLevel;
+                    row.TierName = tier.TierName;
 
 
                     tier.Id = row.Id;
@@ -59,9 +61,8 @@ namespace SDG.SpookyWisconsin.BL
 
                     tblTier row = dc.tblTier.FirstOrDefault(d => d.Id == tier.Id);
 
-                    //TODO: Fill in the updated fields once the database is completed
-                    //ex: row.State = tier.State...
-
+                    row.TierLevel = tier.TierLevel;
+                    row.TierName = tier.TierName;
 
                     results = dc.SaveChanges();
 
@@ -87,7 +88,8 @@ namespace SDG.SpookyWisconsin.BL
                                select new
                                {
                                    Id = pd.Id,
-                                   //TODO - Joins and other fields
+                                   TierLevel = pd.TierLevel,
+                                   TierName = pd.TierName
 
                                }).FirstOrDefault();
                     if (row != null)
@@ -95,7 +97,8 @@ namespace SDG.SpookyWisconsin.BL
                         return new Tier
                         {
                             Id = row.Id,
-                            ///TODO - Joins and other fields
+                            TierLevel = row.TierLevel,
+                            TierName = row.TierName
                         };
                     }
                     else
@@ -117,17 +120,18 @@ namespace SDG.SpookyWisconsin.BL
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
                 var tieres = (from pd in dc.tblTier
-                                      orderby pd.FirstName
+                                      orderby pd.TierLevel
                                       select new
                                       {
                                           Id = pd.Id,
-                                          //TODO - Joins and other fields
-
+                                          TierLevel = pd.TierLevel,
+                                          TierName = pd.TierName
                                       }).ToList();
                 tieres.ForEach(pd => rows.Add(new Tier
                 {
                     Id = pd.Id,
-                    //TODO - Joins and other fields
+                    TierLevel = pd.TierLevel,
+                    TierName = pd.TierName
                 }));
             }
             return rows;
