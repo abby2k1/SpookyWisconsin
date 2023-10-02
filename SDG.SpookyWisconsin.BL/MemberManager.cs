@@ -1,15 +1,8 @@
-﻿using SDG.SpookyWisconsin.BL.Models;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.PL;
-using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+using SDG.SpookyWisconsin.PL.Entities;
 using System.Xml.Linq;
-using System.Xml;
-
 
 namespace SDG.SpookyWisconsin.BL
 {
@@ -28,12 +21,16 @@ namespace SDG.SpookyWisconsin.BL
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
                     tblMember row = new tblMember();
-                    //Fill the table - TODO: Fill in other columns when the database is connected
+                    //Fill the table
                     row.Id = new Guid();
+                    row.TierId = member.TierId;
+                    row.NewsLetterId = member.NewsLetterId;
+                    row.MemberOpt = member.MemberOpt;
+                    row.NewsLetterOpt = member.NewsLetterOpt;
 
 
                     member.Id = row.Id;
-                    dc.tblMember.Add(row);
+                    dc.tblMemberships.Add(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();
@@ -59,9 +56,10 @@ namespace SDG.SpookyWisconsin.BL
 
                     tblMember row = dc.tblMember.FirstOrDefault(d => d.Id == member.Id);
 
-                    //TODO: Fill in the updated fields once the database is completed
-                    //ex: row.State = member.State...
-
+                    row.TierId = member.TierId;
+                    row.NewsLetterId = member.NewsLetterId;
+                    row.MemberOpt = member.MemberOpt;
+                    row.NewsLetterOpt = member.NewsLetterOpt;
 
                     results = dc.SaveChanges();
 
@@ -87,7 +85,10 @@ namespace SDG.SpookyWisconsin.BL
                                select new
                                {
                                    Id = pd.Id,
-                                   //TODO - Joins and other fields
+                                   TierId = pd.TierId,
+                                   NewsLetterId = pd.NewsLetterId,
+                                   MemberOpt = pd.MemberOpt,
+                                   NewsLetterOpt = pd.NewsLetterOpt
 
                                }).FirstOrDefault();
                     if (row != null)
@@ -95,7 +96,10 @@ namespace SDG.SpookyWisconsin.BL
                         return new Member
                         {
                             Id = row.Id,
-                            ///TODO - Joins and other fields
+                            TierId= row.TierId,
+                            NewsLetterId = row.NewsLetterId,
+                            MemberOpt = row.MemberOpt,
+                            NewsLetterOpt = row.NewsLetterOpt
                         };
                     }
                     else
@@ -116,18 +120,24 @@ namespace SDG.SpookyWisconsin.BL
 
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
-                var memberes = (from pd in dc.tblMember
-                                      orderby pd.FirstName
+                var memberes = (from pd in dc.tblMemberships
+                                      orderby pd.Id
                                       select new
                                       {
                                           Id = pd.Id,
-                                          //TODO - Joins and other fields
+                                          TierId = pd.TierId,
+                                          NewsLetterId = pd.NewsLetterId,
+                                          MemberOpt = pd.MemberOpt,
+                                          NewsLetterOpt = pd.NewsLetterOpt
 
                                       }).ToList();
                 memberes.ForEach(pd => rows.Add(new Member
                 {
                     Id = pd.Id,
-                    //TODO - Joins and other fields
+                    TierId = pd.TierId,
+                    NewsLetterId = pd.NewsLetterId,
+                    MemberOpt = pd.MemberOpt,
+                    NewsLetterOpt = pd.NewsLetterOpt
                 }));
             }
             return rows;
@@ -143,9 +153,9 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblMember row = dc.tblMember.FirstOrDefault(d => d.Id == id);
+                    tblMember row = dc.tblMemberships.FirstOrDefault(d => d.Id == id);
 
-                    dc.tblMember.Remove(row);
+                    dc.tblMemberships.Remove(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();
