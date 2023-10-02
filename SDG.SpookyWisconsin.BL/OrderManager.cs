@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml;
-
+using SDG.SpookyWisconsin.PL.Entities;
 
 namespace SDG.SpookyWisconsin.BL
 {
@@ -30,10 +30,13 @@ namespace SDG.SpookyWisconsin.BL
                     tblOrder row = new tblOrder();
                     //Fill the table - TODO: Fill in other columns when the database is connected
                     row.Id = new Guid();
+                    row.InCartId = order.CartId;
+                    row.OrderDate = order.OrderDate;
+                    row.DeliveryDate = order.DeliverDate;
 
 
                     order.Id = row.Id;
-                    dc.tblOrder.Add(row);
+                    dc.tblOrders.Add(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();
@@ -57,10 +60,13 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblOrder row = dc.tblOrder.FirstOrDefault(d => d.Id == order.Id);
+                    tblOrder row = dc.tblOrders.FirstOrDefault(d => d.Id == order.Id);
 
                     //TODO: Fill in the updated fields once the database is completed
                     //ex: row.State = order.State...
+                    row.InCartId = order.CartId;
+                    row.OrderDate = order.OrderDate;
+                    row.DeliveryDate = order.DeliverDate;
 
 
                     results = dc.SaveChanges();
@@ -82,11 +88,14 @@ namespace SDG.SpookyWisconsin.BL
             {
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
-                    var row = (from pd in dc.tblOrder
+                    var row = (from pd in dc.tblOrders
                                where pd.Id == id
                                select new
                                {
                                    Id = pd.Id,
+                                   OrderDate = pd.OrderDate,
+                                   DeliveryDate = pd.DeliveryDate,
+                                   CartId = pd.CartId
                                    //TODO - Joins and other fields
 
                                }).FirstOrDefault();
@@ -95,6 +104,9 @@ namespace SDG.SpookyWisconsin.BL
                         return new Order
                         {
                             Id = row.Id,
+                            OrderDate = row.OrderDate,
+                            DeliverDate = row.DeliveryDate,
+                            CartId = row.CartId
                             ///TODO - Joins and other fields
                         };
                     }
@@ -116,18 +128,22 @@ namespace SDG.SpookyWisconsin.BL
 
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
-                var orderes = (from pd in dc.tblOrder
-                                      orderby pd.FirstName
+                var orderes = (from pd in dc.tblOrders
+                                      orderby pd.OrderDate
                                       select new
                                       {
                                           Id = pd.Id,
-                                          //TODO - Joins and other fields
+                                          OrderDate = pd.OrderDate,
+                                          DeliveryDate = pd.DeliveryDate,
+                                          CartId = pd.InCartId
 
                                       }).ToList();
                 orderes.ForEach(pd => rows.Add(new Order
                 {
                     Id = pd.Id,
-                    //TODO - Joins and other fields
+                    OrderDate = pd.OrderDate,
+                    DeliverDate = pd.DeliveryDate,
+                    CartId = pd.CartId
                 }));
             }
             return rows;
@@ -143,9 +159,9 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblOrder row = dc.tblOrder.FirstOrDefault(d => d.Id == id);
+                    tblOrder row = dc.tblOrders.FirstOrDefault(d => d.Id == id);
 
-                    dc.tblOrder.Remove(row);
+                    dc.tblOrders.Remove(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();

@@ -1,14 +1,6 @@
-﻿using SDG.SpookyWisconsin.BL.Models;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.PL;
-using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using System.Xml;
 using SDG.SpookyWisconsin.PL.Entities;
 
 namespace SDG.SpookyWisconsin.BL
@@ -28,8 +20,10 @@ namespace SDG.SpookyWisconsin.BL
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
                     tblParticipant row = new tblParticipant();
-                    //Fill the table - TODO: Fill in other columns when the database is connected
+                    //Fill the table
                     row.Id = new Guid();
+                    row.HauntedEventId = participant.HauntedEventId;
+                    row.CustomerId = participant.CustomerId;
 
 
                     participant.Id = row.Id;
@@ -58,10 +52,9 @@ namespace SDG.SpookyWisconsin.BL
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
                     tblParticipant row = dc.tblParticipants.FirstOrDefault(d => d.Id == participant.Id);
-
-                    //TODO: Fill in the updated fields once the database is completed
-                    //ex: row.State = participant.State...
-
+                    
+                    row.HauntedEventId = participant.HauntedEventId;
+                    row.CustomerId = participant.CustomerId;
 
                     results = dc.SaveChanges();
 
@@ -87,7 +80,8 @@ namespace SDG.SpookyWisconsin.BL
                                select new
                                {
                                    Id = pd.Id,
-                                   //TODO - Joins and other fields
+                                   CustomerId = pd.CustomerId,
+                                   HauntedEventId = pd.HauntedEventId,
 
                                }).FirstOrDefault();
                     if (row != null)
@@ -95,7 +89,8 @@ namespace SDG.SpookyWisconsin.BL
                         return new Participant
                         {
                             Id = row.Id,
-                            ///TODO - Joins and other fields
+                            CustomerId = row.CustomerId,
+                            HauntedEventId = row.HauntedEventId
                         };
                     }
                     else
@@ -117,17 +112,19 @@ namespace SDG.SpookyWisconsin.BL
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
                 var participantes = (from pd in dc.tblParticipants
-                                      orderby pd.FirstName
+                                      orderby pd.Id
                                       select new
                                       {
                                           Id = pd.Id,
-                                          //TODO - Joins and other fields
+                                          CustomerId = pd.CustomerId,
+                                          HauntedEventId = pd.HauntedEventId
 
                                       }).ToList();
                 participantes.ForEach(pd => rows.Add(new Participant
                 {
                     Id = pd.Id,
-                    //TODO - Joins and other fields
+                    CustomerId = pd.CustomerId,
+                    HauntedEventId = pd.HauntedEventId
                 }));
             }
             return rows;
