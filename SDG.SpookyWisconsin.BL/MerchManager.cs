@@ -1,15 +1,8 @@
-﻿using SDG.SpookyWisconsin.BL.Models;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.PL;
-using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+using SDG.SpookyWisconsin.PL.Entities;
 using System.Xml.Linq;
-using System.Xml;
-
 
 namespace SDG.SpookyWisconsin.BL
 {
@@ -30,10 +23,14 @@ namespace SDG.SpookyWisconsin.BL
                     tblMerch row = new tblMerch();
                     //Fill the table - TODO: Fill in other columns when the database is connected
                     row.Id = new Guid();
+                    row.MerchName = merch.MerchName;
+                    row.InStkQty = merch.InStkQty;
+                    row.Description = merch.Description;
+                    row.Cost = merch.Cost;
 
 
                     merch.Id = row.Id;
-                    dc.tblMerch.Add(row);
+                    dc.tblMerches.Add(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();
@@ -57,11 +54,12 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblMerch row = dc.tblMerch.FirstOrDefault(d => d.Id == merch.Id);
+                    tblMerch row = dc.tblMerches.FirstOrDefault(d => d.Id == merch.Id);
 
-                    //TODO: Fill in the updated fields once the database is completed
-                    //ex: row.State = merch.State...
-
+                    row.MerchName = merch.MerchName;
+                    row.InStkQty = merch.InStkQty;
+                    row.Description = merch.Description;
+                    row.Cost = merch.Cost;
 
                     results = dc.SaveChanges();
 
@@ -82,12 +80,15 @@ namespace SDG.SpookyWisconsin.BL
             {
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
-                    var row = (from pd in dc.tblMerch
+                    var row = (from pd in dc.tblMerches
                                where pd.Id == id
                                select new
                                {
                                    Id = pd.Id,
-                                   //TODO - Joins and other fields
+                                   MerchName = pd.MerchName,
+                                   InStkQty = pd.InStkQty,
+                                   Description = pd.Description,
+                                   Cost = pd.Cost
 
                                }).FirstOrDefault();
                     if (row != null)
@@ -95,7 +96,10 @@ namespace SDG.SpookyWisconsin.BL
                         return new Merch
                         {
                             Id = row.Id,
-                            ///TODO - Joins and other fields
+                            MerchName = row.MerchName,
+                            InStkQty = row.InStkQty,
+                            Description = row.Description,
+                            Cost = row.Cost
                         };
                     }
                     else
@@ -121,13 +125,19 @@ namespace SDG.SpookyWisconsin.BL
                                       select new
                                       {
                                           Id = pd.Id,
-                                          //TODO - Joins and other fields
+                                          MerchName = pd.MerchName,
+                                          InStkQty = pd.InStkQty,
+                                          Description = pd.Description,
+                                          Cost = pd.Cost
 
                                       }).ToList();
                 merches.ForEach(pd => rows.Add(new Merch
                 {
                     Id = pd.Id,
-                    //TODO - Joins and other fields
+                    MerchName = pd.MerchName,
+                    InStkQty = pd.InStkQty,
+                    Description = pd.Description,
+                    Cost = pd.Cost
                 }));
             }
             return rows;
@@ -143,9 +153,9 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblMerch row = dc.tblMerch.FirstOrDefault(d => d.Id == id);
+                    tblMerch row = dc.tblMerches.FirstOrDefault(d => d.Id == id);
 
-                    dc.tblMerch.Remove(row);
+                    dc.tblMerches.Remove(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();

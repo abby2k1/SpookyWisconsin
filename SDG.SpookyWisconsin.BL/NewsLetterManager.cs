@@ -1,15 +1,7 @@
-﻿using SDG.SpookyWisconsin.BL.Models;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.PL;
-using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using System.Xml;
-
+using SDG.SpookyWisconsin.PL.Entities;
 
 namespace SDG.SpookyWisconsin.BL
 {
@@ -30,6 +22,9 @@ namespace SDG.SpookyWisconsin.BL
                     tblNewsLetter row = new tblNewsLetter();
                     //Fill the table - TODO: Fill in other columns when the database is connected
                     row.Id = new Guid();
+                    row.HauntedEventId = newsLetter.HauntedEventId;
+                    row.Description = newsLetter.Description;
+                    row.Date = newsLetter.Date;
 
 
                     newsLetter.Id = row.Id;
@@ -59,8 +54,9 @@ namespace SDG.SpookyWisconsin.BL
 
                     tblNewsLetter row = dc.tblNewsLetter.FirstOrDefault(d => d.Id == newsLetter.Id);
 
-                    //TODO: Fill in the updated fields once the database is completed
-                    //ex: row.State = newsLetter.State...
+                    row.HauntedEventId = newsLetter.HauntedEventId;
+                    row.Description = newsLetter.Description;
+                    row.Date = newsLetter.Date;
 
 
                     results = dc.SaveChanges();
@@ -87,7 +83,9 @@ namespace SDG.SpookyWisconsin.BL
                                select new
                                {
                                    Id = pd.Id,
-                                   //TODO - Joins and other fields
+                                   HauntedEventId = pd.HauntedEventId,
+                                   Description = pd.Description,
+                                   Date = pd.Date
 
                                }).FirstOrDefault();
                     if (row != null)
@@ -95,7 +93,9 @@ namespace SDG.SpookyWisconsin.BL
                         return new NewsLetter
                         {
                             Id = row.Id,
-                            ///TODO - Joins and other fields
+                            HauntedEventId = row.HauntedEventId,
+                            Description = row.Description,
+                            Date = row.Date
                         };
                     }
                     else
@@ -117,17 +117,21 @@ namespace SDG.SpookyWisconsin.BL
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
                 var newsLetteres = (from pd in dc.tblNewsLetter
-                                      orderby pd.FirstName
+                                      orderby pd.Date
                                       select new
                                       {
                                           Id = pd.Id,
-                                          //TODO - Joins and other fields
+                                          HauntedEventId = pd.HauntedEventId,
+                                          Description = pd.Description,
+                                          Date = pd.Date
 
                                       }).ToList();
                 newsLetteres.ForEach(pd => rows.Add(new NewsLetter
                 {
                     Id = pd.Id,
-                    //TODO - Joins and other fields
+                    HauntedEventId = pd.HauntedEventId,
+                    Description = pd.Description,
+                    Date = pd.Date
                 }));
             }
             return rows;
