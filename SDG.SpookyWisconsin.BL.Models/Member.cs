@@ -11,8 +11,7 @@ namespace SDG.SpookyWisconsin.BL.Models
         public Guid Id { get; set; }
         public Guid TierId { get; set; }
         public Guid NewsLetterId { get; set; }
-
-        //NewsLetterOpt TODO
-        //MemberOpt TODO
+        public bool NewsLetterOpt { get; set; }
+        public bool MemberOpt { get; set; }
     }
 }
