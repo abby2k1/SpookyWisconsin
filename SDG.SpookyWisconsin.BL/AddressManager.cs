@@ -1,15 +1,7 @@
-﻿using SDG.SpookyWisconsin.BL.Models;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.PL;
-using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using System.Xml;
-
+using SDG.SpookyWisconsin.PL.Entities;
 
 namespace SDG.SpookyWisconsin.BL
 {
@@ -28,12 +20,19 @@ namespace SDG.SpookyWisconsin.BL
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
                     tblAddress row = new tblAddress();
-                    //Fill the table - TODO: Fill in other columns when the database is connected
+
+                    //Fill the table
                     row.Id = new Guid();
+                    row.Street = address.Street;
+                    row.City = address.City;
+                    row.State = address.State;
+                    row.County = address.County;
+                    row.ZIP = address.ZIP;
+
                     
 
                     address.Id = row.Id;
-                    dc.tblAddress.Add(row);
+                    dc.tblAddresses.Add(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();
@@ -57,11 +56,15 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblAddress row = dc.tblAddress.FirstOrDefault(d => d.Id == address.Id);
+                    //Find the row with a matching id
+                    tblAddress row = dc.tblAddresses.FirstOrDefault(d => d.Id == address.Id);
 
-                    //TODO: Fill in the updated fields once the database is completed
-                    //ex: row.State = address.State...
-                  
+                    //Update the table that matches the id
+                    row.Street = address.Street;
+                    row.City = address.City;
+                    row.State = address.State;
+                    row.County = address.County;
+                    row.ZIP = address.ZIP;
 
                     results = dc.SaveChanges();
 
@@ -82,14 +85,14 @@ namespace SDG.SpookyWisconsin.BL
             {
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
-                    var row = (from pd in dc.tblAddress
+                    var row = (from pd in dc.tblAddresses
                                where pd.Id == id
                                select new
                                {
                                    Id = pd.Id,
                                    Street = pd.Street,
                                    City = pd.City,
-                                   Country = pd.Country,
+                                   County = pd.County,
                                    State = pd.State,
                                    Zip = pd.ZIP
 
@@ -99,11 +102,11 @@ namespace SDG.SpookyWisconsin.BL
                         return new Address
                         {
                             Id = row.Id,
-                            Country = row.Country,
+                            County = row.County,
                             Street = row.Street,
                             City = row.City,
                             State = row.State,
-                            ZIP = row.ZIP
+                            ZIP = row.Zip
                         };
                     }
                     else
@@ -124,25 +127,25 @@ namespace SDG.SpookyWisconsin.BL
 
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
-                var addresses = (from pd in dc.tblAddress
-                                 orderby pd.FirstName
+                var addresses = (from pd in dc.tblAddresses
+                                 orderby pd.State
                                  select new
                                  {
                                      Id = pd.Id,
                                      Street = pd.Street,
                                      City = pd.City,
-                                     Country = pd.Country,
+                                     County = pd.County,
                                      State = pd.State,
                                      Zip = pd.ZIP
                                  }).ToList();
                 addresses.ForEach(pd => rows.Add(new Address
                 {
                     Id = pd.Id,
-                    Country = pd.Country,
-                    Street = row.Street,
+                    County = pd.County,
+                    Street = pd.Street,
                     City = pd.City,
                     State = pd.State,
-                    ZIP = pd.ZIP
+                    ZIP = pd.Zip
                 }));
             }
             return rows;
@@ -158,11 +161,14 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblAddress row = dc.tblAddress.FirstOrDefault(d => d.Id == id);
+                    //Find the row by it's id
+                    tblAddress row = dc.tblAddresses.FirstOrDefault(d => d.Id == id);
 
-                    dc.tblAddress.Remove(row);
+                    //Remove the row from the table
+                    dc.tblAddresses.Remove(row);
                     results = dc.SaveChanges();
 
+                    //Rollback for testing
                     if (rollback) dbContextTransaction.Rollback();
 
                 }
