@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SDG.SpookyWisconsin.BL.Models
+namespace SDG.SpookyWisconsin.PL.Entities
 {
-    public class Address
+    public partial class tblAddress
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
-        public string State { get; set; }
         public string County { get; set; }
+        public string State { get; set; }
         public string ZIP { get; set; }
-
     }
 }

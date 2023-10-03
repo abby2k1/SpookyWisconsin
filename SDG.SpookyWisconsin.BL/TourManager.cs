@@ -1,15 +1,7 @@
-﻿using SDG.SpookyWisconsin.BL.Models;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.PL;
-using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using System.Xml;
-
+using SDG.SpookyWisconsin.PL.Entities;
 
 namespace SDG.SpookyWisconsin.BL
 {
@@ -28,12 +20,15 @@ namespace SDG.SpookyWisconsin.BL
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
                     tblTour row = new tblTour();
-                    //Fill the table - TODO: Fill in other columns when the database is connected
+                    //Fill the table
                     row.Id = new Guid();
+                    row.HauntedLocationId = tour.HauntedLocationId;
+                    row.TourName = tour.TourName;
+                    row.Description = tour.Description;
 
 
                     tour.Id = row.Id;
-                    dc.tblTour.Add(row);
+                    dc.tblTours.Add(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();
@@ -58,6 +53,9 @@ namespace SDG.SpookyWisconsin.BL
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
                     tblTour row = dc.tblTour.FirstOrDefault(d => d.Id == tour.Id);
+                    row.HauntedLocationId = tour.HauntedLocationId;
+                    row.Description = tour.Description;
+                    row.TourName= tour.TourName;
 
                     //TODO: Fill in the updated fields once the database is completed
                     //ex: row.State = tour.State...
@@ -82,12 +80,16 @@ namespace SDG.SpookyWisconsin.BL
             {
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
-                    var row = (from pd in dc.tblTour
+                    var row = (from pd in dc.tblTours
+                               //join h in dc.tblHauntedLocations on pd.Id equals h.Id -- Join if we decide to use the location name on the tour.
                                where pd.Id == id
                                select new
                                {
                                    Id = pd.Id,
-                                   //TODO - Joins and other fields
+                                   HauntedLocationId = pd.HauntedLocationId,
+                                   Description = pd.Description,
+                                   TourName = pd.TourName,
+
 
                                }).FirstOrDefault();
                     if (row != null)
@@ -95,7 +97,9 @@ namespace SDG.SpookyWisconsin.BL
                         return new Tour
                         {
                             Id = row.Id,
-                            ///TODO - Joins and other fields
+                            HauntedLocationId = row.HauntedLocationId,
+                            Description = row.Description,
+                            TourName = row.TourName,
                         };
                     }
                     else
@@ -116,17 +120,23 @@ namespace SDG.SpookyWisconsin.BL
 
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
-                var toures = (from pd in dc.tblTour
-                                      orderby pd.FirstName
+                var toures = (from pd in dc.tblTours
+                                      orderby pd.TourName
                                       select new
                                       {
                                           Id = pd.Id,
+                                          HauntedLocationId = pd.HauntedLocationId,
+                                          TourName = pd.TourName,
+                                          Description = pd.Description
                                           //TODO - Joins and other fields
 
                                       }).ToList();
                 toures.ForEach(pd => rows.Add(new Tour
                 {
                     Id = pd.Id,
+                    HauntedLocationId = pd.HauntedLocationId,
+                    TourName = pd.TourName,
+                    Description = pd.Description
                     //TODO - Joins and other fields
                 }));
             }
@@ -143,9 +153,9 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblTour row = dc.tblTour.FirstOrDefault(d => d.Id == id);
+                    tblTour row = dc.tblTours.FirstOrDefault(d => d.Id == id);
 
-                    dc.tblTour.Remove(row);
+                    dc.tblTours.Remove(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();

@@ -1,15 +1,8 @@
-﻿using SDG.SpookyWisconsin.BL.Models;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.PL;
-using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+using SDG.SpookyWisconsin.PL.Entities;
 using System.Xml.Linq;
-using System.Xml;
-
 
 namespace SDG.SpookyWisconsin.BL
 {
@@ -30,10 +23,11 @@ namespace SDG.SpookyWisconsin.BL
                     tblHauntedLocation row = new tblHauntedLocation();
                     //Fill the table - TODO: Fill in other columns when the database is connected
                     row.Id = new Guid();
-
+                    row.AddressId = hauntedLocation.AddressId;
+                    row.Name = hauntedLocation.Name;
 
                     hauntedLocation.Id = row.Id;
-                    dc.tblHauntedLocation.Add(row);
+                    dc.tblHauntedLocations.Add(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();
@@ -57,10 +51,10 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblHauntedLocation row = dc.tblHauntedLocation.FirstOrDefault(d => d.Id == hauntedLocation.Id);
+                    tblHauntedLocation row = dc.tblHauntedLocations.FirstOrDefault(d => d.Id == hauntedLocation.Id);
 
-                    //TODO: Fill in the updated fields once the database is completed
-                    //ex: row.State = hauntedLocation.State...
+                    row.AddressId = hauntedLocation.AddressId;
+                    row.Name = hauntedLocation.Name;
 
 
                     results = dc.SaveChanges();
@@ -82,11 +76,13 @@ namespace SDG.SpookyWisconsin.BL
             {
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
-                    var row = (from pd in dc.tblHauntedLocation
+                    var row = (from pd in dc.tblHauntedLocations
                                where pd.Id == id
                                select new
                                {
                                    Id = pd.Id,
+                                   Name = pd.Name,
+                                   AddressId = pd.AddressId,
                                    //TODO - Joins and other fields
 
                                }).FirstOrDefault();
@@ -95,7 +91,8 @@ namespace SDG.SpookyWisconsin.BL
                         return new HauntedLocation
                         {
                             Id = row.Id,
-                            ///TODO - Joins and other fields
+                            Name = row.Name,
+                            AddressId = row.AddressId
                         };
                     }
                     else
@@ -116,18 +113,21 @@ namespace SDG.SpookyWisconsin.BL
 
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
-                var hauntedLocationes = (from pd in dc.tblHauntedLocation
-                                      orderby pd.FirstName
+                var hauntedLocationes = (from pd in dc.tblHauntedLocations
+                                      orderby pd.Id
                                       select new
                                       {
                                           Id = pd.Id,
+                                          Name = pd.Name,
+                                          AddressId = pd.AddressId,
                                           //TODO - Joins and other fields
 
                                       }).ToList();
                 hauntedLocationes.ForEach(pd => rows.Add(new HauntedLocation
                 {
                     Id = pd.Id,
-                    //TODO - Joins and other fields
+                    Name = pd.Name,
+                    AddressId = pd.AddressId
                 }));
             }
             return rows;
@@ -143,9 +143,9 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblHauntedLocation row = dc.tblHauntedLocation.FirstOrDefault(d => d.Id == id);
+                    tblHauntedLocation row = dc.tblHauntedLocations.FirstOrDefault(d => d.Id == id);
 
-                    dc.tblHauntedLocation.Remove(row);
+                    dc.tblHauntedLocations.Remove(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();

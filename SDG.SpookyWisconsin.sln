@@ -3,23 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDG.SpookyWisconsin.WebUI", "SDG.SpookyWisconsin.WebUI\SDG.SpookyWisconsin.WebUI.csproj", "{A08FFBFD-200B-4C1C-B203-32444930B231}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDG.SpookyWisconsin.WebUI", "SDG.SpookyWisconsin.WebUI\SDG.SpookyWisconsin.WebUI.csproj", "{A08FFBFD-200B-4C1C-B203-32444930B231}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDG.SpookyWisconsin.BL", "SDG.SpookyWisconsin.BL\SDG.SpookyWisconsin.BL.csproj", "{2CD46F42-FF4D-4FB1-87FB-B7E5F362FE7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDG.SpookyWisconsin.BL", "SDG.SpookyWisconsin.BL\SDG.SpookyWisconsin.BL.csproj", "{2CD46F42-FF4D-4FB1-87FB-B7E5F362FE7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDG.SpookyWisconsin.BL.Models", "SDG.SpookyWisconsin.BL.Models\SDG.SpookyWisconsin.BL.Models.csproj", "{5CFEA994-D0F0-4D90-8484-93CF374D2D88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDG.SpookyWisconsin.BL.Models", "SDG.SpookyWisconsin.BL.Models\SDG.SpookyWisconsin.BL.Models.csproj", "{5CFEA994-D0F0-4D90-8484-93CF374D2D88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDG.SpookyWisconsin.PL", "SDG.SpookyWisconsin.PL\SDG.SpookyWisconsin.PL.csproj", "{529051A1-E447-4C3E-822D-104BB436013D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDG.SpookyWisconsin.PL", "SDG.SpookyWisconsin.PL\SDG.SpookyWisconsin.PL.csproj", "{529051A1-E447-4C3E-822D-104BB436013D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDG.SpookyWisconsin.API", "SDG.SpookyWisconsin.API\SDG.SpookyWisconsin.API.csproj", "{01759E38-5F1F-4737-9744-2E113005417B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDG.SpookyWisconsin.API", "SDG.SpookyWisconsin.API\SDG.SpookyWisconsin.API.csproj", "{01759E38-5F1F-4737-9744-2E113005417B}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SDG.SpookyWisconsin.DB", "SDG.SpookyWisconsin.DB\SDG.SpookyWisconsin.DB.sqlproj", "{0EA28BCE-09DE-489B-9B96-1573F6C8238C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDG.SpookyWisconsin.BL.Test", "SDG.SpookyWisconsin.BL.Test\SDG.SpookyWisconsin.BL.Test.csproj", "{642F3D97-674E-4168-AB39-53CF47FE7D50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDG.SpookyWisconsin.BL.Test", "SDG.SpookyWisconsin.BL.Test\SDG.SpookyWisconsin.BL.Test.csproj", "{642F3D97-674E-4168-AB39-53CF47FE7D50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDG.SpookyWisconsin.PL.Test", "SDG.SpookyWisconsin.PL.Test\SDG.SpookyWisconsin.PL.Test.csproj", "{8ED531BA-5C12-486D-B124-83B95BBAA13C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDG.SpookyWisconsin.PL.Test", "SDG.SpookyWisconsin.PL.Test\SDG.SpookyWisconsin.PL.Test.csproj", "{8ED531BA-5C12-486D-B124-83B95BBAA13C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDG.SpookyWisconsin.API.Test", "SDG.SpookyWisconsin.API.Test\SDG.SpookyWisconsin.API.Test.csproj", "{858513DA-C4E4-4CF4-AA94-85020489DEE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDG.SpookyWisconsin.API.Test", "SDG.SpookyWisconsin.API.Test\SDG.SpookyWisconsin.API.Test.csproj", "{858513DA-C4E4-4CF4-AA94-85020489DEE6}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SDG.SpookyWisconsinDB", "SDG.SpookyWisconsinDB\SDG.SpookyWisconsinDB.sqlproj", "{C58E3B2E-EF6E-4919-810B-1AB6587360F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,12 +47,6 @@ Global
 		{01759E38-5F1F-4737-9744-2E113005417B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01759E38-5F1F-4737-9744-2E113005417B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01759E38-5F1F-4737-9744-2E113005417B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0EA28BCE-09DE-489B-9B96-1573F6C8238C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0EA28BCE-09DE-489B-9B96-1573F6C8238C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0EA28BCE-09DE-489B-9B96-1573F6C8238C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{0EA28BCE-09DE-489B-9B96-1573F6C8238C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0EA28BCE-09DE-489B-9B96-1573F6C8238C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0EA28BCE-09DE-489B-9B96-1573F6C8238C}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{642F3D97-674E-4168-AB39-53CF47FE7D50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{642F3D97-674E-4168-AB39-53CF47FE7D50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{642F3D97-674E-4168-AB39-53CF47FE7D50}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -65,6 +59,12 @@ Global
 		{858513DA-C4E4-4CF4-AA94-85020489DEE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{858513DA-C4E4-4CF4-AA94-85020489DEE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{858513DA-C4E4-4CF4-AA94-85020489DEE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C58E3B2E-EF6E-4919-810B-1AB6587360F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C58E3B2E-EF6E-4919-810B-1AB6587360F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C58E3B2E-EF6E-4919-810B-1AB6587360F9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C58E3B2E-EF6E-4919-810B-1AB6587360F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C58E3B2E-EF6E-4919-810B-1AB6587360F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C58E3B2E-EF6E-4919-810B-1AB6587360F9}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

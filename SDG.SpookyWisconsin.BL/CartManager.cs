@@ -1,15 +1,8 @@
-﻿using SDG.SpookyWisconsin.BL.Models;
-using SDG.SpookyWisconsin.PL;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using System.Xml;
-
+using SDG.SpookyWisconsin.BL.Models;
+using SDG.SpookyWisconsin.PL;
+using SDG.SpookyWisconsin.PL.Entities;
 
 namespace SDG.SpookyWisconsin.BL
 {
@@ -17,148 +10,33 @@ namespace SDG.SpookyWisconsin.BL
     {
         private const string NOTFOUND_MESSAGE = "Row does not exist";
 
-        public static int Insert(Cart cart, bool rollback = false)
+        DbContextOptions<SpookyWisconsinEntities> options;
+        public CartManager(DbContextOptions<SpookyWisconsinEntities> options)
         {
-            try
-            {
-                int results = 0;
-                using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
-                {
-                    IDbContextTransaction dbContextTransaction = null;
-                    if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
-
-                    tblCart row = new tblCart();
-                    //Fill the table - TODO: Fill in other columns when the database is connected
-                    row.Id = new Guid();
-
-
-                    cart.Id = row.Id;
-                    dc.tblCart.Add(row);
-                    results = dc.SaveChanges();
-
-                    if (rollback) dbContextTransaction.Rollback();
-
-                }
-                return results;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-        }
-        public static int Update(Cart cart, bool rollback = false)
-        {
-            try
-            {
-                int results = 0;
-                using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
-                {
-                    IDbContextTransaction dbContextTransaction = null;
-                    if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
-
-                    tblCart row = dc.tblCart.FirstOrDefault(d => d.Id == cart.Id);
-
-                    //TODO: Fill in the updated fields once the database is completed
-                    //ex: row.State = cart.State...
-
-
-                    results = dc.SaveChanges();
-
-                    if (rollback) dbContextTransaction.Rollback();
-
-                }
-                return results;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            this.options = options;
         }
 
-        public static Cart LoadById(int id)
+        public void Checkout(Cart cart)
         {
-            try
-            {
-                using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
-                {
-                    var row = (from pd in dc.tblCart
-                               where pd.Id == id
-                               select new
-                               {
-                                   Id = pd.Id,
-                                   //TODO - Joins and other fields
-
-                               }).FirstOrDefault();
-                    if (row != null)
-                    {
-                        return new Cart
-                        {
-                            Id = row.Id,
-                            ///TODO - Joins and other fields
-                        };
-                    }
-                    else
-                    {
-                        throw new Exception(NOTFOUND_MESSAGE);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            Order order = new Order();
+            order.Id = new Guid();
+            order.CustomerId = cart.CustomerId;
+            order.OrderDate = DateTime.Now;
+            order.DeliverDate = DateTime.Now.AddDays(2); 
+            OrderManager.Insert(order);
         }
 
-        public static List<Cart> Load()
+        public void Add(Cart cart) //(Cart cart, Item item)
         {
-            List<Cart> rows = new List<Cart>();
-
-            using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
-            {
-                var cartes = (from pd in dc.tblCart
-                                      orderby pd.FirstName
-                                      select new
-                                      {
-                                          Id = pd.Id,
-                                          //TODO - Joins and other fields
-
-                                      }).ToList();
-                cartes.ForEach(pd => rows.Add(new Cart
-                {
-                    Id = pd.Id,
-                    //TODO - Joins and other fields
-                }));
-            }
-            return rows;
+            //if (!cart.Items.Any(n => n.Id == item.Id))
+            //    cart.Add(item);
+            //else
+            //    cart.Items.Where(n => n.Id == item.Id).FirstOrDefault().Quantity++;
         }
 
-        public static int Delete(int id, bool rollback = false)
+        public void Remove(Cart cart) //(Cart cart, Item item)
         {
-            try
-            {
-                int results = 0;
-                using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
-                {
-                    IDbContextTransaction dbContextTransaction = null;
-                    if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
-
-                    tblCart row = dc.tblCart.FirstOrDefault(d => d.Id == id);
-
-                    dc.tblCart.Remove(row);
-                    results = dc.SaveChanges();
-
-                    if (rollback) dbContextTransaction.Rollback();
-
-                }
-                return results;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
+            //cart.Remove(item);
         }
     }
 }

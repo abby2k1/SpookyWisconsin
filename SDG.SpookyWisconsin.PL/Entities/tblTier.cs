@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SDG.SpookyWisconsin.BL.Models
+namespace SDG.SpookyWisconsin.PL.Entities
 {
-    public class Tier
+    public partial class tblTier
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string TierName { get; set; }
         public int TierLevel { get; set; }
     }
