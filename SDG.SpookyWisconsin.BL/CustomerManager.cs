@@ -1,15 +1,8 @@
-﻿using SDG.SpookyWisconsin.BL.Models;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.PL;
-using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+using SDG.SpookyWisconsin.PL.Entities;
 using System.Xml.Linq;
-using System.Xml;
-
 
 namespace SDG.SpookyWisconsin.BL
 {
@@ -30,6 +23,11 @@ namespace SDG.SpookyWisconsin.BL
                     tblCustomer row = new tblCustomer();
                     //Fill the table - TODO: Fill in other columns when the database is connected
                     row.Id = new Guid();
+                    row.MemberId = customer.MemberId;
+                    row.AddressId = customer.AddressId;
+                    row.Email = customer.Email;
+                    row.Firstname = customer.FirstName;
+                    row.Lastname = customer.LastName;
 
 
                     customer.Id = row.Id;
@@ -59,9 +57,11 @@ namespace SDG.SpookyWisconsin.BL
 
                     tblCustomer row = dc.tblCustomer.FirstOrDefault(d => d.Id == customer.Id);
 
-                    //TODO: Fill in the updated fields once the database is completed
-                    //ex: row.State = customer.State...
-
+                    row.MemberId = customer.MemberId;
+                    row.AddressId = customer.AddressId;
+                    row.Email = customer.Email;
+                    row.Firstname = customer.FirstName;
+                    row.Lastname = customer.LastName;
 
                     results = dc.SaveChanges();
 
@@ -82,11 +82,16 @@ namespace SDG.SpookyWisconsin.BL
             {
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
-                    var row = (from pd in dc.tblCustomer
+                    var row = (from pd in dc.tblCustomers
                                where pd.Id == id
                                select new
                                {
                                    Id = pd.Id,
+                                   MemberId = pd.MemberId,
+                                   FirstName = pd.Firstname,
+                                   LastName = pd.Lastname,
+                                   AddressId = pd.AddressId,
+                                   Email = pd.Email
                                    //TODO - Joins and other fields
                                    
                                }).FirstOrDefault();
@@ -95,6 +100,11 @@ namespace SDG.SpookyWisconsin.BL
                         return new Customer
                         {
                             Id = row.Id,
+                            FirstName = row.FirstName,
+                            MemberId = row.MemberId,
+                            LastName = row.LastName,
+                            Email = row.Email,
+                            AddressId = row.AddressId
                             ///TODO - Joins and other fields
                         };
                     }
@@ -116,11 +126,16 @@ namespace SDG.SpookyWisconsin.BL
 
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
-                var customeres = (from pd in dc.tblCustomer
-                                 orderby pd.FirstName
+                var customeres = (from pd in dc.tblCustomers
+                                 orderby pd.Lastname
                                  select new
                                  {
                                      Id = pd.Id,
+                                     MemberId = pd.MemberId,
+                                     FirstName = pd.FirstName,
+                                     LastName = pd.LastName,
+                                     AddressId = pd.AddressId,
+                                     Email = pd.Email
                                      //TODO - Joins and other fields
 
                                  }).ToList();
@@ -143,9 +158,9 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblCustomer row = dc.tblCustomer.FirstOrDefault(d => d.Id == id);
+                    tblCustomer row = dc.tblCustomers.FirstOrDefault(d => d.Id == id);
 
-                    dc.tblCustomer.Remove(row);
+                    dc.tblCustomers.Remove(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();
