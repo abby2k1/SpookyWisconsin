@@ -7,6 +7,17 @@ using System.Text;
 
 namespace SDG.SpookyWisconsin.BL
 {
+    public class LoginFailureException : Exception
+    {
+        public LoginFailureException() : base("Cannot login with these credentials.  Your IP address has been saved.")
+        {
+
+        }
+        public LoginFailureException(string message) : base(message)
+        {
+
+        }
+    }
     public class UserManager
     {
         private const string NOTFOUND_MESSAGE = "Row does not exist";
@@ -131,11 +142,10 @@ namespace SDG.SpookyWisconsin.BL
 
                     tblUser row = new tblUser();
                     //Fill the table
-                    row.Id = new Guid();
+                    row.Id = dc.tblUsers.Any() ? dc.tblUsers.Max(d => d.Id) + 1 : 1;
                     row.Username = user.UserName;
-                    row.Password = user.Password;
+                    row.Password = GetHash(user.Password);
 
-                    user.Id = row.Id;
                     dc.tblUsers.Add(row);
                     results = dc.SaveChanges();
 
@@ -163,7 +173,7 @@ namespace SDG.SpookyWisconsin.BL
                     tblUser row = dc.tblUsers.FirstOrDefault(d => d.Id == user.Id);
                     
                     row.Username = user.UserName;
-                    row.Password = user.Password;
+                    row.Password = GetHash(user.Password);
 
                     results = dc.SaveChanges();
 
@@ -220,15 +230,16 @@ namespace SDG.SpookyWisconsin.BL
 
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
-                var useres = (from pd in dc.tblUsers
-                                      orderby pd.Username
+                var users = (from pd in dc.tblUsers
+                             //where pd.Username == UserId || UserId == null
+                             orderby pd.Username
                                       select new
                                       {
                                           Id = pd.Id,
                                           UserName = pd.Username,
                                           Password = pd.Password
                                       }).ToList();
-                useres.ForEach(pd => rows.Add(new User
+                users.ForEach(pd => rows.Add(new User
                 {
                     Id = pd.Id,
                     Password = pd.Password,
