@@ -99,20 +99,4 @@
   <ItemGroup>
     <RefactorLog Include="SDG.SpookyWisconsinDB.refactorlog" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SDG.SpookyWisconsin.BL.Models\SDG.SpookyWisconsin.BL.Models.csproj">
-      <Name>SDG.SpookyWisconsin.BL.Models</Name>
-      <Project>{5cfea994-d0f0-4d90-8484-93cf374d2d88}</Project>
-      <Private>True</Private>
-      <IsModelAware>True</IsModelAware>
-      <GenerateSqlClrDdl>True</GenerateSqlClrDdl>
-    </ProjectReference>
-    <ProjectReference Include="..\SDG.SpookyWisconsin.BL\SDG.SpookyWisconsin.BL.csproj">
-      <Name>SDG.SpookyWisconsin.BL</Name>
-      <Project>{2cd46f42-ff4d-4fb1-87fb-b7e5f362fe7a}</Project>
-      <Private>True</Private>
-      <IsModelAware>True</IsModelAware>
-      <GenerateSqlClrDdl>True</GenerateSqlClrDdl>
-    </ProjectReference>
-  </ItemGroup>
 </Project>
