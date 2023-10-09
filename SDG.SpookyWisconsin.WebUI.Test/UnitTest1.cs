@@ -1,4 +1,4 @@
-namespace SDG.SpookyWisconsin.API.Test
+namespace SDG.SpookyWisconsin.WebUI.Test
 {
     [TestClass]
     public class UnitTest1
