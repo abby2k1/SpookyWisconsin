@@ -1,3 +1,4 @@
+/*Default CSS*/
 html {
   font-size: 14px;
 }
@@ -20,3 +21,67 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/*Added CSS*/
+.bg-dark {
+    background: linear-gradient(90deg, rgba(74, 4, 4, 1) 0%, rgba(128, 0, 0, 1) 55%);
+}
+/*This class is for the background colors in the header*/
+
+.header {
+    margin: 0px;
+    padding: 0px;
+    color: white;
+    background-color: rgba(136, 8, 8,1);
+}
+
+.main {
+    margin: 0px;
+    padding: 0px;
+    border: 1px solid;
+}
+
+.table tr:nth-child(even) {
+    background-color: rgba(74, 4, 4, .25);
+}
+
+
+.card-img {
+    height: 375px;
+    width: 250px;
+} /*This class is for the images on the merch page*/
+
+.imagedefault {
+    width: 100px;
+    height: 150px;
+}
+
+.imagemed {
+    width: 200px;
+    height: 150px;
+}
+
+.imagebig {
+    width: 475px;
+    height: 700px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%)
+}
+
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+} /*This ID is for a window that will let users click on pictures to see them better*/
