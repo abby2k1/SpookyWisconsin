@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDG.SpookyWisconsin.PL.Test
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SDG.SpookyWisconsinDB", "SDG.SpookyWisconsinDB\SDG.SpookyWisconsinDB.sqlproj", "{C58E3B2E-EF6E-4919-810B-1AB6587360F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDG.SpookyWisconsin.WebUI.Test", "SDG.SpookyWisconsin.WebUI.Test\SDG.SpookyWisconsin.WebUI.Test.csproj", "{DABDD8FC-921F-49EB-89A4-AF75A3C5BEA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDG.SpookyWisconsin.WebUI.Test", "SDG.SpookyWisconsin.WebUI.Test\SDG.SpookyWisconsin.WebUI.Test.csproj", "{DABDD8FC-921F-49EB-89A4-AF75A3C5BEA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
