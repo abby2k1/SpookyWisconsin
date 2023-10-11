@@ -80,18 +80,18 @@
     <Build Include="Tables\tblTier.sql" />
     <Build Include="Tables\tblTour.sql" />
     <Build Include="Tables\tblUser.sql" />
-    <Build Include="PostDeploy\DefaultData\Addresses.sql" />
-    <Build Include="PostDeploy\DefaultData\Carts.sql" />
-    <Build Include="PostDeploy\DefaultData\Customers.sql" />
-    <Build Include="PostDeploy\DefaultData\HauntedEvents.sql" />
-    <Build Include="PostDeploy\DefaultData\HauntedLocations.sql" />
-    <Build Include="PostDeploy\DefaultData\Members.sql" />
-    <Build Include="PostDeploy\DefaultData\Orders.sql" />
-    <Build Include="PostDeploy\DefaultData\Participants.sql" />
-    <Build Include="PostDeploy\DefaultData\Tiers.sql" />
-    <Build Include="PostDeploy\DefaultData\Tours.sql" />
+    <None Include="PostDeploy\DefaultData\Addresses.sql" />
+    <None Include="PostDeploy\DefaultData\Carts.sql" />
+    <None Include="PostDeploy\DefaultData\Customers.sql" />
+    <None Include="PostDeploy\DefaultData\HauntedEvents.sql" />
+    <None Include="PostDeploy\DefaultData\HauntedLocations.sql" />
+    <None Include="PostDeploy\DefaultData\Members.sql" />
+    <None Include="PostDeploy\DefaultData\Orders.sql" />
+    <None Include="PostDeploy\DefaultData\Participants.sql" />
+    <None Include="PostDeploy\DefaultData\Tiers.sql" />
+    <None Include="PostDeploy\DefaultData\Tours.sql" />
     <Build Include="Tables\tblMerch.sql" />
-    <Build Include="PostDeploy\DefaultData\Merchs.sql" />
+    <None Include="PostDeploy\DefaultData\Merchs.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PostDeploy\DefaultData\NewsLetters.sql" />
