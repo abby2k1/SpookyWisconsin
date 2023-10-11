@@ -8,8 +8,8 @@ namespace SDG.SpookyWisconsin.PL.Entities
 {
     public partial class tblParticipant
     {
-        public int Id { get; set; }
-        public int HauntedEventId { get; set; }
-        public int CustomerId { get; set; }
+        public Guid Id { get; set; }
+        public Guid HauntedEventId { get; set; }
+        public Guid CustomerId { get; set; }
     }
 }

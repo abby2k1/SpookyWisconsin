@@ -54,7 +54,7 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblMember row = dc.tblMember.FirstOrDefault(d => d.Id == member.Id);
+                    tblMember row = dc.tblMemberships.FirstOrDefault(d => d.Id == member.Id);
 
                     row.TierId = member.TierId;
                     row.NewsLetterId = member.NewsLetterId;
@@ -74,13 +74,13 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static Member LoadById(int id)
+        public static Member LoadById(Guid id)
         {
             try
             {
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
-                    var row = (from pd in dc.tblMember
+                    var row = (from pd in dc.tblMemberships
                                where pd.Id == id
                                select new
                                {
@@ -143,7 +143,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public static int Delete(int id, bool rollback = false)
+        public static int Delete(Guid id, bool rollback = false)
         {
             try
             {

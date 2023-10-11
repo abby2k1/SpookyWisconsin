@@ -82,7 +82,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static Order LoadById(int id)
+        public static Order LoadById(Guid id)
         {
             try
             {
@@ -149,7 +149,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public static int Delete(int id, bool rollback = false)
+        public static int Delete(Guid id, bool rollback = false)
         {
             try
             {

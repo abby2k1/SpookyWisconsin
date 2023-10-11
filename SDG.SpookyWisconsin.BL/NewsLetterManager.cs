@@ -72,7 +72,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static NewsLetter LoadById(int id)
+        public static NewsLetter LoadById(Guid id)
         {
             try
             {
@@ -137,7 +137,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public static int Delete(int id, bool rollback = false)
+        public static int Delete(Guid id, bool rollback = false)
         {
             try
             {

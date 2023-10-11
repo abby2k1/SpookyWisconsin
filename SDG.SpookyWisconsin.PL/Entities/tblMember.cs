@@ -8,9 +8,9 @@ namespace SDG.SpookyWisconsin.PL.Entities
 {
     public partial class tblMember
     {
-        public int Id { get; set; }
-        public int TierId { get; set; }
-        public int NewsLetterId { get; set; }
+        public Guid Id { get; set; }
+        public Guid TierId { get; set; }
+        public Guid NewsLetterId { get; set; }
         public string NewsLetterOpt { get; set; }
         public string MemberOpt { get; set; }
     }

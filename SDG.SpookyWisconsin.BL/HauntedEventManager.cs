@@ -54,7 +54,7 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblHauntedEvent row = dc.tblHauntedEvent.FirstOrDefault(d => d.Id == hauntedEvent.Id);
+                    tblHauntedEvent row = dc.tblHauntedEvents.FirstOrDefault(d => d.Id == hauntedEvent.Id);
 
                     row.HauntedLocationId = hauntedEvent.HauntedLocationId;
                     row.ParticipantId = hauntedEvent.ParticipantId;
@@ -74,7 +74,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static HauntedEvent LoadById(int id)
+        public static HauntedEvent LoadById(Guid id)
         {
             try
             {
@@ -142,7 +142,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public static int Delete(int id, bool rollback = false)
+        public static int Delete(Guid id, bool rollback = false)
         {
             try
             {

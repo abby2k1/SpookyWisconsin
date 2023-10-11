@@ -8,7 +8,7 @@ namespace SDG.SpookyWisconsin.PL.Entities
 {
     public partial class tblUser
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
     }

@@ -142,7 +142,7 @@ namespace SDG.SpookyWisconsin.BL
 
                     tblUser row = new tblUser();
                     //Fill the table
-                    row.Id = dc.tblUsers.Any() ? dc.tblUsers.Max(d => d.Id) + 1 : 1;
+                    row.Id = new Guid(); //dc.tblUsers.Any() ? dc.tblUsers.Max(d => d.Id) + 1 : 1;
                     row.Username = user.UserName;
                     row.Password = GetHash(user.Password);
 
@@ -188,7 +188,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static User LoadById(int id)
+        public static User LoadById(Guid id)
         {
             try
             {
@@ -249,7 +249,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public static int Delete(int id, bool rollback = false)
+        public static int Delete(Guid id, bool rollback = false)
         {
             try
             {

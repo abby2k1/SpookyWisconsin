@@ -52,7 +52,7 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblTour row = dc.tblTour.FirstOrDefault(d => d.Id == tour.Id);
+                    tblTour row = dc.tblTours.FirstOrDefault(d => d.Id == tour.Id);
                     row.HauntedLocationId = tour.HauntedLocationId;
                     row.Description = tour.Description;
                     row.TourName= tour.TourName;
@@ -74,7 +74,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static Tour LoadById(int id)
+        public static Tour LoadById(Guid id)
         {
             try
             {
@@ -143,7 +143,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public static int Delete(int id, bool rollback = false)
+        public static int Delete(Guid id, bool rollback = false)
         {
             try
             {

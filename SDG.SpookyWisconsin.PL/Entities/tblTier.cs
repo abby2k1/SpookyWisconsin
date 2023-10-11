@@ -8,7 +8,7 @@ namespace SDG.SpookyWisconsin.PL.Entities
 {
     public partial class tblTier
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string TierName { get; set; }
         public int TierLevel { get; set; }
     }

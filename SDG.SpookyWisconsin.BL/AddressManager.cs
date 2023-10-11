@@ -79,7 +79,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static Address LoadById(int id)
+        public static Address LoadById(Guid id)
         {
             try
             {
@@ -106,7 +106,7 @@ namespace SDG.SpookyWisconsin.BL
                             Street = row.Street,
                             City = row.City,
                             State = row.State,
-                            ZIP = row.Zip
+                            ZIP = row.ZIP
                         };
                     }
                     else
@@ -151,7 +151,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public static int Delete(int id, bool rollback = false)
+        public static int Delete(Guid id, bool rollback = false)
         {
             try
             {

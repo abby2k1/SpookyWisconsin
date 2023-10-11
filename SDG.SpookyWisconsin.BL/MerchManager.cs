@@ -74,7 +74,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static Merch LoadById(int id)
+        public static Merch LoadById(Guid id)
         {
             try
             {
@@ -120,7 +120,7 @@ namespace SDG.SpookyWisconsin.BL
 
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
-                var merches = (from pd in dc.tblMerch
+                var merches = (from pd in dc.tblMerches
                                       orderby pd.FirstName
                                       select new
                                       {
@@ -143,7 +143,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public static int Delete(int id, bool rollback = false)
+        public static int Delete(Guid id, bool rollback = false)
         {
             try
             {

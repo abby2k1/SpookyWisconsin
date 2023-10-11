@@ -31,7 +31,7 @@ namespace SDG.SpookyWisconsin.BL
 
 
                     customer.Id = row.Id;
-                    dc.tblCustomer.Add(row);
+                    dc.tblCustomers.Add(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();
@@ -55,7 +55,7 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblCustomer row = dc.tblCustomer.FirstOrDefault(d => d.Id == customer.Id);
+                    tblCustomer row = dc.tblCustomers.FirstOrDefault(d => d.Id == customer.Id);
 
                     row.MemberId = customer.MemberId;
                     row.AddressId = customer.AddressId;
@@ -76,7 +76,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static Customer LoadById(int id)
+        public static Customer LoadById(Guid id)
         {
             try
             {
@@ -132,8 +132,8 @@ namespace SDG.SpookyWisconsin.BL
                                  {
                                      Id = pd.Id,
                                      MemberId = pd.MemberId,
-                                     FirstName = pd.FirstName,
-                                     LastName = pd.LastName,
+                                     FirstName = pd.Firstname,
+                                     LastName = pd.Lastname,
                                      AddressId = pd.AddressId,
                                      Email = pd.Email
                                      //TODO - Joins and other fields
@@ -148,7 +148,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public static int Delete(int id, bool rollback = false)
+        public static int Delete(Guid id, bool rollback = false)
         {
             try
             {

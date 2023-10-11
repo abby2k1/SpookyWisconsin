@@ -8,7 +8,7 @@ namespace SDG.SpookyWisconsin.PL.Entities
 {
     public partial class tblMerch
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string MerchName { get; set; }
         public int InStkQty { get; set; }
         public string Description { get; set; }
