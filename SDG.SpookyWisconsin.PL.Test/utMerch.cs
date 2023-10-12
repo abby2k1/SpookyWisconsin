@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SDG.SpookyWisconsin.PL.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,24 +10,8 @@ using System.Threading.Tasks;
 namespace SDG.SpookyWisconsin.PL.Test
 {
     [TestClass]
-    public class utMerch
+    public class utMerch : utBase
     {
-        protected SpookyWisconsinEntities sc;
-        protected IDbContextTransaction transaction;
-
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            sc = new SpookyWisconsinEntities();
-            transaction = sc.Database.BeginTransaction();
-        }
-
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            transaction.Rollback();
-            transaction.Dispose();
-        }
 
         [TestMethod]
         public void LoadTest()
@@ -34,13 +19,9 @@ namespace SDG.SpookyWisconsin.PL.Test
             //How many I expected
             int expected = 3;
             //How many I did get back
-            int actual;
+            var merches = sc.tblMerches;
 
-            var rows = sc.tblMerches;
-
-            actual = rows.Count();
-
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, merches.Count());
 
         }
 
@@ -51,7 +32,7 @@ namespace SDG.SpookyWisconsin.PL.Test
             tblMerch newrow = new tblMerch();
 
             // Set the properties
-            newrow.Id = -99;
+            newrow.Id = Guid.NewGuid();
             newrow.MerchName = "Skull";
             newrow.InStkQty = 65;
             newrow.Description = "hoodie";
@@ -62,17 +43,16 @@ namespace SDG.SpookyWisconsin.PL.Test
             sc.tblMerches.Add(newrow);
             int result = sc.SaveChanges();
 
-            Assert.IsTrue(result == 1);
+            Assert.AreEqual(1, result);
 
         }
 
         [TestMethod]
         public void UpdateTest()
         {
+            InsertTest();
             // Get a row update
-            tblMerch row = (from a in sc.tblMerches
-                            where a.Id == 2
-                             select a).FirstOrDefault();
+            tblMerch row = sc.tblMerches.FirstOrDefault();
 
             if (row == null)
             {
@@ -85,21 +65,22 @@ namespace SDG.SpookyWisconsin.PL.Test
                 // Update the row into table
                 int result = sc.SaveChanges();
 
-                Assert.IsTrue(result == 1);
+                Assert.AreEqual(1, result);
             }
         }
 
         [TestMethod]
         public void DeleteTest()
         {
+            InsertTest();
+
             tblMerch row = (from a in sc.tblMerches
-                            where a.Id == 2
                              select a).FirstOrDefault();
 
             if (row == null)
             {
                 sc.tblMerches.Remove(row);
-                int result = sc.SaveChanges(true);
+                int result = sc.SaveChanges();
                 Assert.IsTrue(result == 1);
             }
 

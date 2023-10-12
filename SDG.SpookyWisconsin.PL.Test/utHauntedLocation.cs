@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SDG.SpookyWisconsin.PL.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,24 +10,8 @@ using System.Threading.Tasks;
 namespace SDG.SpookyWisconsin.PL.Test
 {
     [TestClass]
-    public class utHauntedLocation
+    public class utHauntedLocation : utBase
     {
-        protected SpookyWisconsinEntities sc;
-        protected IDbContextTransaction transaction;
-
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            sc = new SpookyWisconsinEntities();
-            transaction = sc.Database.BeginTransaction();
-        }
-
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            transaction.Rollback();
-            transaction.Dispose();
-        }
 
         [TestMethod]
         public void LoadTest()
@@ -34,13 +19,8 @@ namespace SDG.SpookyWisconsin.PL.Test
             //How many I expected
             int expected = 3;
             //How many I did get back
-            int actual;
-
-            var rows = sc.tblHauntedLocations;
-
-            actual = rows.Count();
-
-            Assert.AreEqual(expected, actual);
+            var hauntedLocations = sc.tblHauntedLocations;
+            Assert.AreEqual(expected, hauntedLocations.Count());
 
         }
 
@@ -51,8 +31,8 @@ namespace SDG.SpookyWisconsin.PL.Test
             tblHauntedLocation newrow = new tblHauntedLocation();
 
             // Set the properties
-            newrow.Id = -99;
-            newrow.AddressId = 2;
+            newrow.Id = Guid.NewGuid();
+            newrow.AddressId = sc.tblAddresses.FirstOrDefault().Id;
             newrow.Name = "Haunted";
 
             // Insert row into table
@@ -66,35 +46,36 @@ namespace SDG.SpookyWisconsin.PL.Test
         [TestMethod]
         public void UpdateTest()
         {
+            InsertTest();
+
             // Get a row update
-            tblHauntedLocation row = (from a in sc.tblHauntedLocations
-                                   where a.Id == 2
-                                   select a).FirstOrDefault();
+            tblHauntedLocation row = sc.tblHauntedLocations.FirstOrDefault();
 
             if (row == null)
             {
                 // Set the properties
-                row.AddressId = 2;
+                row.AddressId = sc.tblAddresses.OrderByDescending(a => a.State).FirstOrDefault().Id;
                 row.Name = "Test";
 
                 // Update the row into table
                 int result = sc.SaveChanges();
 
-                Assert.IsTrue(result == 1);
+                Assert.AreEqual(1, result);
             }
         }
 
         [TestMethod]
         public void DeleteTest()
         {
+            InsertTest();
+
             tblHauntedLocation row = (from a in sc.tblHauntedLocations
-                                   where a.Id == 2
                                    select a).FirstOrDefault();
 
             if (row == null)
             {
                 sc.tblHauntedLocations.Remove(row);
-                int result = sc.SaveChanges(true);
+                int result = sc.SaveChanges();
                 Assert.IsTrue(result == 1);
             }
 

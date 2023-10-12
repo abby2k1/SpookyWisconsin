@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SDG.SpookyWisconsin.PL.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,24 +10,8 @@ using System.Threading.Tasks;
 namespace SDG.SpookyWisconsin.PL.Test
 {
     [TestClass]
-    public class utTier
+    public class utTier : utBase
     {
-        protected SpookyWisconsinEntities sc;
-        protected IDbContextTransaction transaction;
-
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            sc = new SpookyWisconsinEntities();
-            transaction = sc.Database.BeginTransaction();
-        }
-
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            transaction.Rollback();
-            transaction.Dispose();
-        }
 
         [TestMethod]
         public void LoadTest()
@@ -34,13 +19,9 @@ namespace SDG.SpookyWisconsin.PL.Test
             //How many I expected
             int expected = 3;
             //How many I did get back
-            int actual;
+            var tiers = sc.tblTier;
 
-            var rows = sc.tblTier;
-
-            actual = rows.Count();
-
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, tiers.Count());
 
         }
 
@@ -51,7 +32,7 @@ namespace SDG.SpookyWisconsin.PL.Test
             tblTier newrow = new tblTier();
 
             // Set the properties
-            newrow.Id = -99;
+            newrow.Id = Guid.NewGuid();
             newrow.TierName = "Pro";
             newrow.TierLevel = 3;
 
@@ -59,17 +40,16 @@ namespace SDG.SpookyWisconsin.PL.Test
             sc.tblTier.Add(newrow);
             int result = sc.SaveChanges();
 
-            Assert.IsTrue(result == 1);
+            Assert.AreEqual(1, result);
 
         }
 
         [TestMethod]
         public void UpdateTest()
         {
+            InsertTest();
             // Get a row update
-            tblTier row = (from a in sc.tblTier
-                                  where a.Id == 2
-                                  select a).FirstOrDefault();
+            tblTier row = sc.tblTier.FirstOrDefault();
 
             if (row == null)
             {
@@ -81,21 +61,22 @@ namespace SDG.SpookyWisconsin.PL.Test
                 // Update the row into table
                 int result = sc.SaveChanges();
 
-                Assert.IsTrue(result == 1);
+                Assert.AreEqual(1, result);
             }
         }
 
         [TestMethod]
         public void DeleteTest()
         {
+            InsertTest();
+
             tblTier row = (from a in sc.tblTier
-                           where a.Id == 2
                                   select a).FirstOrDefault();
 
             if (row == null)
             {
                 sc.tblTier.Remove(row);
-                int result = sc.SaveChanges(true);
+                int result = sc.SaveChanges();
                 Assert.IsTrue(result == 1);
             }
 

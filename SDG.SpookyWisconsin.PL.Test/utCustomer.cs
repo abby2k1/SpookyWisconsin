@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SDG.SpookyWisconsin.PL.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,24 +10,8 @@ using System.Threading.Tasks;
 namespace SDG.SpookyWisconsin.PL.Test
 {
     [TestClass]
-    public class utCustomer
+    public class utCustomer : utBase
     {
-        protected SpookyWisconsinEntities sc;
-        protected IDbContextTransaction transaction;
-
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            sc = new SpookyWisconsinEntities();
-            transaction = sc.Database.BeginTransaction();
-        }
-
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            transaction.Rollback();
-            transaction.Dispose();
-        }
 
         [TestMethod]
         public void LoadTest()
@@ -34,13 +19,9 @@ namespace SDG.SpookyWisconsin.PL.Test
             //How many I expected
             int expected = 3;
             //How many I did get back
-            int actual;
+            var customers = sc.tblCustomers;
 
-            var rows = sc.tblCustomers;
-
-            actual = rows.Count();
-
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, customers.Count());
 
         }
 
@@ -51,36 +32,36 @@ namespace SDG.SpookyWisconsin.PL.Test
             tblCustomer newrow = new tblCustomer();
 
             // Set the properties
-            newrow.Id = -99;
-            newrow.MemberId = 2;
+            newrow.Id = Guid.NewGuid();
+            newrow.MemberId = sc.tblMemberships.FirstOrDefault().Id;
             newrow.Firstname = "Sam";
             newrow.Lastname = "Park";
-            newrow.AddressId = 1;
+            newrow.AddressId = sc.tblAddresses.FirstOrDefault().Id;
             newrow.Email = "Park01_Sam@gmail.com";
 
             // Insert row into table
             sc.tblCustomers.Add(newrow);
             int result = sc.SaveChanges();
 
-            Assert.IsTrue(result == 1);
+            Assert.AreEqual(1, result);
 
         }
 
         [TestMethod]
         public void UpdateTest()
         {
+            InsertTest();
+
             // Get a row update
-            tblCustomer row = (from c in sc.tblCustomers
-                              where c.Id == 2
-                              select c).FirstOrDefault();
+            tblCustomer row = sc.tblCustomers.FirstOrDefault();
 
             if (row == null)
             {
                 // Set the properties
-                row.MemberId = 5;
+                row.MemberId = sc.tblMemberships.FirstOrDefault().Id;
                 row.Firstname = "Test";
                 row.Lastname = "Test";
-                row.AddressId = 2;
+                row.AddressId = sc.tblAddresses.OrderByDescending(a => a.State).FirstOrDefault().Id;
                 row.Email = "Test";
 
                 // Update the row into table
@@ -93,14 +74,15 @@ namespace SDG.SpookyWisconsin.PL.Test
         [TestMethod]
         public void DeleteTest()
         {
+            InsertTest();
+
             tblCustomer row = (from c in sc.tblCustomers
-                              where c.Id == 2
                               select c).FirstOrDefault();
 
             if (row == null)
             {
                 sc.tblCustomers.Remove(row);
-                int result = sc.SaveChanges(true);
+                int result = sc.SaveChanges();
                 Assert.IsTrue(result == 1);
             }
 
@@ -109,4 +91,4 @@ namespace SDG.SpookyWisconsin.PL.Test
     }
 
 }
-}
+

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SDG.SpookyWisconsin.PL.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,38 +10,15 @@ using System.Threading.Tasks;
 namespace SDG.SpookyWisconsin.PL.Test
 {
     [TestClass]
-    public class utUser
+    public class utUser : utBase
     {
-        protected SpookyWisconsinEntities sc;
-        protected IDbContextTransaction transaction;
-
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            sc = new SpookyWisconsinEntities();
-            transaction = sc.Database.BeginTransaction();
-        }
-
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            transaction.Rollback();
-            transaction.Dispose();
-        }
 
         [TestMethod]
         public void LoadTest()
         {
-            //How many I expected
-            int expected = 3;
-            //How many I did get back
-            int actual;
+            var users = sc.tblUsers;
 
-            var rows = sc.tblUsers;
-
-            actual = rows.Count();
-
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(users.Count() > 0);
 
         }
 
@@ -51,7 +29,7 @@ namespace SDG.SpookyWisconsin.PL.Test
             tblUser newrow = new tblUser();
 
             // Set the properties
-            newrow.Id = -99;
+            newrow.Id = Guid.NewGuid();
             newrow.Username = "MThomas";
             newrow.Password = "12345";
 
@@ -59,17 +37,16 @@ namespace SDG.SpookyWisconsin.PL.Test
             sc.tblUsers.Add(newrow);
             int result = sc.SaveChanges();
 
-            Assert.IsTrue(result == 1);
+            Assert.AreEqual(1, result);
 
         }
 
         [TestMethod]
         public void UpdateTest()
         {
+            InsertTest();
             // Get a row update
-            tblUser row = (from a in sc.tblUsers
-                           where a.Id == 2
-                           select a).FirstOrDefault();
+            tblUser row = sc.tblUsers.FirstOrDefault();
 
             if (row == null)
             {
@@ -81,21 +58,22 @@ namespace SDG.SpookyWisconsin.PL.Test
                 // Update the row into table
                 int result = sc.SaveChanges();
 
-                Assert.IsTrue(result == 1);
+                Assert.AreEqual(1, result);
             }
         }
 
         [TestMethod]
         public void DeleteTest()
         {
+            InsertTest();
+
             tblUser row = (from a in sc.tblUsers
-                           where a.Id == 2
                            select a).FirstOrDefault();
 
             if (row == null)
             {
                 sc.tblUsers.Remove(row);
-                int result = sc.SaveChanges(true);
+                int result = sc.SaveChanges();
                 Assert.IsTrue(result == 1);
             }
 

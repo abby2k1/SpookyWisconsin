@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SDG.SpookyWisconsin.PL.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,24 +11,8 @@ using System.Threading.Tasks;
 namespace SDG.SpookyWisconsin.PL.Test
 {
     [TestClass]
-    public class utHauntedEvent
+    public class utHauntedEvent : utBase
     {
-        protected SpookyWisconsinEntities sc;
-        protected IDbContextTransaction transaction;
-
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            sc = new SpookyWisconsinEntities();
-            transaction = sc.Database.BeginTransaction();
-        }
-
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            transaction.Rollback();
-            transaction.Dispose();
-        }
 
         [TestMethod]
         public void LoadTest()
@@ -34,13 +20,8 @@ namespace SDG.SpookyWisconsin.PL.Test
             //How many I expected
             int expected = 3;
             //How many I did get back
-            int actual;
-
-            var rows = sc.tblHauntedEvents;
-
-            actual = rows.Count();
-
-            Assert.AreEqual(expected, actual);
+            var hauntedEvents = sc.tblHauntedEvents;
+            Assert.AreEqual(expected, hauntedEvents.Count());
 
         }
 
@@ -51,9 +32,9 @@ namespace SDG.SpookyWisconsin.PL.Test
             tblHauntedEvent newrow = new tblHauntedEvent();
 
             // Set the properties
-            newrow.Id = -99;
-            newrow.HauntedLocationId = 2;
-            newrow.ParticipantId = 3;
+            newrow.Id = Guid.NewGuid();
+            newrow.HauntedLocationId = sc.tblHauntedLocations.FirstOrDefault().Id;
+            newrow.ParticipantId = sc.tblParticipants.FirstOrDefault().Id;
             newrow.Date = new System.DateTime(2022, 6, 12);
             newrow.Description = "Bridge";
 
@@ -61,43 +42,43 @@ namespace SDG.SpookyWisconsin.PL.Test
             sc.tblHauntedEvents.Add(newrow);
             int result = sc.SaveChanges();
 
-            Assert.IsTrue(result == 1);
+            Assert.AreEqual(1, result);
 
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            // Get a row update
-            tblHauntedEvent row = (from a in sc.tblHauntedEvents
-                              where a.Id == 2
-                              select a).FirstOrDefault();
+            InsertTest();
 
+            // Get a row update
+            tblHauntedEvent row = sc.tblHauntedEvents.FirstOrDefault();
             if (row == null)
             {
                 // Set the properties
-                row.HauntedLocationId = 3;
-                row.ParticipantId = 1;
+                row.HauntedLocationId = sc.tblHauntedLocations.OrderByDescending(h => h.Name).FirstOrDefault().Id;
+                row.ParticipantId = sc.tblParticipants.FirstOrDefault().Id;
                 row.Description = "Bridge";
 
                 // Update the row into table
                 int result = sc.SaveChanges();
 
-                Assert.IsTrue(result == 1);
+                Assert.AreEqual(1, result);
             }
         }
 
         [TestMethod]
         public void DeleteTest()
         {
+            InsertTest();
+
             tblHauntedEvent row = (from a in sc.tblHauntedEvents
-                              where a.Id == 2
                               select a).FirstOrDefault();
 
             if (row == null)
             {
                 sc.tblHauntedEvents.Remove(row);
-                int result = sc.SaveChanges(true);
+                int result = sc.SaveChanges();
                 Assert.IsTrue(result == 1);
             }
 

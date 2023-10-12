@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SDG.SpookyWisconsin.PL.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,24 +11,8 @@ using System.Threading.Tasks;
 namespace SDG.SpookyWisconsin.PL.Test
 {
     [TestClass]
-    public class utOrder
+    public class utOrder : utBase
     {
-        protected SpookyWisconsinEntities sc;
-        protected IDbContextTransaction transaction;
-
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            sc = new SpookyWisconsinEntities();
-            transaction = sc.Database.BeginTransaction();
-        }
-
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            transaction.Rollback();
-            transaction.Dispose();
-        }
 
         [TestMethod]
         public void LoadTest()
@@ -34,13 +20,9 @@ namespace SDG.SpookyWisconsin.PL.Test
             //How many I expected
             int expected = 3;
             //How many I did get back
-            int actual;
+            var orders = sc.tblOrders;
 
-            var rows = sc.tblOrders;
-
-            actual = rows.Count();
-
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, orders.Count());
 
         }
 
@@ -51,8 +33,8 @@ namespace SDG.SpookyWisconsin.PL.Test
             tblOrder newrow = new tblOrder();
 
             // Set the properties
-            newrow.Id = -99;
-            newrow.InCartId = 4;
+            newrow.Id = Guid.NewGuid();
+            newrow.InCartId = sc.tblCarts.FirstOrDefault().Id;
             newrow.OrderDate = new System.DateTime(2023, 12, 1);
             newrow.DeliveryDate = new System.DateTime(2023, 12, 7);
 
@@ -61,41 +43,41 @@ namespace SDG.SpookyWisconsin.PL.Test
             sc.tblOrders.Add(newrow);
             int result = sc.SaveChanges();
 
-            Assert.IsTrue(result == 1);
+            Assert.AreEqual(1, result);
 
         }
 
         [TestMethod]
         public void UpdateTest()
         {
+            InsertTest();
             // Get a row update
-            tblOrder row = (from a in sc.tblOrders
-                                 where a.Id == 2
-                                 select a).FirstOrDefault();
+            tblOrder row = sc.tblOrders.FirstOrDefault();
 
             if (row == null)
             {
                 // Set the properties
-                row.InCartId = 2;
+                row.InCartId = sc.tblCarts.FirstOrDefault().Id;
 
                 // Update the row into table
                 int result = sc.SaveChanges();
 
-                Assert.IsTrue(result == 1);
+                Assert.AreEqual(1, result);
             }
         }
 
         [TestMethod]
         public void DeleteTest()
         {
+            InsertTest();
+
             tblOrder row = (from a in sc.tblOrders
-                                 where a.Id == 2
                                  select a).FirstOrDefault();
 
             if (row == null)
             {
                 sc.tblOrders.Remove(row);
-                int result = sc.SaveChanges(true);
+                int result = sc.SaveChanges();
                 Assert.IsTrue(result == 1);
             }
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SDG.SpookyWisconsin.PL.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,24 +10,8 @@ using System.Threading.Tasks;
 namespace SDG.SpookyWisconsin.PL.Test
 {
     [TestClass]
-    public class utNewsLetter
+    public class utNewsLetter : utBase
     {
-        protected SpookyWisconsinEntities sc;
-        protected IDbContextTransaction transaction;
-
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            sc = new SpookyWisconsinEntities();
-            transaction = sc.Database.BeginTransaction();
-        }
-
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            transaction.Rollback();
-            transaction.Dispose();
-        }
 
         [TestMethod]
         public void LoadTest()
@@ -34,13 +19,9 @@ namespace SDG.SpookyWisconsin.PL.Test
             //How many I expected
             int expected = 3;
             //How many I did get back
-            int actual;
+            var newsLetters = sc.tblNewsLetter;
 
-            var rows = sc.tblNewsLetter;
-
-            actual = rows.Count();
-
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, newsLetters.Count());
 
         }
 
@@ -51,8 +32,8 @@ namespace SDG.SpookyWisconsin.PL.Test
             tblNewsLetter newrow = new tblNewsLetter();
 
             // Set the properties
-            newrow.Id = -99;
-            newrow.HauntedEventId = 4;
+            newrow.Id = Guid.NewGuid();
+            newrow.HauntedEventId = sc.tblHauntedEvents.FirstOrDefault().Id;
             newrow.Description = "Ghost located after 3 am";
             newrow.Date = new System.DateTime(2023, 4, 8);
 
@@ -61,42 +42,43 @@ namespace SDG.SpookyWisconsin.PL.Test
             sc.tblNewsLetter.Add(newrow);
             int result = sc.SaveChanges();
 
-            Assert.IsTrue(result == 1);
+            Assert.AreEqual(1, result);
 
         }
 
         [TestMethod]
         public void UpdateTest()
         {
+            InsertTest();
+
             // Get a row update
-            tblNewsLetter row = (from a in sc.tblNewsLetter
-                                 where a.Id == 2
-                            select a).FirstOrDefault();
+            tblNewsLetter row = sc.tblNewsLetter.FirstOrDefault();  
 
             if (row == null)
             {
                 // Set the properties
-                row.HauntedEventId = 3;
+                row.HauntedEventId = sc.tblHauntedEvents.FirstOrDefault().Id;
                 row.Description = "Test";
 
                 // Update the row into table
                 int result = sc.SaveChanges();
 
-                Assert.IsTrue(result == 1);
+                Assert.AreEqual(1, result);
             }
         }
 
         [TestMethod]
         public void DeleteTest()
         {
+            InsertTest();
+
             tblNewsLetter row = (from a in sc.tblNewsLetter
-                                 where a.Id == 2
                             select a).FirstOrDefault();
 
             if (row == null)
             {
                 sc.tblNewsLetter.Remove(row);
-                int result = sc.SaveChanges(true);
+                int result = sc.SaveChanges();
                 Assert.IsTrue(result == 1);
             }
 

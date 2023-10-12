@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SDG.SpookyWisconsin.PL.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,24 +10,8 @@ using System.Threading.Tasks;
 namespace SDG.SpookyWisconsin.PL.Test
 {
     [TestClass]
-    public class utAddress
+    public class utAddress : utBase
     {
-        protected SpookyWisconsinEntities sc;
-        protected IDbContextTransaction transaction;
-
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            sc = new SpookyWisconsinEntities();
-            transaction = sc.Database.BeginTransaction();
-        }
-
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            transaction.Rollback();
-            transaction.Dispose();
-        }
 
         [TestMethod]
         public void LoadTest()
@@ -34,13 +19,9 @@ namespace SDG.SpookyWisconsin.PL.Test
             //How many I expected
             int expected = 3;
             //How many I did get back
-            int actual;
+            var addresses = sc.tblAddresses;
 
-            var rows = sc.tblAddresses;
-
-            actual = rows.Count();
-
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, addresses.Count());
 
         }
 
@@ -51,7 +32,7 @@ namespace SDG.SpookyWisconsin.PL.Test
             tblAddress newrow = new tblAddress(); 
 
             // Set the properties
-            newrow.Id = -99;
+            newrow.Id = Guid.NewGuid();
             newrow.Street = "456 Wing Road";
             newrow.City = "Oshkosh";
             newrow.State = "WI";
@@ -62,17 +43,17 @@ namespace SDG.SpookyWisconsin.PL.Test
             sc.tblAddresses.Add(newrow);
             int result = sc.SaveChanges();
 
-            Assert.IsTrue(result == 1);
+            Assert.AreEqual(1, result);
 
         }
 
         [TestMethod]
         public void UpdateTest()
         {
+            InsertTest();
+
             // Get a row update
-            tblAddress row = (from a in sc.tblAddresses
-                              where  a.Id == 2
-                              select a).FirstOrDefault();
+            tblAddress row = sc.tblAddresses.FirstOrDefault();
 
             if (row == null)
             {
@@ -86,21 +67,22 @@ namespace SDG.SpookyWisconsin.PL.Test
                 // Update the row into table
                 int result = sc.SaveChanges();
 
-                Assert.IsTrue(result == 1);
+                Assert.AreEqual(1, result);
             }
         }
 
         [TestMethod]
         public void DeleteTest()
         {
+            InsertTest();
+
             tblAddress row = (from a in sc.tblAddresses 
-                              where a.Id == 2
                               select a).FirstOrDefault();
 
             if (row == null)
             {
                 sc.tblAddresses.Remove(row);
-                int result = sc.SaveChanges(true);
+                int result = sc.SaveChanges();
                 Assert.IsTrue(result == 1);
             }
 

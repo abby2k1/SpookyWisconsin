@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SDG.SpookyWisconsin.PL.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,24 +10,8 @@ using System.Threading.Tasks;
 namespace SDG.SpookyWisconsin.PL.Test
 {
     [TestClass]
-    public class utTour
+    public class utTour : utBase
     {
-        protected SpookyWisconsinEntities sc;
-        protected IDbContextTransaction transaction;
-
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            sc = new SpookyWisconsinEntities();
-            transaction = sc.Database.BeginTransaction();
-        }
-
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            transaction.Rollback();
-            transaction.Dispose();
-        }
 
         [TestMethod]
         public void LoadTest()
@@ -34,13 +19,9 @@ namespace SDG.SpookyWisconsin.PL.Test
             //How many I expected
             int expected = 3;
             //How many I did get back
-            int actual;
+            var tours = sc.tblTours;
 
-            var rows = sc.tblTours;
-
-            actual = rows.Count();
-
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, tours.Count());
 
         }
 
@@ -51,51 +32,51 @@ namespace SDG.SpookyWisconsin.PL.Test
             tblTour newrow = new tblTour();
 
             // Set the properties
-            newrow.Id = -99;
+            newrow.Id = Guid.NewGuid();
             newrow.Description = "3 hour tour";
-            newrow.HauntedLocationId = 3;
+            newrow.HauntedLocationId = sc.tblHauntedLocations.FirstOrDefault().Id;
 
             // Insert row into table
             sc.tblTours.Add(newrow);
             int result = sc.SaveChanges();
 
-            Assert.IsTrue(result == 1);
+            Assert.AreEqual(1, result);
 
         }
 
         [TestMethod]
         public void UpdateTest()
         {
+            InsertTest();
             // Get a row update
-            tblTour row = (from a in sc.tblTours
-                           where a.Id == 2
-                           select a).FirstOrDefault();
+            tblTour row = sc.tblTours.FirstOrDefault();
 
             if (row == null)
             {
                 // Set the properties
                 row.Description = "Test";
-                row.HauntedLocationId = 2;
+                row.HauntedLocationId = sc.tblHauntedLocations.OrderByDescending(h => h.Name).FirstOrDefault().Id;
 
 
                 // Update the row into table
                 int result = sc.SaveChanges();
 
-                Assert.IsTrue(result == 1);
+                Assert.AreEqual(1, result);
             }
         }
 
         [TestMethod]
         public void DeleteTest()
         {
+            InsertTest();
+
             tblTour row = (from a in sc.tblTours
-                           where a.Id == 2
                            select a).FirstOrDefault();
 
             if (row == null)
             {
                 sc.tblTours.Remove(row);
-                int result = sc.SaveChanges(true);
+                int result = sc.SaveChanges();
                 Assert.IsTrue(result == 1);
             }
 
