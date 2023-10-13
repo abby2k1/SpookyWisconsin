@@ -1,4 +1,5 @@
-﻿using SDG.SpookyWisconsin.BL.Models;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SDG.SpookyWisconsin.BL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,48 +9,51 @@ using System.Threading.Tasks;
 namespace SDG.SpookyWisconsin.BL.Test
 {
     [TestClass]
-    public class utTour
+    public class utTour : utBase
     {
         [TestMethod]
         public void InsertTest()
         {
             Tour tour = new Tour
             {
-                HauntedLocationId = 1, 
+                HauntedLocationId = new HauntedLocationManager(options).Load().FirstOrDefault().Id, 
                 TourName = "Spooky",
                 Description = "Super scary"
             };
-            Assert.AreEqual(1, TourManager.Insert(tour, true));
+            int result = new TourManager(options).Insert(tour, true);
+            Assert.IsTrue(result > 0);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            Tour tour = TourManager.LoadById(2);
-            tour.HauntedLocationId = 2;
-            tour.TourName = "Test";
+            Tour tour = new TourManager(options).Load().FirstOrDefault();
             tour.Description = "Test";
 
-            int results = TourManager.Update(tour, true);
-            Assert.AreEqual(1, results);
+            Assert.IsTrue(new TourManager(options).Update(tour, true) > 0);
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            Assert.AreEqual(3, TourManager.LoadById(3).Id);
+            Tour tour = new TourManager(options).Load().FirstOrDefault();
+            Assert.AreEqual(new TourManager(options).LoadById(tour.Id).Id, tour.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            Assert.AreEqual(5, TourManager.Load().Count);
+            List<Tour> tour = new TourManager(options).Load();
+            int expected = 3;
+
+            Assert.AreEqual(expected, tour.Count);
         }
 
         [TestMethod]
         public void DeleteTest()
         {
-            Assert.AreEqual(1, TourManager.Delete(1, true));
+            Tour tour = new TourManager(options).Load().FirstOrDefault();
+            Assert.IsTrue(new TourManager(options).Delete(tour.Id, tour) > 0);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Azure;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SDG.SpookyWisconsin.BL.Models;
 using System;
 using System.Collections.Generic;
@@ -9,47 +10,49 @@ using System.Threading.Tasks;
 namespace SDG.SpookyWisconsin.BL.Test
 {
     [TestClass]
-    public class utHauntedLocation
+    public class utHauntedLocation : utBase
     {
         [TestMethod]
         public void InsertTest()
         {
             HauntedLocation hauntedLocation = new HauntedLocation
             {
-                AddressId = 1,
-                CountyId = 2,
+                AddressId = new AddressManager(options).Load().FirstOrDefault(),
                 Name = "Appleton"
             };
-            Assert.AreEqual(1, HauntedLocationManager.Insert(hauntedLocation, true));
+            int result = new HauntedLocationManager(options).Insert(hauntedLocation, true);
+            Assert.IsTrue(result > 0);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            HauntedLocation hauntedlocation = HauntedLocationManager.LoadById(2);
-            hauntedlocation.AddressId = 2;
-            hauntedlocation.CountyId = 3;
+            HauntedLocation hauntedlocation = new HauntedLocationManager(options).Load().FirstOrDefault();
             hauntedlocation.Name = "Test";
-            int results = HauntedLocationManager.Update(hauntedlocation, true);
-            Assert.AreEqual(1, results);
+            Assert.IsTrue(new HauntedLocationManager(options).Delete(hauntedlocation.Id, true) > 0);
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            Assert.AreEqual(3, HauntedLocationManager.LoadById(3).Id);
+            HauntedLocation hauntedLocation = new HauntedLocationManager(options).Load().FirstOrDefault();
+            Assert.AreEqual(new HauntedLocationManager(options).LoadById(hauntedLocation.Id).Id, hauntedLocation.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            Assert.AreEqual(5, HauntedLocationManager.Load().Count);
+            List<HauntedLocation> hauntedLocations = new HauntedLocationManager(options).Load();
+            int expected = 6;
+
+            Assert.AreEqual(expected, hauntedLocations.Count);
         }
 
         [TestMethod]
         public void DeleteTest()
         {
-            Assert.AreEqual(1, HauntedLocationManager.Delete(1, true));
+            HauntedLocation hauntedLocation = new HauntedLocationManager(options).Load().FirstOrDefault();
+            Assert.IsTrue(new HauntedLocationManager(options).Delete(hauntedLocation.Id, true) > 0);    
         }
     }
 }

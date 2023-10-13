@@ -1,4 +1,5 @@
-﻿using SDG.SpookyWisconsin.BL.Models;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SDG.SpookyWisconsin.BL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace SDG.SpookyWisconsin.BL.Test
 {
     [TestClass]
-    public class utMerch
+    public class utMerch : utBase
     {
         [TestMethod]
         public void InsertTest()
@@ -20,38 +21,41 @@ namespace SDG.SpookyWisconsin.BL.Test
                 Description = "T-Shirt",
                 Cost = 23
             };
-            Assert.AreEqual(1, MerchManager.Insert(merch, true));
+            int result = new MerchManager(options).Insert(merch, true);
+            Assert.IsTrue(result > 0);
+
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            Merch merch = MerchManager.LoadById(1);
+            Merch merch = new MerchManager(options).Load().FirstOrDefault();
             merch.MerchName = "Test";
-            merch.InStkQty = 2;
-            merch.Description = "Test";
-            merch.Cost = 30;
 
-            int results = MerchManager.Update(merch, true);
-            Assert.AreEqual(1, results);
+            Assert.IsTrue(new MerchManager(options).Update(merch, true) > 0);    
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            Assert.AreEqual(4, MerchManager.LoadById(4).Id);
+            Merch merch = new MerchManager(options).Load().FirstOrDefault();
+            Assert.AreEqual(new MerchManager(options).LoadById(merch.Id).Id, merch.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            Assert.AreEqual(5, MerchManager.Load().Count);
+            List<Merch> merches = new MerchManager(options).Load();
+            int expected = 3;
+
+            Assert.AreEqual(expected, merches.Count);
         }
 
         [TestMethod]
         public void DeleteTest()
         {
-            Assert.AreEqual(1, MerchManager.Delete(1, true));
+            Merch merch = new MerchManager(options).Load().FirstOrDefault();
+            Assert.IsTrue(new MerchManager(options).Delete(merch.Id, true) > 0);
         }
     }
 }

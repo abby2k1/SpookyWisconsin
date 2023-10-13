@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SDG.SpookyWisconsin.PL;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace SDG.SpookyWisconsin.BL.Test
                 .UseSqlServer(_configuration.GetConnectionString("SpookyWisconsinConnection"))
                 .Options;
 
-            sc = new SpookyWisconsinEntities();
+            sc = new SpookyWisconsinEntities(options);
 
         }
 

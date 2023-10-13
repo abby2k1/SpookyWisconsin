@@ -1,4 +1,5 @@
-﻿using SDG.SpookyWisconsin.BL.Models;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SDG.SpookyWisconsin.BL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,51 +9,53 @@ using System.Threading.Tasks;
 namespace SDG.SpookyWisconsin.BL.Test
 {
     [TestClass]
-    public class utMember
+    public class utMember : utBase
     {
         [TestMethod]
         public void InsertTest()
         {
             Member member = new Member
             {
-                TierId = 1,
-                NewsLetterId = 2,
+                TierId = new TierManager(options).Load().FirstOrDefault().Id,
+                NewsLetterId = new NewsLetterManager(options).Load().FirstOrDefault().Id,
                 NewsLetterOpt = "WiscoNews",
                 MemberOpt = "Freddy" 
             };
-            Assert.AreEqual(1, MemberManager.Insert(member, true));
+            int result = new MemberManager(options).Insert(member, true);
+            Assert.IsTrue(result > 0);
 
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            Member member = MemberManager.LoadById(1);
-            member.TierId = 3;
-            member.NewsLetterId = 1;
+            Member member = new MemberManager(options).Load().FirstOrDefault();
             member.NewsLetterOpt = "Test";
-            member.MemberOpt = "Test";
 
-            int results = MemberManager.Update(member, true);
-            Assert.AreEqual(1, results);
+            Assert.IsTrue(new MemberManager(options).Update(member, true) > 0);
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            Assert.AreEqual(4, MemberManager.LoadById(4).Id);
+            Member member = new MemberManager(options).Load().FirstOrDefault();
+            Assert.AreEqual(new MemberManager(options).LoadById(member.Id).Id, member.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            Assert.AreEqual(5, MemberManager.Load().Count);
+            List<Member> members = new MemberManager(options).Load();
+            int expected = 2;
+
+            Assert.AreEqual(expected, members.Count);
         }
 
         [TestMethod]
         public void DeleteTest()
         {
-            Assert.AreEqual(1, MemberManager.Delete(1, true));
+            Member member = new MemberManager(options).Load().FirstOrDefault();
+            Assert.IsTrue(new MemberManager(options).Delete(member.Id, true) > 0);
         }
     }
 }

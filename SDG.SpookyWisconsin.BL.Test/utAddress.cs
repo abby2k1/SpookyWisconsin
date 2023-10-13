@@ -1,14 +1,16 @@
-﻿using SDG.SpookyWisconsin.BL.Models;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SDG.SpookyWisconsin.BL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SDG.SpookyWisconsin.BL.Test
 {
     [TestClass]
-    public class utAddress
+    public class utAddress : utBase
     {
         [TestMethod]
         public void InsertTest()
@@ -22,36 +24,42 @@ namespace SDG.SpookyWisconsin.BL.Test
                 ZIP = "54911"
                 
             };
-            Assert.AreEqual(1, AddressManager.Insert(address, true));
+           int result = new AddressManager(options).Load().FirstOrDefault().Id;
+            Assert.IsTrue(result > 0);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            Address address = AddressManager.LoadById(2);
+            Address address = new AddressManager(options).Load().FirstOrDefault();
             address.Street = "Test";
 
-            int results = AddressManager.Update(address, true);
-            Assert.AreEqual(1, results);
+            Assert.IsTrue(new AddressManager(options).Update(address, true) > 0);
 
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            Assert.AreEqual(3, AddressManager.LoadById(3).Id);
+           Address addresses = new AddressManager(options).Load().FirstOrDefault();
+            Assert.AreEqual(new AddressManager(options).LoadById(addresses.Id).Id, addresses.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            Assert.AreEqual(24, AddressManager.Load().Count);
+            List<Address> addresses = new AddressManager(options).Load();
+            int expected = 3;
+
+            Assert.AreEqual(expected, addresses.Count);
         }
 
         [TestMethod]
         public void DeleteTest()
         {
-            Assert.AreEqual(1,  AddressManager.Delete(1, true));
+            Address address = new AddressManager(options).Load().FirstOrDefault();
+
+            Assert.IsTrue(new AddressManager(options).Delete(address.Id, true) > 0);
         }
 
 

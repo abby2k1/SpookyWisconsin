@@ -18,7 +18,7 @@ namespace SDG.SpookyWisconsin.PL.Test
         private IConfigurationRoot _configuration;
 
         // represent the database configuration
-        protected DbContextOptions<SpookyWisconsinEntities> options;
+        protected DbContextOptions<SpookyWisconsinEntities> _options;
 
         public utBase()
         {
@@ -27,11 +27,11 @@ namespace SDG.SpookyWisconsin.PL.Test
                 .AddJsonFile("appsettings.json");
             _configuration = builder.Build();
 
-            options = new DbContextOptionsBuilder<SpookyWisconsinEntities>()
+            _options = new DbContextOptionsBuilder<SpookyWisconsinEntities>()
                 .UseSqlServer(_configuration.GetConnectionString("SpookyWisconsinConnection"))
                 .Options;
 
-            sc = new SpookyWisconsinEntities();
+            sc = new SpookyWisconsinEntities(_options);
 
         }
 
