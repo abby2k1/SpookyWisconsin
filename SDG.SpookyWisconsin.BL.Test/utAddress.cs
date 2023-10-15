@@ -24,7 +24,7 @@ namespace SDG.SpookyWisconsin.BL.Test
                 ZIP = "54911"
                 
             };
-           int result = new AddressManager(options).Load().FirstOrDefault().Id;
+           Guid result = new AddressManager(options).Load().FirstOrDefault().Id;
             Assert.IsTrue(result > 0);
         }
 

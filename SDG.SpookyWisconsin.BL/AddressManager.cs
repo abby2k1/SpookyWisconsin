@@ -94,7 +94,7 @@ namespace SDG.SpookyWisconsin.BL
                                    City = pd.City,
                                    County = pd.County,
                                    State = pd.State,
-                                   Zip = pd.ZIP
+                                   ZIP = pd.ZIP
 
                                }).FirstOrDefault();
                     if (row != null)

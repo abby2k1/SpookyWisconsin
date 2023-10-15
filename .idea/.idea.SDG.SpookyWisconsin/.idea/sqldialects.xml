@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblAddress.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblCart.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblCustomer.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblHauntedEvent.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblHauntedLocation.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblMember.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblMerch.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblNewsLetter.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblOrder.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblParticipant.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblTier.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblTour.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblUser.sql" dialect="TSQL" />
+  </component>
+</project>

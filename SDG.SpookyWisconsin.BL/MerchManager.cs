@@ -121,7 +121,7 @@ namespace SDG.SpookyWisconsin.BL
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
                 var merches = (from pd in dc.tblMerches
-                                      orderby pd.FirstName
+                                      orderby pd.MerchName
                                       select new
                                       {
                                           Id = pd.Id,

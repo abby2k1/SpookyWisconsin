@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDataSourceStorage">
+    <option name="dataSources">
+      <list>
+        <State>
+          <option name="id" value="e8db71e7-b660-4388-8a51-9449e6dae18e" />
+          <option name="name" value="SDG.SpookyWisconsinDB" />
+          <option name="dbmsName" value="MSSQL" />
+          <option name="urls">
+            <array>
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblAddress.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblCart.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblCustomer.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblHauntedEvent.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblHauntedLocation.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblMember.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblNewsLetter.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblOrder.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblParticipant.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblTier.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblTour.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblUser.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblMerch.sql" />
+            </array>
+          </option>
+          <option name="remarks" value="Database Project" />
+          <option name="outPath" value="$PROJECT_DIR$/SDG.SpookyWisconsinDB" />
+          <option name="codeStyleName" value="Visual Studio Database Project" />
+          <option name="outLayout" value="File per object by schema.groovy" />
+          <option name="scriptOptions">
+            <map>
+              <entry key="ConstraintContext" value="CONSTRAINT_IN_TABLE" />
+              <entry key="MsVsDdlCompatibility" value="1" />
+              <entry key="QualifyWithSchema" value="ALWAYS" />
+              <entry key="Reformat" value="1" />
+              <entry key="UseSemicolon" value="1" />
+            </map>
+          </option>
+        </State>
+      </list>
+    </option>
+  </component>
+</project>
