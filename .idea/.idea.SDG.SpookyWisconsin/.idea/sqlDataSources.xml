@@ -4,28 +4,28 @@
     <option name="dataSources">
       <list>
         <State>
-          <option name="id" value="e8db71e7-b660-4388-8a51-9449e6dae18e" />
-          <option name="name" value="SDG.SpookyWisconsinDB" />
+          <option name="id" value="b7b4daf7-1876-4bb2-803a-91ee64427929" />
+          <option name="name" value="SDG.SpookyWisconsin.DB" />
           <option name="dbmsName" value="MSSQL" />
           <option name="urls">
             <array>
-              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblAddress.sql" />
-              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblCart.sql" />
-              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblCustomer.sql" />
-              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblHauntedEvent.sql" />
-              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblHauntedLocation.sql" />
-              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblMember.sql" />
-              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblNewsLetter.sql" />
-              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblOrder.sql" />
-              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblParticipant.sql" />
-              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblTier.sql" />
-              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblTour.sql" />
-              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblUser.sql" />
-              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsinDB/Tables/tblMerch.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblAddress.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblCart.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblCustomer.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblHauntedEvent.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblHauntedLocation.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblMember.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblMerch.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblNewsLetter.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblOrder.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblParticipant.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblTier.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblTour.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblUser.sql" />
             </array>
           </option>
           <option name="remarks" value="Database Project" />
-          <option name="outPath" value="$PROJECT_DIR$/SDG.SpookyWisconsinDB" />
+          <option name="outPath" value="$PROJECT_DIR$/SDG.SpookyWisconsin.DB" />
           <option name="codeStyleName" value="Visual Studio Database Project" />
           <option name="outLayout" value="File per object by schema.groovy" />
           <option name="scriptOptions">

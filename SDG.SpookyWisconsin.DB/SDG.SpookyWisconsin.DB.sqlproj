@@ -6,7 +6,7 @@
     <Name>SDG.SpookyWisconsin.DB</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{0ea28bce-09de-489b-9b96-1573f6c8238c}</ProjectGuid>
+    <ProjectGuid>{de2890de-de31-4316-835b-577b4a26400a}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
@@ -56,5 +56,66 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="PostDeploy" />
+    <Folder Include="PostDeploy\DefaultData" />
+    <Folder Include="PreDeploy" />
+    <Folder Include="Tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PostDeploy\DefaultData\Addresses.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PostDeploy\DefaultData\Carts.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PostDeploy\DefaultData\Customers.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PostDeploy\DefaultData\HauntedEvents.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PostDeploy\DefaultData\HauntedLocations.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PostDeploy\DefaultData\Members.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PostDeploy\DefaultData\Merchs.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PostDeploy\DefaultData\NewsLetters.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PostDeploy\DefaultData\Orders.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PostDeploy\DefaultData\Participants.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PostDeploy\DefaultData\Tiers.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PostDeploy\DefaultData\Tours.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostDeploy\Script.PostDeployment1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="PreDeploy\Script.PreDeployment1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\tblAddress.sql" />
+    <Build Include="Tables\tblCart.sql" />
+    <Build Include="Tables\tblCustomer.sql" />
+    <Build Include="Tables\tblHauntedEvent.sql" />
+    <Build Include="Tables\tblHauntedLocation.sql" />
+    <Build Include="Tables\tblMember.sql" />
+    <Build Include="Tables\tblMerch.sql" />
+    <Build Include="Tables\tblNewsLetter.sql" />
+    <Build Include="Tables\tblOrder.sql" />
+    <Build Include="Tables\tblParticipant.sql" />
+    <Build Include="Tables\tblTier.sql" />
+    <Build Include="Tables\tblTour.sql" />
+    <Build Include="Tables\tblUser.sql" />
   </ItemGroup>
 </Project>

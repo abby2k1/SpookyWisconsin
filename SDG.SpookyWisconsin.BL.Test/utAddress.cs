@@ -24,31 +24,33 @@ namespace SDG.SpookyWisconsin.BL.Test
                 ZIP = "54911"
                 
             };
-           Guid result = new AddressManager(options).Load().FirstOrDefault().Id;
-            Assert.IsTrue(result > 0);
+            AddressManager.Insert(address);
+            Guid result = AddressManager.Load().FirstOrDefault().Id;
+            Assert.IsTrue(result != Guid.Empty);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            Address address = new AddressManager(options).Load().FirstOrDefault();
+            Address address = AddressManager.Load().FirstOrDefault();
             address.Street = "Test";
 
-            Assert.IsTrue(new AddressManager(options).Update(address, true) > 0);
+            Assert.IsTrue(AddressManager.Update(address, true) > 0);
 
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-           Address addresses = new AddressManager(options).Load().FirstOrDefault();
-            Assert.AreEqual(new AddressManager(options).LoadById(addresses.Id).Id, addresses.Id);
+            Guid id = AddressManager.Load().FirstOrDefault().Id;
+            Address address = AddressManager.LoadById(id);
+            Assert.AreEqual(id, address.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            List<Address> addresses = new AddressManager(options).Load();
+            List<Address> addresses = AddressManager.Load();
             int expected = 3;
 
             Assert.AreEqual(expected, addresses.Count);
@@ -57,9 +59,9 @@ namespace SDG.SpookyWisconsin.BL.Test
         [TestMethod]
         public void DeleteTest()
         {
-            Address address = new AddressManager(options).Load().FirstOrDefault();
+            Address address = AddressManager.Load().FirstOrDefault();
 
-            Assert.IsTrue(new AddressManager(options).Delete(address.Id, true) > 0);
+            Assert.IsTrue(AddressManager.Delete(address.Id, true) > 0);
         }
 
 

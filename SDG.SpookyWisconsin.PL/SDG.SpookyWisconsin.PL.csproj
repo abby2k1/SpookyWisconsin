@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SDG.SpookyWisconsin.BL.Models\SDG.SpookyWisconsin.BL.Models.csproj" />
-    <ProjectReference Include="..\SDG.SpookyWisconsin.DB\SDG.SpookyWisconsin.DB.sqlproj" />
   </ItemGroup>
 
 </Project>
