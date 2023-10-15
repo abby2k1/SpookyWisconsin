@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[tblTour]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
-    [HauntedLocationId] INT NOT NULL, 
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [HauntedLocationId] UNIQUEIDENTIFIER NOT NULL, 
     [TourName] VARCHAR(100) NOT NULL, 
     [Description] VARCHAR(50) NOT NULL
 )

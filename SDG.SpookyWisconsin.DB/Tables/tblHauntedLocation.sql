@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[tblHauntedLocation]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
-    [AddressId] INT NOT NULL, 
-    [CountyId] INT NOT NULL, 
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [AddressId] UNIQUEIDENTIFIER NOT NULL, 
+    [CountyId] UNIQUEIDENTIFIER NOT NULL, 
     [Name] VARCHAR(100) NOT NULL
 )

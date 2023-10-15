@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[tblParticipant]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
-    [HauntedEventId] INT NOT NULL, 
-    [CustomerId] INT NOT NULL
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [HauntedEventId] UNIQUEIDENTIFIER NOT NULL, 
+    [CustomerId] UNIQUEIDENTIFIER NOT NULL
 )
