@@ -19,31 +19,31 @@ namespace SDG.SpookyWisconsin.BL.Test
                 TierName = "noob",
                 TierLevel = 1
             };
-            int result = new TierManager(options).Insert(tier, true);
+            int result = TierManager.Insert(tier, true);
             Assert.IsTrue(result > 0);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            Tier tier = new TierManager(options).Load().FirstOrDefault();
+            Tier tier = TierManager.Load().FirstOrDefault();
             tier.TierName = "Test";
 
-            Assert.IsTrue(new TierManager(options).Update(tier, true) > 0);
+            Assert.IsTrue(TierManager.Update(tier, true) > 0);
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            Tier tier = new TierManager(options).Load().FirstOrDefault();
+            Tier tier = TierManager.Load().FirstOrDefault();
 
-            Assert.AreEqual(new TierManager(options).LoadById(tier.Id).Id, tier.Id);
+            Assert.AreEqual(TierManager.LoadById(tier.Id).Id, tier.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            List<Tier> tierList = new TierManager(options).Load();
+            List<Tier> tierList = TierManager.Load();
             int expected = 3;
 
             Assert.AreEqual(expected, tierList.Count);
@@ -52,8 +52,8 @@ namespace SDG.SpookyWisconsin.BL.Test
         [TestMethod]
         public void DeleteTest()
         {
-            Tier tier = new TierManager(options).Load().FirstOrDefault();
-            Assert.IsTrue(new TierManager(options).Delete(tier.Id, true) > 0);
+            Tier tier = TierManager.Load().FirstOrDefault();
+            Assert.IsTrue(TierManager.Delete(tier.Id, true) > 0);
 
         }
     }

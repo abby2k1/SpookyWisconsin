@@ -16,34 +16,34 @@ namespace SDG.SpookyWisconsin.BL.Test
         {
             Tour tour = new Tour
             {
-                HauntedLocationId = new HauntedLocationManager(options).Load().FirstOrDefault().Id, 
+                HauntedLocationId = HauntedLocationManager.Load().FirstOrDefault().Id, 
                 TourName = "Spooky",
                 Description = "Super scary"
             };
-            int result = new TourManager(options).Insert(tour, true);
+            int result = TourManager.Insert(tour, true);
             Assert.IsTrue(result > 0);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            Tour tour = new TourManager(options).Load().FirstOrDefault();
+            Tour tour = TourManager.Load().FirstOrDefault();
             tour.Description = "Test";
 
-            Assert.IsTrue(new TourManager(options).Update(tour, true) > 0);
+            Assert.IsTrue(TourManager.Update(tour, true) > 0);
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            Tour tour = new TourManager(options).Load().FirstOrDefault();
-            Assert.AreEqual(new TourManager(options).LoadById(tour.Id).Id, tour.Id);
+            Tour tour = TourManager.Load().FirstOrDefault();
+            Assert.AreEqual(TourManager.LoadById(tour.Id).Id, tour.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            List<Tour> tour = new TourManager(options).Load();
+            List<Tour> tour = TourManager.Load();
             int expected = 3;
 
             Assert.AreEqual(expected, tour.Count);
@@ -52,8 +52,8 @@ namespace SDG.SpookyWisconsin.BL.Test
         [TestMethod]
         public void DeleteTest()
         {
-            Tour tour = new TourManager(options).Load().FirstOrDefault();
-            Assert.IsTrue(new TourManager(options).Delete(tour.Id, tour) > 0);
+            Tour tour = TourManager.Load().FirstOrDefault();
+            Assert.IsTrue(TourManager.Delete(tour.Id, true) > 0);
         }
     }
 }

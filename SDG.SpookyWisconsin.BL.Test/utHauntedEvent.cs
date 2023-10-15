@@ -16,35 +16,35 @@ namespace SDG.SpookyWisconsin.BL.Test
         {
             HauntedEvent hauntedEvent = new HauntedEvent
             {
-                HauntedLocationId = new HauntedLocationManager(options).Load().FirstOrDefault().Id,
-                ParticipantId = new ParticipantManager(options).Load().FirstOrDefault().Id,
+                HauntedLocationId = HauntedLocationManager.Load().FirstOrDefault().Id,
+                ParticipantId = ParticipantManager.Load().FirstOrDefault().Id,
                 Date = DateTime.Now,
                 Description = "Test"
             };
-            int result = new HauntedEventManager(options).Insert(hauntedEvent, true);
+            int result = HauntedEventManager.Insert(hauntedEvent, true);
             Assert.IsTrue(result > 0);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            HauntedEvent hauntedEvent = new HauntedEventManager(options).Load().FirstOrDefault();
+            HauntedEvent hauntedEvent = HauntedEventManager.Load().FirstOrDefault();
             hauntedEvent.Description = "Test";
 
-            Assert.IsTrue(new HauntedEventManager(options).Equals(hauntedEvent, true) > 0);
+            Assert.IsTrue(HauntedEventManager.Update(hauntedEvent, true) > 0);
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            HauntedEvent hauntedEvent = new HauntedEventManager(options).Load().FirstOrDefault();
-            Assert.AreEqual(new HauntedEventManager(options).LoadById(hauntedEvent.Id).Id, hauntedEvent.Id);
+            HauntedEvent hauntedEvent = HauntedEventManager.Load().FirstOrDefault();
+            Assert.AreEqual(HauntedEventManager.LoadById(hauntedEvent.Id).Id, hauntedEvent.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            List<HauntedEvent> hauntedEvents = new HauntedEventManager(options).Load();
+            List<HauntedEvent> hauntedEvents = HauntedEventManager.Load();
             int expected = 9;
 
             Assert.AreEqual(expected, hauntedEvents.Count);
@@ -53,8 +53,8 @@ namespace SDG.SpookyWisconsin.BL.Test
         [TestMethod]
         public void DeleteTest()
         {
-            HauntedEvent hauntedEvent = new HauntedEventManager(options).Load().FirstOrDefault();
-            Assert.IsTrue(new HauntedEventManager(options).Delete(hauntedEvent.Id, true) > 0);
+            HauntedEvent hauntedEvent = HauntedEventManager.Load().FirstOrDefault();
+            Assert.IsTrue(HauntedEventManager.Delete(hauntedEvent.Id, true) > 0);
         }
     }
 }

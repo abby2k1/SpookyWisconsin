@@ -17,32 +17,32 @@ namespace SDG.SpookyWisconsin.BL.Test
         {
             HauntedLocation hauntedLocation = new HauntedLocation
             {
-                AddressId = new AddressManager(options).Load().FirstOrDefault(),
+                AddressId = AddressManager.Load().FirstOrDefault().Id,
                 Name = "Appleton"
             };
-            int result = new HauntedLocationManager(options).Insert(hauntedLocation, true);
+            int result = HauntedLocationManager.Insert(hauntedLocation, true);
             Assert.IsTrue(result > 0);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            HauntedLocation hauntedlocation = new HauntedLocationManager(options).Load().FirstOrDefault();
+            HauntedLocation hauntedlocation = HauntedLocationManager.Load().FirstOrDefault();
             hauntedlocation.Name = "Test";
-            Assert.IsTrue(new HauntedLocationManager(options).Delete(hauntedlocation.Id, true) > 0);
+            Assert.IsTrue(HauntedLocationManager.Delete(hauntedlocation.Id, true) > 0);
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            HauntedLocation hauntedLocation = new HauntedLocationManager(options).Load().FirstOrDefault();
-            Assert.AreEqual(new HauntedLocationManager(options).LoadById(hauntedLocation.Id).Id, hauntedLocation.Id);
+            HauntedLocation hauntedLocation = HauntedLocationManager.Load().FirstOrDefault();
+            Assert.AreEqual(HauntedLocationManager.LoadById(hauntedLocation.Id).Id, hauntedLocation.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            List<HauntedLocation> hauntedLocations = new HauntedLocationManager(options).Load();
+            List<HauntedLocation> hauntedLocations = HauntedLocationManager.Load();
             int expected = 6;
 
             Assert.AreEqual(expected, hauntedLocations.Count);
@@ -51,8 +51,8 @@ namespace SDG.SpookyWisconsin.BL.Test
         [TestMethod]
         public void DeleteTest()
         {
-            HauntedLocation hauntedLocation = new HauntedLocationManager(options).Load().FirstOrDefault();
-            Assert.IsTrue(new HauntedLocationManager(options).Delete(hauntedLocation.Id, true) > 0);    
+            HauntedLocation hauntedLocation = HauntedLocationManager.Load().FirstOrDefault();
+            Assert.IsTrue(HauntedLocationManager.Delete(hauntedLocation.Id, true) > 0);    
         }
     }
 }

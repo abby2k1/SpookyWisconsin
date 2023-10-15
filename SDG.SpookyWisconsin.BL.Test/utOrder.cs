@@ -17,34 +17,34 @@ namespace SDG.SpookyWisconsin.BL.Test
         {
             Order order = new Order
             { 
-                CustomerId = new CustomerManager(options).Load().FirstOrDefault(),
+                CustomerId = CustomerManager.Load().FirstOrDefault().Id,
                 OrderDate = DateTime.Now,
                 DeliverDate = DateTime.Now
             };
-            var result = new OrderManager(options).Insert(order, true);
+            var result = OrderManager.Insert(order, true);
             Assert.IsTrue(result > 0);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            Order order = new OrderManager(options).Load().FirstOrDefault();
+            Order order = OrderManager.Load().FirstOrDefault();
             order.OrderDate = DateTime.Now;
 
-            Assert.IsTrue(new OrderManager(options).Update(order, true));
+            Assert.IsTrue(OrderManager.Update(order, true) > 0);
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            Order order = new OrderManager(options).Load().FirstOrDefault();
-            Assert.AreEqual(new OrderManager(options).LoadById(order.Id).Id, order.Id);
+            Order order = OrderManager.Load().FirstOrDefault();
+            Assert.AreEqual(OrderManager.LoadById(order.Id).Id, order.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            List<Order> orders = new OrderManager(options).Load().FirstOrDefault();
+            List<Order> orders = OrderManager.Load();
             int expected = 2;
 
             Assert.AreEqual(expected, orders.Count);
@@ -53,8 +53,8 @@ namespace SDG.SpookyWisconsin.BL.Test
         [TestMethod]
         public void DeleteTest()
         {
-            Order order = new OrderManager(options).Load().FirstOrDefault();
-            Assert.IsTrue(new OrderManager(options).Delte(order.Id, true) > 0);
+            Order order = OrderManager.Load().FirstOrDefault();
+            Assert.IsTrue(OrderManager.Delete(order.Id, true) > 0);
         }
     }
 }
