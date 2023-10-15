@@ -48,7 +48,7 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
                 if (TempData["returnUrl"] != null)
                     return Redirect(TempData["returnUrl"]?.ToString());
                 else
-                    return RedirectToAction(nameof(Index), "Movie");
+                    return RedirectToAction(nameof(Index), "Home");
             }
             catch (Exception ex)
             {
