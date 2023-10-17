@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SGD.SpookyWisconsin.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace SDG.SpookyWisconsin.PL.Entities
 {
-    public partial class tblOrder
+    public partial class tblOrder : IEntity
     {
         //Ask group
         public Guid Id { get; set; }
+        public string SortField { get { return OrderDate.ToString(); } }
         public Guid InCartId { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime DeliveryDate { get; set; }
