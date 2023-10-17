@@ -1,7 +1,7 @@
 ﻿using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.WebUI;
 
-namespace CCM.ProgDec.UI.Models
+namespace SDG.SpookyWisconsin.WebUI.Models
 {
     public static class Authenticate
     {

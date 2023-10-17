@@ -1,5 +1,6 @@
 ﻿using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.BL;
+using SDG.SpookyWisconsin.WebUI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
