@@ -1,14 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.PL;
 using SDG.SpookyWisconsin.PL.Entities;
+using SGD.SpookyWisconsin.BL;
 
 namespace SDG.SpookyWisconsin.BL
 {
-    public class TourManager
+    public class TourManager : GenericManager<tblTour>
     {
         private const string NOTFOUND_MESSAGE = "Row does not exist";
+        //injecting the connection string 
+        public TourManager(DbContextOptions<SpookyWisconsinEntities> options) : base(options)
+        {
 
+        }
         public static int Insert(Tour tour, bool rollback = false)
         {
             try

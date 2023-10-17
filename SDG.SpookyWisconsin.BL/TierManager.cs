@@ -10,12 +10,19 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml;
 using SDG.SpookyWisconsin.PL.Entities;
+using SGD.SpookyWisconsin.BL;
+using Microsoft.EntityFrameworkCore;
 
 namespace SDG.SpookyWisconsin.BL
 {
-    public class TierManager
+    public class TierManager : GenericManager<tblTier>
     {
         private const string NOTFOUND_MESSAGE = "Row does not exist";
+        //injecting the connection string 
+        public TierManager(DbContextOptions<SpookyWisconsinEntities> options) : base(options)
+        {
+
+        }
 
         public static int Insert(Tier tier, bool rollback = false)
         {

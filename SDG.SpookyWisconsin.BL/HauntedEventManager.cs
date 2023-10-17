@@ -1,14 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.PL;
 using SDG.SpookyWisconsin.PL.Entities;
+using SGD.SpookyWisconsin.BL;
 using System.Xml.Linq;
 
 namespace SDG.SpookyWisconsin.BL
 {
-    public class HauntedEventManager
+    public class HauntedEventManager : GenericManager<tblHauntedEvent>
     {
         private const string NOTFOUND_MESSAGE = "Row does not exist";
+        //injecting the connection string 
+        public HauntedEventManager(DbContextOptions<SpookyWisconsinEntities> options) : base(options)
+        {
+
+        }
 
         public static int Insert(HauntedEvent hauntedEvent, bool rollback = false)
         {

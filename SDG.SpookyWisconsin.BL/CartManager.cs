@@ -3,10 +3,11 @@ using Microsoft.EntityFrameworkCore.Storage;
 using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.PL;
 using SDG.SpookyWisconsin.PL.Entities;
+using SGD.SpookyWisconsin.BL;
 
 namespace SDG.SpookyWisconsin.BL
 {
-    public class CartManager
+    public class CartManager : GenericManager<tblCart>
     {
         private const string NOTFOUND_MESSAGE = "Row does not exist";
 

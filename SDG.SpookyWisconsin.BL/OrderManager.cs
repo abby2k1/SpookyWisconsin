@@ -10,12 +10,19 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml;
 using SDG.SpookyWisconsin.PL.Entities;
+using SGD.SpookyWisconsin.BL;
+using Microsoft.EntityFrameworkCore;
 
 namespace SDG.SpookyWisconsin.BL
 {
-    public class OrderManager
+    public class OrderManager : GenericManager<tblOrder>
     {
         private const string NOTFOUND_MESSAGE = "Row does not exist";
+        //injecting the connection string 
+        public OrderManager(DbContextOptions<SpookyWisconsinEntities> options) : base(options)
+        {
+
+        }
 
         public static int Insert(Order order, bool rollback = false)
         {
