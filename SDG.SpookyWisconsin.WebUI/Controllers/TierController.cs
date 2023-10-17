@@ -17,7 +17,7 @@ namespace CCM.DVDCentral.UI.Controllers
         }
 
         // GET: TierController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
             return View(TierManager.LoadById(id));
         }
@@ -52,7 +52,7 @@ namespace CCM.DVDCentral.UI.Controllers
         }
 
         // GET: TierController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
             if (Authenticate.IsAuthenticated(HttpContext))
             {
@@ -67,7 +67,7 @@ namespace CCM.DVDCentral.UI.Controllers
         // POST: TierController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Tier tier, bool rollback = false)
+        public ActionResult Edit(Guid id, Tier tier, bool rollback = false)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace CCM.DVDCentral.UI.Controllers
         }
 
         // GET: TierController/Delete/5
-        public ActionResult Delete(int id, Tier tier)
+        public ActionResult Delete(Guid id, Tier tier)
         {
             return View(TierManager.LoadById(id));
         }
@@ -90,7 +90,7 @@ namespace CCM.DVDCentral.UI.Controllers
         // POST: TierController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection, bool rollback = false)
+        public ActionResult Delete(Guid id, IFormCollection collection, bool rollback = false)
         {
             try
             {
