@@ -15,33 +15,33 @@ namespace SDG.SpookyWisconsin.BL.Test
         {
             Participant participant = new Participant
             {
-                HauntedEventId = HauntedEventManager.Load().FirstOrDefault().Id,
-                CustomerId = CustomerManager.Load().FirstOrDefault().Id
+                HauntedEventId = new HauntedEventManager(options).Load().FirstOrDefault().Id,
+                CustomerId = new CustomerManager(options).Load().FirstOrDefault().Id
             };
-            int result = ParticipantManager.Insert(participant, true);
+            int result = new ParticipantManager(options).Insert(participant, true);
             Assert.IsTrue(result > 0);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            Participant participant = ParticipantManager.Load().FirstOrDefault();
+            Participant participant = new ParticipantManager(options).Load().FirstOrDefault();
             participant.CustomerId = Guid.NewGuid();
 
-            Assert.IsTrue(ParticipantManager.Update(participant, true) > 0);
+            Assert.IsTrue(new ParticipantManager(options).Update(participant, true) > 0);
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            Participant participant = ParticipantManager.Load().FirstOrDefault();
-            Assert.AreEqual(ParticipantManager.LoadById(participant.Id).Id, participant.Id);
+            Participant participant = new ParticipantManager(options).Load().FirstOrDefault();
+            Assert.AreEqual(new ParticipantManager(options).LoadById(participant.Id).Id, participant.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            List<Participant> participant = ParticipantManager.Load();
+            List<Participant> participant = new ParticipantManager(options).Load();
             int expected = 3;
 
             Assert.AreEqual(expected, participant.Count);
@@ -50,8 +50,8 @@ namespace SDG.SpookyWisconsin.BL.Test
         [TestMethod]
         public void DeleteTest()
         {
-            Participant participant = ParticipantManager.Load().FirstOrDefault();
-            Assert.IsTrue(ParticipantManager.Delete(participant.Id, true) > 0);
+            Participant participant = new ParticipantManager(options).Load().FirstOrDefault();
+            Assert.IsTrue(new ParticipantManager(options).Delete(participant.Id, participant) > 0);
         }
     }
 }

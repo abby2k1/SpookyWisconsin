@@ -21,7 +21,7 @@ namespace SDG.SpookyWisconsin.BL.Test
                 Description = "T-Shirt",
                 Cost = 23
             };
-            int result = MerchManager.Insert(merch, true);
+            int result = new MerchManager(options).Insert(merch, true);
             Assert.IsTrue(result > 0);
 
         }
@@ -29,23 +29,23 @@ namespace SDG.SpookyWisconsin.BL.Test
         [TestMethod]
         public void UpdateTest()
         {
-            Merch merch = MerchManager.Load().FirstOrDefault();
+            Merch merch = new MerchManager(options).Load().FirstOrDefault();
             merch.MerchName = "Test";
 
-            Assert.IsTrue(MerchManager.Update(merch, true) > 0);    
+            Assert.IsTrue(new MerchManager(options).Update(merch, true) > 0);    
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            Merch merch = MerchManager.Load().FirstOrDefault();
-            Assert.AreEqual(MerchManager.LoadById(merch.Id).Id, merch.Id);
+            Merch merch = new MerchManager(options).Load().FirstOrDefault();
+            Assert.AreEqual(new MerchManager(options).LoadById(merch.Id).Id, merch.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            List<Merch> merches = MerchManager.Load();
+            List<Merch> merches = new MerchManager(options).Load();
             int expected = 3;
 
             Assert.AreEqual(expected, merches.Count);
@@ -54,8 +54,8 @@ namespace SDG.SpookyWisconsin.BL.Test
         [TestMethod]
         public void DeleteTest()
         {
-            Merch merch = MerchManager.Load().FirstOrDefault();
-            Assert.IsTrue(MerchManager.Delete(merch.Id, true) > 0);
+            Merch merch = new MerchManager(options).Load().FirstOrDefault();
+            Assert.IsTrue(new MerchManager(options).Delete(merch.Id, true) > 0);
         }
     }
 }

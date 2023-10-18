@@ -16,12 +16,12 @@ namespace SDG.SpookyWisconsin.BL.Test
         {
             Member member = new Member
             {
-                TierId = TierManager.Load().FirstOrDefault().Id,
-                NewsLetterId = NewsLetterManager.Load().FirstOrDefault().Id,
+                TierId = new TierManager(options).Load().FirstOrDefault().Id,
+                NewsLetterId = new NewsLetterManager(options).Load().FirstOrDefault().Id,
                 NewsLetterOpt = "WiscoNews",
                 MemberOpt = "Freddy" 
             };
-            int result = MemberManager.Insert(member, true);
+            int result = new MemberManager(options).Insert(member, true);
             Assert.IsTrue(result > 0);
 
         }
@@ -29,23 +29,23 @@ namespace SDG.SpookyWisconsin.BL.Test
         [TestMethod]
         public void UpdateTest()
         {
-            Member member = MemberManager.Load().FirstOrDefault();
+            Member member = new MemberManager(options).Load().FirstOrDefault();
             member.NewsLetterOpt = "Test";
 
-            Assert.IsTrue(MemberManager.Update(member, true) > 0);
+            Assert.IsTrue(new MemberManager(options).Update(member, true) > 0);
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            Member member = MemberManager.Load().FirstOrDefault();
-            Assert.AreEqual(MemberManager.LoadById(member.Id).Id, member.Id);
+            Member member = new MemberManager(options).Load().FirstOrDefault();
+            Assert.AreEqual(new MemberManager(options).LoadById(member.Id).Id, member.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            List<Member> members = MemberManager.Load();
+            List<Member> members = new MemberManager(options).Load();
             int expected = 2;
 
             Assert.AreEqual(expected, members.Count);
@@ -54,8 +54,8 @@ namespace SDG.SpookyWisconsin.BL.Test
         [TestMethod]
         public void DeleteTest()
         {
-            Member member = MemberManager.Load().FirstOrDefault();
-            Assert.IsTrue(MemberManager.Delete(member.Id, true) > 0);
+            Member member = new MemberManager(options).Load().FirstOrDefault();
+            Assert.IsTrue(new MemberManager(options).Delete(member.Id, true) > 0);
         }
     }
 }

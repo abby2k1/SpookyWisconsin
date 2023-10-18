@@ -13,7 +13,7 @@ namespace SDG.SpookyWisconsin.BL.Test
         [TestMethod]
         public void LoadTest()
         {
-            List<User> users = UserManager.Load();
+            List<User> users = new UserManager(options).Load();
             Assert.IsTrue(users.Count > 0);
         }
 
@@ -25,7 +25,7 @@ namespace SDG.SpookyWisconsin.BL.Test
                 UserName = "Test",
                 Password = "password"
             };
-            int result = UserManager.Insert(user, true);
+            int result = new UserManager(options).Insert(user, true);
             Assert.IsTrue(result > 0);
         }
 
@@ -33,7 +33,7 @@ namespace SDG.SpookyWisconsin.BL.Test
         public void LoginSuccess()
         {
             //User user = new User { UserName = "", Password = ""};
-            // bool result = UserManager.Login(User);
+            // bool result = new UserManager(options).Login(User);
             //Assert.IsTrue(result)
         }
 
@@ -43,7 +43,7 @@ namespace SDG.SpookyWisconsin.BL.Test
          /*   try
             {
                 User user = new User { UserName = "", Password = ""};
-                UserManager.Login(user);
+                new UserManager(options).Login(user);
                 Assert.Fail();
             }
             catch (Exception)

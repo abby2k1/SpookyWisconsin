@@ -16,39 +16,39 @@ namespace SDG.SpookyWisconsin.BL.Test
         {
             Customer customer = new Customer
             {
-                MemberId = MemberManager.Load().FirstOrDefault().Id,
-                UserId = UserManager.Load().FirstOrDefault().Id,
+                MemberId = new MemberManager(options).Load().FirstOrDefault().Id,
+                UserId = new UserManager(options).Load().FirstOrDefault().Id,
                 FirstName = "Mark",
                 LastName = "Johnson",
-                AddressId = AddressManager.Load().FirstOrDefault().Id,
+                AddressId = new AddressManager(options).Load().FirstOrDefault().Id,
                 Email = "Mark_Johnson@gmail.com"
             };
-            int result = CustomerManager.Insert(customer, true);
+            int result = new CustomerManager(options).Insert(customer, true);
             Assert.IsTrue(result > 0);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            Customer customer = CustomerManager.Load().FirstOrDefault();
+            Customer customer = new CustomerManager(options).Load().FirstOrDefault();
             customer.FirstName = "Test";
 
-            Assert.IsTrue(CustomerManager.Update(customer, true) > 0);
+            Assert.IsTrue(new CustomerManager(options).Update(customer, true) > 0);
 
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            Customer customer = CustomerManager.Load().FirstOrDefault();
+            Customer customer = new CustomerManager(options).Load().FirstOrDefault();
 
-            Assert.AreEqual(CustomerManager.LoadById(customer.Id).Id, customer.Id);
+            Assert.AreEqual(new CustomerManager(options).LoadById(customer.Id).Id, customer.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            List<Customer> customers = CustomerManager.Load();
+            List<Customer> customers = new CustomerManager(options).Load();
             int expected = 8;
 
             Assert.AreEqual(expected, customers.Count);
@@ -57,9 +57,9 @@ namespace SDG.SpookyWisconsin.BL.Test
         [TestMethod]
         public void DeleteTest()
         {
-            Customer customer = CustomerManager.Load().FirstOrDefault();
+            Customer customer = new CustomerManager(options).Load().FirstOrDefault();
 
-            Assert.IsTrue(CustomerManager.Delete(customer.Id, true) > 0);
+            Assert.IsTrue(new CustomerManager(options).Delete(customer.Id, true) > 0);
         }
 
     }
