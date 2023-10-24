@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
 using Microsoft.AspNetCore.Http.Extensions;
 using System.Xml.Linq;
 
-namespace CCM.DVDCentral.UI.Controllers
+namespace SDG.SpookyWisconsin.WebUI.Controllers
 {
     public class AddressController : Controller
     {

@@ -16,6 +16,10 @@ namespace SDG.SpookyWisconsin.BL
         {
 
         }
+        public AddressManager()
+        {
+
+        }
 
         public static int Insert(Address address, bool rollback = false)
         {
