@@ -38,7 +38,7 @@ public partial class SpookyWisconsinEntities : DbContext
     {
         modelBuilder.Entity<tblAddress>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblAddre__");
+            entity.HasKey(e => e.Id).HasName("PK__tblAddre__3214EC07169EC106");
 
             entity.ToTable("tblAddress");
 
@@ -46,7 +46,6 @@ public partial class SpookyWisconsinEntities : DbContext
             entity.Property(e => e.Street)
             .HasMaxLength(50)
             .IsUnicode(false);
-
         });
     }
 }
