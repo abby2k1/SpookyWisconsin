@@ -21,4 +21,9 @@
     <ProjectReference Include="..\SDG.SpookyWisconsin.BL\SDG.SpookyWisconsin.BL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\HauntedEvents\" />
+    <Folder Include="Views\HauntedLocations\" />
+  </ItemGroup>
+
 </Project>
