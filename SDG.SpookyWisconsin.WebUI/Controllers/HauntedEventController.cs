@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
 using SDG.SpookyWisconsin.BL;
+using SDG.SpookyWisconsin.WebUI.Models;
 
 namespace SDG.SpookyWisconsin.WebUI.Controllers
 {
@@ -17,7 +19,14 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            if (Authenticate.IsAuthenticated(HttpContext))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "User", new { returnUrl = UriHelper.GetDisplayUrl(HttpContext.Request) });
+            }
         }
 
         [HttpPost]
@@ -37,7 +46,14 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
 
         public ActionResult Edit()
         {
-            return View();
+            if (Authenticate.IsAuthenticated(HttpContext))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "User", new { returnUrl = UriHelper.GetDisplayUrl(HttpContext.Request) });
+            }
         }
 
         [HttpPost]
@@ -56,9 +72,9 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
             }
         }
 
-        public ActionResult Delete()
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            return View(HauntedEventManager.LoadById(id));
         }
 
         [HttpPost]
