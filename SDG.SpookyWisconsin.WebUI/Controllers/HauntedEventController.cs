@@ -10,9 +10,9 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
             return View(HauntedEventManager.Load());
         }
 
-        public ActionResult Details()
+        public ActionResult Details(Guid id)
         {
-            return View();
+            return View(HauntedEventManager.LoadById(id));
         }
 
         public ActionResult Create()
@@ -22,11 +22,11 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BL.Models.HauntedEvent hauntedEvent)
+        public ActionResult Create(BL.Models.HauntedEvent hauntedEvent, bool rollback = false)
         {
             try
             {
-                HauntedEventManager.Insert(hauntedEvent);
+                HauntedEventManager.Insert(hauntedEvent, rollback);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -42,11 +42,11 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, BL.Models.HauntedEvent hauntedEvent)
+        public ActionResult Edit(Guid id, BL.Models.HauntedEvent hauntedEvent, bool rollback = false)
         {
             try
             {
-                HauntedEventManager.Update(hauntedEvent);
+                HauntedEventManager.Update(hauntedEvent, rollback);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -63,11 +63,11 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, BL.Models.HauntedEvent hauntedEvent)
+        public ActionResult Delete(Guid id, BL.Models.HauntedEvent hauntedEvent, bool rollback = false)
         {
             try
             {
-                //HauntedEventManager.Delete();
+                HauntedEventManager.Delete(id, rollback);
                 return RedirectToAction(nameof(Index));
             }
             catch
