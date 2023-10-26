@@ -54,7 +54,7 @@ namespace SDG.SpookyWisconsin.BL.Test
         public void DeleteTest()
         {
             Order order = new OrderManager(options).Load().FirstOrDefault();
-            Assert.IsTrue(new OrderManager(options).Delte(order.Id, true) > 0);
+            Assert.IsTrue(new OrderManager(options).Delete(order.Id, true) > 0);
         }
     }
 }
