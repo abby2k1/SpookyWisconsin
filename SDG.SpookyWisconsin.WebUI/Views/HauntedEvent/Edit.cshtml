@@ -12,7 +12,24 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input hidden asp-for="Id" class="form-control" />
             <input hidden asp-for="HauntedLocationId" class="form-control" />
+           @*  <div class="form-group">
+                <label asp-for="HauntedEvent.HauntedLocationName" class="control-label"></label>
+                <select asp-for="HauntedEvent.HauntedLocationId" class="form-control"
+                        asp-items="@(new SelectList(Model.HauntedLocation, "Id", "Name"))"></select>
+                <span asp-validation-for="HauntedEvent.HauntedLocationId" class="text-danger"></span>
+            </div> *@
             <input hidden asp-for="ParticipantId" class="form-control" />
+            @*  <div class="form-group">
+            <label asp-for="HauntedEvent.ParticipantDescription" class="control-label"></label>
+            <select asp-for="Movie.FormatId" class="form-control"
+            asp-items="@(new SelectList(Model.Formats, "Id", "Description"))"></select>
+            <span asp-validation-for="HauntedEvent.ParticipantId" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Date" class="control-label"></label>
                 <input asp-for="Date" class="form-control" />
@@ -23,6 +40,12 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
+            @* <div class="form-group">
+                <label asp-for="HauntedEvent.ImagePath" class="control-label"></label>
+                <input asp-for="HauntedEvent.ImagePath" class="form-control" />
+                <input type="file" name="File" id="File" accept="image/" onchange="loadFile(event)" />
+                <span asp-validation-for="HauntedEvent.ImagePath" class="text-danger"></span>
+            </div> *@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

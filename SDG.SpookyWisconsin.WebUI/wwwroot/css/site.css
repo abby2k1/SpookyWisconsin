@@ -46,9 +46,13 @@ body {
 
 
 .card-img {
-    height: 375px;
+    height: 250px;
     width: 250px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 } /*This class is for the images on the merch page*/
+  /*Original Image sizes are 600 by 600 px*/
 
 .imagedefault {
     width: 100px;
@@ -63,6 +67,9 @@ body {
 .imagebig {
     width: 475px;
     height: 700px;
+}
+
+#imagebig{
     position: absolute;
     top: 50%;
     left: 50%;
