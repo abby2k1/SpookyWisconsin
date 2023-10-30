@@ -10,6 +10,16 @@
 <div>
     <dl class="row">
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="~/images/@Model.ImagePath"
+                 id="locationimage"
+                 class="imagemed"
+                 onclick="on('/images/@Model.ImagePath')"
+                 alt="@Model.Name" />
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
         <dd class="col-sm-10">
