@@ -13,5 +13,6 @@ namespace SDG.SpookyWisconsin.PL.Entities
         public string SortField { get { return Name; } }
         public Guid AddressId { get; set; }
         public string Name { get; set; }
+        public string ImagePath { get; set; }
     }
 }
