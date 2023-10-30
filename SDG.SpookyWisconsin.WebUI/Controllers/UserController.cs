@@ -72,7 +72,7 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
         }
 
         // GET: UserController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
             return View();
         }
@@ -128,10 +128,11 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
         // POST: UserController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(Guid id, IFormCollection collection)
+        public ActionResult Delete(Guid id, BL.Models.User user, bool rollback = false)
         {
             try
             {
+                UserManager.Delete(id, rollback);
                 return RedirectToAction(nameof(Index));
             }
             catch
