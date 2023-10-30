@@ -12,7 +12,7 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
             return View(TourManager.Load());
         }
 
-        public ActionResult Details(Guid id, BL.Models.Tour tour)
+        public ActionResult Details(Guid id)
         {
             return View(TourManager.LoadById(id));
         }
