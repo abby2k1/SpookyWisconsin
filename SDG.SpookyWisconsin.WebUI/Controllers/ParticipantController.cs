@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
 using Microsoft.AspNetCore.Http.Extensions;
 using System.Xml.Linq;
 
-namespace CCM.DVDCentral.UI.Controllers
+namespace SDG.SpookyWisconsin.WebUI.Controllers
 {
     public class ParticipantController : Controller
     {
@@ -68,7 +68,7 @@ namespace CCM.DVDCentral.UI.Controllers
         // POST: ParticipantController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Participant participant, bool rollback = false)
+        public ActionResult Edit(Guid id, Participant participant, bool rollback = false)
         {
             try
             {
