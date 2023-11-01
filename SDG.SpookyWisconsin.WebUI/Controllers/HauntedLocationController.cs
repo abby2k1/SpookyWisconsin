@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using SDG.SpookyWisconsin.BL;
 using SDG.SpookyWisconsin.WebUI.Models;
 
@@ -11,6 +12,106 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
         {
             return View(HauntedLocationManager.Load());
         }
+        
+        //Location Pages start
+                public IActionResult AlRinglingMuseum()
+                {
+                    return View();
+                }
+                public IActionResult AmbassadorHotel()
+                {
+                    return View();
+                }
+                public IActionResult BloodyBrideBridge()
+                {
+                    return View();
+                }
+                public IActionResult BoyScoutLane()
+                {
+                    return View();
+                }
+                public IActionResult BlackRiverFalls()
+                {
+                    return View();
+                }
+                public IActionResult ClarkCountyInsaneAsylum()
+                {
+                    return View();
+                }
+                public IActionResult DartfordCemetery()
+                {
+                    return View();
+                }
+                public IActionResult ForestHillCemetery()
+                {
+                    return View();
+                }
+                public IActionResult GrandOperaHouse()
+                {
+                    return View();
+                }
+                public IActionResult HotelHell()
+                {
+                    return View();
+                }
+                public IActionResult MorrisPrattInstitute()
+                {
+                    return View();
+                }
+                public IActionResult NelsenHall()
+                {
+                    return View();
+                }
+                public IActionResult OctagonHouse()
+                {
+                    return View();
+                }
+                public IActionResult OldBarabooInn()
+                {
+                    return View();
+                }
+                public IActionResult PfisterHotel()
+                {
+                    return View();
+                }
+                public IActionResult PlainfieldCemetery()
+                {
+                    return View();
+                }
+                public IActionResult RiversideCemetery()
+                {
+                    return View();
+                }
+                public IActionResult RiversideTheater()
+                {
+                    return View();
+                }
+                public IActionResult SanatoriumHill()
+                {
+                    return View();
+                }
+                public IActionResult SirenBridge()
+                {
+                    return View();
+                }
+                public IActionResult SummerwindMansion()
+                {
+                    return View();
+                }
+                public IActionResult WinnebagoMentalHealthInstitute()
+                {
+                    return View();
+                }
+                public IActionResult WitchRoad()
+                {
+                    return View();
+                }
+                public IActionResult WoodCountyInsaneAsylum()
+                {
+                    return View();
+                }
+
+        //Location Pages end
 
         public ActionResult Details(Guid id, BL.Models.HauntedLocation hauntedLocation)
         {
