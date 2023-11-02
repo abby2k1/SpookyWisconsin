@@ -59,8 +59,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Merch" asp-action="Index">Merch</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="NewsLetter" asp-action="Index">News</a>
+                        <li class="dropdown nav-item">
+                            <a class="nav-link text-light">News</a>
+                            <div class="dropdown-options bg-black">
+                                <a class="nav-link text-light" asp-area="" asp-controller="HauntedEvent" asp-action="Index">Haunted Events</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="NewsLetter" asp-action="Index">News Letter</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Tours" asp-action="Index">Tours</a>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="About">About</a>
