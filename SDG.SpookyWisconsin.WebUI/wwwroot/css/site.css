@@ -83,8 +83,7 @@ a:hover {
 
 .slideshow{
     height:600px;
-    width:fit-content;
-    padding-left: 100px;
+    width:100%;
 }
 
 .table tr:nth-child(even) {
