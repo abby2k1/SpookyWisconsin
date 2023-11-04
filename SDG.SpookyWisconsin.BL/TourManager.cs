@@ -176,5 +176,10 @@ namespace SDG.SpookyWisconsin.BL
             }
 
         }
+
+        public int Delete(Guid id, Tour tour)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
