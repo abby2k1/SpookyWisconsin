@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="~/images/logoic.png" type="image/icon type">
     <title>@ViewData["Title"] - Spooky Wisconsin</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -11,9 +12,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logosm.jpeg" alt="Logo" height="75px" width="75px"></a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logosw.png" alt="Logo" height="85px" width="85px"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,8 +24,34 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="HauntedLocation" asp-action="Index">Locations</a>
+                        <li class="dropdown nav-item">
+                                <a class="nav-link text-light">Locations</a>
+                                <div class="dropdown-options overflow-scroll bg-black">
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="AlRinglingMuseum">Al Ringling Museum</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="AmbassadorHotel">Ambassador Hotel</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="BloodyBrideBridge">Bloody Bride Bridge</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="BoyScoutLane">Boy Scout Lane</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="BlackRiverFalls">City of Black River Falls</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="ClarkCountyInsaneAsylum">Clark County Insane Asylum</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="DartfordCemetery">Dartford Cemetery</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="ForestHillCemetery">Forest Hill Cemetery</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="GrandOperaHouse">The Grand Opera House</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="HotelHell">Hotel Hell</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="MorrisPrattInstitute">Morris Pratt Institute</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="NelsenHall">Nelsen's Hall</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="OctagonHouse">Octagon House</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="OldBarabooInn">Old Baraboo Inn</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="PfisterHotel">The Pfister Hotel</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="PlainfieldCemetery">Plainfield Cemetery</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="RiversideCemetery">Riverside Cemetery</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="RiversideTheater">Riverside Theater</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="SanatoriumHill">Sanatorium Hill</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="SirenBridge">Siren Bridge</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="SummerwindMansion">Summerwind Mansion</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="WinnebagoMentalHealthInstitute">Winnebago Mental Health Institute</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="WitchRoad">Witch Road</a> <br />
+                                    <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="WoodCountyInsaneAsylum">Wood County Insane Asylum</a> <br />
+                                </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Member" asp-action="Index">Membership</a>
@@ -32,8 +59,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Merch" asp-action="Index">Merch</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="NewsLetter" asp-action="Index">News</a>
+                        <li class="dropdown nav-item">
+                            <a class="nav-link text-light">News</a>
+                            <div class="dropdown-options bg-black">
+                                <a class="nav-link text-light" asp-area="" asp-controller="HauntedEvent" asp-action="Index">Haunted Events</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="NewsLetter" asp-action="Index">News Letter</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Tours" asp-action="Index">Tours</a>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="About">About</a>
@@ -52,8 +84,8 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
+    <footer class="border-top footer text-muted bg-black">
+        <div class="container text-light">
             &copy; 2023 - FVTC Scooby Doo Gang - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
