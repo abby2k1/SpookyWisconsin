@@ -11,6 +11,7 @@ namespace SDG.SpookyWisconsin.BL.Models
     {
         public Guid Id { get; set; }
         public Guid CustomerId { get; set; }
+        public List<Merch> Items { get; set; }
         public Guid MerchId { get; set; }
         public int Quantity { get; set; }
         [DisplayName("Total Cost")]
