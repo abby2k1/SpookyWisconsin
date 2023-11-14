@@ -11,6 +11,8 @@ namespace SDG.SpookyWisconsin.BL.Models
     {
         public Guid Id { get; set; }
         public Guid CartId { get; set; }
+        [DisplayName("Customer Name")]
+        public string CustomerName { get; set; }
         public Guid CustomerId { get; set; }
         [DisplayName("Ordered Date")]
         public DateTime OrderDate { get; set; }

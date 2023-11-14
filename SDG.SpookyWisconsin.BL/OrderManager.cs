@@ -96,14 +96,17 @@ namespace SDG.SpookyWisconsin.BL
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
                     var row = (from pd in dc.tblOrders
+                               join c in dc.tblCustomers on pd.CustomerId equals c.Id
                                where pd.Id == id
                                select new
                                {
                                    Id = pd.Id,
                                    OrderDate = pd.OrderDate,
+                                   CustomerId = pd.CustomerId,
                                    DeliveryDate = pd.DeliveryDate,
-                                   CartId = pd.InCartId
-                                   //TODO - Joins and other fields
+                                   CartId = pd.InCartId,
+                                   CustomerName = c.Firstname + " " + c.Lastname
+                                   
 
                                }).FirstOrDefault();
                     if (row != null)
@@ -112,9 +115,11 @@ namespace SDG.SpookyWisconsin.BL
                         {
                             Id = row.Id,
                             OrderDate = row.OrderDate,
+                            CustomerId = row.CustomerId,
                             DeliverDate = row.DeliveryDate,
-                            CartId = row.CartId
-                            ///TODO - Joins and other fields
+                            CartId = row.CartId,
+                            CustomerName= row.CustomerName
+                            
                         };
                     }
                     else
@@ -137,20 +142,26 @@ namespace SDG.SpookyWisconsin.BL
             {
                 var orderes = (from pd in dc.tblOrders
                                       orderby pd.OrderDate
+                                      join c in dc.tblCustomers on pd.CustomerId equals c.Id
                                       select new
                                       {
                                           Id = pd.Id,
                                           OrderDate = pd.OrderDate,
+                                          CustomerId = pd.CustomerId,
                                           DeliveryDate = pd.DeliveryDate,
-                                          CartId = pd.InCartId
+                                          CartId = pd.InCartId,
+                                          CustomerName = c.Firstname + " " + c.Lastname
 
                                       }).ToList();
                 orderes.ForEach(pd => rows.Add(new Order
                 {
                     Id = pd.Id,
                     OrderDate = pd.OrderDate,
+                    CustomerId = pd.CustomerId,
                     DeliverDate = pd.DeliveryDate,
-                    CartId = pd.CartId
+                    CartId = pd.CartId,
+                    CustomerName = pd.CustomerName,
+
                 }));
             }
             return rows;
