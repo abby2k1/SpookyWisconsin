@@ -88,12 +88,14 @@ namespace SDG.SpookyWisconsin.BL
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
                     var row = (from pd in dc.tblHauntedEvents
+                               join l in dc.tblHauntedLocations on pd.HauntedLocationId equals l.Id 
                                where pd.Id == id
                                select new
                                {
                                    Id = pd.Id,
                                    HauntedLocationId = pd.HauntedLocationId,
                                    ParticipantId = pd.ParticipantId,
+                                   LocationName = l.Name,
                                    Date = pd.Date,
                                    Description = pd.Description
 
@@ -105,6 +107,7 @@ namespace SDG.SpookyWisconsin.BL
                             Id = row.Id,
                             HauntedLocationId= row.HauntedLocationId,
                             ParticipantId = row.ParticipantId,
+                            LocationName = row.LocationName,
                             Date = row.Date,
                             Description = row.Description
                         };
@@ -128,12 +131,14 @@ namespace SDG.SpookyWisconsin.BL
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
                 var hauntedEventes = (from pd in dc.tblHauntedEvents
-                                  orderby pd.Date
+                                      join l in dc.tblHauntedLocations on pd.HauntedLocationId equals l.Id
+                                      orderby pd.Date
                                   select new
                                   {
                                       Id = pd.Id,
                                       HauntedLocationId = pd.HauntedLocationId,
                                       ParticipantId = pd.ParticipantId,
+                                      LocationName = l.Name,
                                       Date = pd.Date,
                                       Description = pd.Description
                                   }).ToList();
@@ -142,6 +147,7 @@ namespace SDG.SpookyWisconsin.BL
                     Id = pd.Id,
                     HauntedLocationId = pd.HauntedLocationId,
                     ParticipantId = pd.ParticipantId,
+                    LocationName = pd.LocationName,
                     Date = pd.Date,
                     Description = pd.Description
                 }));
