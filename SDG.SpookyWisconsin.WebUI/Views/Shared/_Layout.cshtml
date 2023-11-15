@@ -53,8 +53,11 @@
                                     <a class="text-light" asp-area="" asp-controller="HauntedLocation" asp-action="WoodCountyInsaneAsylum">Wood County Insane Asylum</a> <br />
                                 </div>
                         </li>
-                        <li class="nav-item">
+                        <li class="dropdown nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Member" asp-action="Index">Membership</a>
+                            <div class="dropdown-options bg-black">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Tier" asp-action="Index">Tiers</a>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Merch" asp-action="Index">Merch</a>
