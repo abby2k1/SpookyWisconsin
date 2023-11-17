@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SDG.SpookyWisconsin.BL.Models.Tour>
+﻿@model IEnumerable<SDG.SpookyWisconsin.BL.Models.Tier>
 
 @{
     ViewData["Title"] = "Tier List";
@@ -12,16 +12,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.TierName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HauntedLocationId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TourName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.TierLevel)
             </th>
             <th></th>
         </tr>
@@ -30,16 +24,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @Html.DisplayFor(modelItem => item.TierName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HauntedLocationId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TourName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => item.TierLevel)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

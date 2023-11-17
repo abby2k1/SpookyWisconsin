@@ -17,7 +17,7 @@ namespace SDG.SpookyWisconsin.BL
             this.options = options;
         }
 
-        public void Checkout(Cart cart)
+        public static void Checkout(Cart cart)
         {
             Order order = new Order();
             order.Id = new Guid();

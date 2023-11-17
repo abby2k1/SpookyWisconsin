@@ -16,6 +16,7 @@ namespace SDG.SpookyWisconsin.BL.Models
         public int InStkQty { get; set; }
         public string Description { get; set; }
         public double Cost { get; set; }
+        public string ImagePath { get; set; }
 
     }
 }
