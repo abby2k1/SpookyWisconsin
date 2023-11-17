@@ -26,6 +26,7 @@ namespace SDG.SpookyWisconsin.BL.Test
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json");
+
             _configuration = builder.Build();
 
             options = new DbContextOptionsBuilder<SpookyWisconsinEntities>()
