@@ -14,6 +14,7 @@ namespace SDG.SpookyWisconsin.BL.Models
         public string State { get; set; }
         public string County { get; set; }
         public string ZIP { get; set; }
+        public string FullAddress { get {  return Street + " " + City + ", " + State; } }
 
     }
 }

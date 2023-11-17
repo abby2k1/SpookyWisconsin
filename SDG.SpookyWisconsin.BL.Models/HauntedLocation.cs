@@ -11,6 +11,8 @@ namespace SDG.SpookyWisconsin.BL.Models
     {
         public Guid Id { get; set; }
         public Guid AddressId { get; set; }
+        [DisplayName("Address")]
+        public string Address { get; set; }
         public string Name { get; set; }
 
         [DisplayName("Image")]

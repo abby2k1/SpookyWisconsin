@@ -84,13 +84,14 @@ namespace SDG.SpookyWisconsin.BL
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
                     var row = (from pd in dc.tblHauntedLocations
+                               join a in dc.tblAddresses on pd.AddressId equals a.Id
                                where pd.Id == id
                                select new
                                {
                                    Id = pd.Id,
                                    Name = pd.Name,
                                    AddressId = pd.AddressId,
-                                   //TODO - Joins and other fields
+                                   Address = a.Street + " " + a.City + ", " + a.State
 
                                }).FirstOrDefault();
                     if (row != null)
@@ -99,7 +100,8 @@ namespace SDG.SpookyWisconsin.BL
                         {
                             Id = row.Id,
                             Name = row.Name,
-                            AddressId = row.AddressId
+                            AddressId = row.AddressId,
+                            Address = row.Address
                         };
                     }
                     else
@@ -121,20 +123,23 @@ namespace SDG.SpookyWisconsin.BL
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
                 var hauntedLocationes = (from pd in dc.tblHauntedLocations
-                                      orderby pd.Id
+                                         join a in dc.tblAddresses on pd.AddressId equals a.Id
+                                         orderby pd.Id
                                       select new
                                       {
                                           Id = pd.Id,
                                           Name = pd.Name,
                                           AddressId = pd.AddressId,
-                                          //TODO - Joins and other fields
+                                          Address = a.Street + " " + a.City + ", " + a.State
+                                          
 
                                       }).ToList();
                 hauntedLocationes.ForEach(pd => rows.Add(new HauntedLocation
                 {
                     Id = pd.Id,
                     Name = pd.Name,
-                    AddressId = pd.AddressId
+                    AddressId = pd.AddressId,
+                    Address = pd.Address
                 }));
             }
             return rows;

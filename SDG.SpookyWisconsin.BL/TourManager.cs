@@ -87,12 +87,13 @@ namespace SDG.SpookyWisconsin.BL
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
                     var row = (from pd in dc.tblTours
-                               //join h in dc.tblHauntedLocations on pd.Id equals h.Id -- Join if we decide to use the location name on the tour.
+                               join l in dc.tblHauntedLocations on pd.HauntedLocationId equals l.Id
                                where pd.Id == id
                                select new
                                {
                                    Id = pd.Id,
                                    HauntedLocationId = pd.HauntedLocationId,
+                                   LocationName = l.Name,
                                    Description = pd.Description,
                                    TourName = pd.TourName,
 
@@ -104,6 +105,7 @@ namespace SDG.SpookyWisconsin.BL
                         {
                             Id = row.Id,
                             HauntedLocationId = row.HauntedLocationId,
+                            LocationName = row.LocationName,
                             Description = row.Description,
                             TourName = row.TourName,
                         };
@@ -127,11 +129,13 @@ namespace SDG.SpookyWisconsin.BL
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
                 var toures = (from pd in dc.tblTours
-                                      orderby pd.TourName
+                              join l in dc.tblHauntedLocations on pd.HauntedLocationId equals l.Id
+                              orderby pd.TourName
                                       select new
                                       {
                                           Id = pd.Id,
                                           HauntedLocationId = pd.HauntedLocationId,
+                                          LocationName = l.Name,
                                           TourName = pd.TourName,
                                           Description = pd.Description
                                           //TODO - Joins and other fields
@@ -141,6 +145,7 @@ namespace SDG.SpookyWisconsin.BL
                 {
                     Id = pd.Id,
                     HauntedLocationId = pd.HauntedLocationId,
+                    LocationName = pd.LocationName,
                     TourName = pd.TourName,
                     Description = pd.Description
                     //TODO - Joins and other fields

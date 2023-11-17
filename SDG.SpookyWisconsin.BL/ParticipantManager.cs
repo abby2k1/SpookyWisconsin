@@ -83,12 +83,16 @@ namespace SDG.SpookyWisconsin.BL
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
                     var row = (from pd in dc.tblParticipants
+                               join c in dc.tblCustomers on pd.CustomerId equals c.Id
+                               join he in dc.tblHauntedEvents on pd.HauntedEventId equals he.Id
                                where pd.Id == id
                                select new
                                {
                                    Id = pd.Id,
                                    CustomerId = pd.CustomerId,
                                    HauntedEventId = pd.HauntedEventId,
+                                   CustomerName = c.Firstname + " " + c.Lastname,
+                                   HauntedEventName = he.Name
 
                                }).FirstOrDefault();
                     if (row != null)
@@ -97,7 +101,9 @@ namespace SDG.SpookyWisconsin.BL
                         {
                             Id = row.Id,
                             CustomerId = row.CustomerId,
-                            HauntedEventId = row.HauntedEventId
+                            HauntedEventId = row.HauntedEventId,
+                            CustomerName = row.CustomerName,
+                            HauntedEventName = row.HauntedEventName
                         };
                     }
                     else
@@ -119,19 +125,25 @@ namespace SDG.SpookyWisconsin.BL
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
                 var participantes = (from pd in dc.tblParticipants
-                                      orderby pd.Id
+                                     join c in dc.tblCustomers on pd.CustomerId equals c.Id
+                                     join he in dc.tblHauntedEvents on pd.HauntedEventId equals he.Id
+                                     orderby pd.Id
                                       select new
                                       {
                                           Id = pd.Id,
                                           CustomerId = pd.CustomerId,
-                                          HauntedEventId = pd.HauntedEventId
+                                          HauntedEventId = pd.HauntedEventId,
+                                          CustomerName = c.Firstname + " " + c.Lastname,
+                                          HauntedEventName = he.Name
 
                                       }).ToList();
                 participantes.ForEach(pd => rows.Add(new Participant
                 {
                     Id = pd.Id,
                     CustomerId = pd.CustomerId,
-                    HauntedEventId = pd.HauntedEventId
+                    HauntedEventId = pd.HauntedEventId,
+                    CustomerName = pd.CustomerName,
+                    HauntedEventName = pd.HauntedEventName
                 }));
             }
             return rows;

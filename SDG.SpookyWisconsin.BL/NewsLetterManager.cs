@@ -86,11 +86,13 @@ namespace SDG.SpookyWisconsin.BL
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
                     var row = (from pd in dc.tblNewsLetter
+                               join he in dc.tblHauntedEvents on pd.HauntedEventId equals he.Id
                                where pd.Id == id
                                select new
                                {
                                    Id = pd.Id,
                                    HauntedEventId = pd.HauntedEventId,
+                                   HauntedEventName = he.Name,
                                    Description = pd.Description,
                                    Date = pd.Date
 
@@ -101,6 +103,7 @@ namespace SDG.SpookyWisconsin.BL
                         {
                             Id = row.Id,
                             HauntedEventId = row.HauntedEventId,
+                            HauntedEventName = row.HauntedEventName,
                             Description = row.Description,
                             Date = row.Date
                         };
@@ -117,6 +120,10 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
+        /// <summary>
+        /// Get news letters from the database
+        /// </summary>
+        /// <returns>A list of the news letters and associated fields from the database</returns>
         public static List<NewsLetter> Load()
         {
             List<NewsLetter> rows = new List<NewsLetter>();
@@ -124,11 +131,13 @@ namespace SDG.SpookyWisconsin.BL
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
                 var newsLetteres = (from pd in dc.tblNewsLetter
+                                    join he in dc.tblHauntedEvents on pd.HauntedEventId equals he.Id
                                       orderby pd.Date
                                       select new
                                       {
                                           Id = pd.Id,
                                           HauntedEventId = pd.HauntedEventId,
+                                          HauntedEventName = he.Name,
                                           Description = pd.Description,
                                           Date = pd.Date
 
@@ -137,6 +146,7 @@ namespace SDG.SpookyWisconsin.BL
                 {
                     Id = pd.Id,
                     HauntedEventId = pd.HauntedEventId,
+                    HauntedEventName= pd.HauntedEventName,
                     Description = pd.Description,
                     Date = pd.Date
                 }));

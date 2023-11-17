@@ -12,6 +12,7 @@ namespace SDG.SpookyWisconsin.PL.Entities
         //Ask group
         public Guid Id { get; set; }
         public string SortField { get { return OrderDate.ToString(); } }
+        public Guid CustomerId { get; set; }
         public Guid InCartId { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime DeliveryDate { get; set; }
