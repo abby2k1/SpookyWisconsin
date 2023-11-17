@@ -1,0 +1,22 @@
+diff a/SDG.SpookyWisconsin.WebUI/Views/Cart/Index.cshtml b/SDG.SpookyWisconsin.WebUI/Views/Cart/Index.cshtml	(rejected hunks)
+@@ -21,17 +21,17 @@
+         </tr>
+     </thead>
+     <tbody>
+-@foreach (var item in Model.Items) {
++@foreach (var item in Model) {
+         <tr>
+             <td>
+                 @Html.DisplayFor(modelItem => item.MerchName)
+             </td>
+-            <td>
++            @* <td>
+                 @Html.DisplayFor(modelItem => item.Cost)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.ImagePath)
+-            </td>
++            </td> *@
+             <td>
+                 <a asp-action="Remove" asp-route-id="@item.Id">Remove from Cart</a>
+             </td>
