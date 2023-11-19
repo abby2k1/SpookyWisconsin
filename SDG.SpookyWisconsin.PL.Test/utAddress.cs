@@ -17,7 +17,7 @@ namespace SDG.SpookyWisconsin.PL.Test
         public void LoadTest()
         {
             //How many I expected
-            int expected = 3;
+            int expected = 24;
             //How many I did get back
             var addresses = sc.tblAddresses;
 
