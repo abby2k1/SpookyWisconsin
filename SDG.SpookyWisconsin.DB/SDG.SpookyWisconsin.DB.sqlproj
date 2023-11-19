@@ -62,40 +62,40 @@
     <Folder Include="Tables" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PostDeploy\DefaultData\Addresses.sql" />
+    <None Include="PostDeploy\DefaultData\Address.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PostDeploy\DefaultData\Carts.sql" />
+    <None Include="PostDeploy\DefaultData\Cart.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PostDeploy\DefaultData\Customers.sql" />
+    <None Include="PostDeploy\DefaultData\Customer.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PostDeploy\DefaultData\HauntedEvents.sql" />
+    <None Include="PostDeploy\DefaultData\HauntedEvent.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PostDeploy\DefaultData\HauntedLocations.sql" />
+    <None Include="PostDeploy\DefaultData\HauntedLocation.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PostDeploy\DefaultData\Members.sql" />
+    <None Include="PostDeploy\DefaultData\Member.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PostDeploy\DefaultData\Merchs.sql" />
+    <None Include="PostDeploy\DefaultData\Merch.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PostDeploy\DefaultData\NewsLetters.sql" />
+    <None Include="PostDeploy\DefaultData\NewsLetter.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PostDeploy\DefaultData\Orders.sql" />
+    <None Include="PostDeploy\DefaultData\Order.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PostDeploy\DefaultData\Participants.sql" />
+    <None Include="PostDeploy\DefaultData\Participant.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PostDeploy\DefaultData\Tiers.sql" />
+    <None Include="PostDeploy\DefaultData\Tier.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PostDeploy\DefaultData\Tours.sql" />
+    <None Include="PostDeploy\DefaultData\Tour.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostDeploy\Script.PostDeployment1.sql" />

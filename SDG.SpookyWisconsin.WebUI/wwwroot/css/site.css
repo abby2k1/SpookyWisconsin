@@ -56,15 +56,23 @@ a:hover {
     position: relative;
 }
 
-.dropdown-options{
+.dropdown-options {
     display: none;
-    padding-left:5px;
+    padding-left: 5px;
     height: 110px;
     width: 210px;
     font-size: 12px;
     position: absolute;
     z-index: 3;
     /*overflow: auto;*/
+}
+
+.dropsml{
+    height: 40px;
+}
+
+.droplrg {
+    height: 200px;
 }
 
 .dropdown:hover .dropdown-options {
