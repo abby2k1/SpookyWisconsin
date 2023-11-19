@@ -9,15 +9,15 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-:r .\DefaultData\Addresses.sql
-:r .\DefaultData\Carts.sql
-:r .\DefaultData\Customers.sql
-:r .\DefaultData\HauntedEvents.sql
-:r .\DefaultData\HauntedLocations.sql
-:r .\DefaultData\Members.sql
-:r .\DefaultData\Merchs.sql
-:r .\DefaultData\NewsLetters.sql
-:r .\DefaultData\Orders.sql
-:r .\DefaultData\Participants.sql
-:r .\DefaultData\Tiers.sql
-:r .\DefaultData\Tours.sql
+:r .\DefaultData\Address.sql
+:r .\DefaultData\Cart.sql
+:r .\DefaultData\Customer.sql
+:r .\DefaultData\HauntedEvent.sql
+:r .\DefaultData\HauntedLocation.sql
+:r .\DefaultData\Member.sql
+:r .\DefaultData\Merch.sql
+:r .\DefaultData\NewsLetter.sql
+:r .\DefaultData\Order.sql
+:r .\DefaultData\Participant.sql
+:r .\DefaultData\Tier.sql
+:r .\DefaultData\Tour.sql
