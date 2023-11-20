@@ -1,4 +1,4 @@
-﻿@model SDG.SpookyWisconsin.BL.Models.HauntedEvent
+﻿@model SDG.SpookyWisconsin.WebUI.ViewModels.HauntedEventVM
 
 @{
     ViewData["Title"] = "Create";
@@ -10,32 +10,32 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @* <div class="form-group">
-                <label asp-for="HauntedEvent.HauntedLocationName" class="control-label"></label>
+            <div class="form-group">
+                <label asp-for="HauntedEvent.LocationName" class="control-label"></label>
                 <select asp-for="HauntedEvent.HauntedLocationId" class="form-control"
-                        asp-items="@(new SelectList(Models.HauntedLocation, "Id", "Name"))"></select>
+                        asp-items="@(new SelectList(Model.HauntedLocations, "Id", "Name"))"></select>
                 <span asp-validation-for="HauntedEvent.HauntedLocationId" class="text-danger"></span>
-            </div> *@
-            @* <div class="form-group">
+            </div>
+            <div class="form-group">
             <label asp-for="HauntedEvent.ParticipantName" class="control-label"></label>
             <select asp-for="HauntedEvent.ParticipantId" class="form-control"
-            asp-items="@(new SelectList(Models.Participant, "Id", "Name"))"></select>
+            asp-items="@(new SelectList(Model.Participants, "Id", "Name"))"></select>
             <span asp-validation-for="HauntedEvent.ParticipantId" class="text-danger"></span>
-            </div> *@
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
+                <label asp-for="HauntedEvent.Name" class="control-label"></label>
+                <input asp-for="HauntedEvent.Name" class="form-control" />
+                <span asp-validation-for="HauntedEvent.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+                <label asp-for="HauntedEvent.Date" class="control-label"></label>
+                <input asp-for="HauntedEvent.Date" class="form-control" />
+                <span asp-validation-for="HauntedEvent.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HauntedEvent.Description" class="control-label"></label>
+                <input asp-for="HauntedEvent.Description" class="form-control" />
+                <span asp-validation-for="HauntedEvent.Description" class="text-danger"></span>
             </div>
             @* <div class="form-group">
                 <label asp-for="HauntedEvent.ImagePath" class="control-label"></label>

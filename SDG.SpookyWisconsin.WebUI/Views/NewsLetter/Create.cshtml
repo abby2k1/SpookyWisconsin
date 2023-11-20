@@ -1,4 +1,4 @@
-﻿@model SDG.SpookyWisconsin.BL.Models.NewsLetter
+﻿@model SDG.SpookyWisconsin.WebUI.ViewModels.NewsletterVM
 
 @{
     ViewData["Title"] = "Create";
@@ -11,19 +11,25 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
             <div class="form-group">
-                <label asp-for="HauntedEventId" class="control-label"></label>
-                <input asp-for="HauntedEventId" class="form-control" />
-                <span asp-validation-for="HauntedEventId" class="text-danger"></span>
+                <label asp-for="NewsLetter.HauntedEventId" class="control-label"></label>
+                <input asp-for="NewsLetter.HauntedEventId" class="form-control" />
+                <span asp-validation-for="NewsLetter.HauntedEventId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+                <label asp-for="NewsLetter.HauntedEventName" class="control-label"></label>
+                <select asp-for="NewsLetter.HauntedEventId" class="form-control"
+                        asp-items="@(new SelectList(Model.HauntedEvents, "Id", "Name"))"></select>
+                <span asp-validation-for="NewsLetter.HauntedEventId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
+                <label asp-for="NewsLetter.Description" class="control-label"></label>
+                <input asp-for="NewsLetter.Description" class="form-control" />
+                <span asp-validation-for="NewsLetter.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewsLetter.Date" class="control-label"></label>
+                <input asp-for="NewsLetter.Date" class="form-control" />
+                <span asp-validation-for="NewsLetter.Date" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

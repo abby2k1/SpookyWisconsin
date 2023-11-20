@@ -15,6 +15,8 @@ namespace SDG.SpookyWisconsin.BL.Models
         [DisplayName("Haunted Event Location")]
         public string LocationName { get; set; } //Haunted Location Name
         public Guid ParticipantId { get; set; }
+        [DisplayName("Participant Name")]
+        public string ParticipantName { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
         public string Description { get; set; }

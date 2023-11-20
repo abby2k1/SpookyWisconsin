@@ -1,4 +1,4 @@
-﻿@model SDG.SpookyWisconsin.BL.Models.Tour
+﻿@model SDG.SpookyWisconsin.WebUI.ViewModels.TourVM
 
 @{
     ViewData["Title"] = "Create";
@@ -10,21 +10,21 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @* <div class="form-group">
-            <label asp-for="Tour.HauntedLocationName" class="control-label"></label>
-            <select asp-for="Tour.HauntedLocationId" class="form-control"
-            asp-items="@(new SelectList(Models.HauntedLocation, "Id", "Name"))"></select>
-            <span asp-validation-for="Tour.HauntedLocationId" class="text-danger"></span>
-            </div> *@
             <div class="form-group">
-                <label asp-for="TourName" class="control-label"></label>
-                <input asp-for="TourName" class="form-control" />
-                <span asp-validation-for="TourName" class="text-danger"></span>
+            <label asp-for="Tour.LocationName" class="control-label"></label>
+            <select asp-for="Tour.HauntedLocationId" class="form-control"
+            asp-items="@(new SelectList(Model.HauntedLocations, "Id", "Name"))"></select>
+            <span asp-validation-for="Tour.HauntedLocationId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+                <label asp-for="Tour.TourName" class="control-label"></label>
+                <input asp-for="Tour.TourName" class="form-control" />
+                <span asp-validation-for="Tour.TourName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tour.Description" class="control-label"></label>
+                <input asp-for="Tour.Description" class="form-control" />
+                <span asp-validation-for="Tour.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

@@ -21,8 +21,4 @@
     <ProjectReference Include="..\SDG.SpookyWisconsin.BL\SDG.SpookyWisconsin.BL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-
 </Project>
