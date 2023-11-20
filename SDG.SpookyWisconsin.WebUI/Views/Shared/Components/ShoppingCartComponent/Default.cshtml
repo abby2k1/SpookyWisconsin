@@ -1,0 +1,16 @@
+﻿@model SDG.SpookyWisconsin.BL.Models.Cart
+
+<div>
+    <d1 class="d1-horizontal">
+        <dt>Count</dt>
+        <dd>
+            @{
+                int count = Model.TotalCount;
+                <input hidden id="cartcount" value="@count" />
+                <a asp-controller="Cart" id="cartcountdisp"
+                   asp-action="Index">@count.ToString() items</a><br/>
+                <a asp-controller="Cart" asp-action="Checkout">Checkout</a>
+            }
+        </dd>
+    </d1>
+</div>

@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[tblMerchType]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [Description] NVARCHAR(50) NOT NULL
+)

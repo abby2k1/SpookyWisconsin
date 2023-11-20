@@ -15,7 +15,7 @@ namespace SDG.SpookyWisconsin.BL.Models
         [DisplayName("In Stock")]
         public int InStkQty { get; set; }
         public string Description { get; set; }
-        public double Cost { get; set; }
+        public decimal Cost { get; set; }
         public string ImagePath { get; set; }
 
     }

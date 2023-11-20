@@ -57,7 +57,8 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
         {
             if (Authenticate.IsAuthenticated(HttpContext))
             {
-                return View(ParticipantManager.LoadById(id));
+                //return View(ParticipantManager.LoadById(id));
+                return View();
             }
             else
             {

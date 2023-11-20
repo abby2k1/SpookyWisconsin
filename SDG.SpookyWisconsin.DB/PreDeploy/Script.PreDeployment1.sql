@@ -10,12 +10,14 @@
 --------------------------------------------------------------------------------------
 */
 DROP TABLE IF EXISTS tblAddress
-DROP TABLE IF EXISTS tblCart
 DROP TABLE IF EXISTS tblCustomer
 DROP TABLE IF EXISTS tblHauntedEvent
 DROP TABLE IF EXISTS tblHauntedLocation
 DROP TABLE IF EXISTS tblMember
 DROP TABLE IF EXISTS tblMerch
+DROP TABLE IF EXISTS tblMerchType
+DROP TABLE IF EXISTS tblMerchTypeMerch
+DROP TABLE IF EXISTS tblOrderItem
 DROP TABLE IF EXISTS tblNewsLetter
 DROP TABLE IF EXISTS tblOrder
 DROP TABLE IF EXISTS tblParticipant

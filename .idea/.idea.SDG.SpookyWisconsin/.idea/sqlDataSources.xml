@@ -10,7 +10,6 @@
           <option name="urls">
             <array>
               <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblAddress.sql" />
-              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblCart.sql" />
               <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblCustomer.sql" />
               <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblHauntedEvent.sql" />
               <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblHauntedLocation.sql" />
@@ -22,6 +21,9 @@
               <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblTier.sql" />
               <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblTour.sql" />
               <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblUser.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblOrderItem.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblMerchTypeMerch.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblMerchType.sql" />
             </array>
           </option>
           <option name="remarks" value="Database Project" />

@@ -1,14 +1,25 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SDG.SpookyWisconsin.BL;
 
 namespace SDG.SpookyWisconsin.WebUI.Controllers
 {
     public class MerchController : Controller
     {
         // GET: MerchController
-        public ActionResult Index()
+        public ActionResult Index(Guid? id = null)
         {
-            return View();
+            if (id == null)
+            {
+                ViewBag.MerchTypeDesc = "All";
+                return View(MerchManager.Load());
+            }
+            else
+            {
+                //ViewBag.MerchTypeDesc = MerchTypeManager.LoadById((Guid)id).Description;
+                //return View(MerchManager.LoadByTypeId((Guid)id));
+                return View(MerchManager.Load());
+            }
         }
 
         // GET: MerchController/Details/5

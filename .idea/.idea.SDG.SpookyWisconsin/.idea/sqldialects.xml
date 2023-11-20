@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/PostDeploy/DefaultData/HauntedLocations.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/PostDeploy/DefaultData/Merch.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/PostDeploy/DefaultData/User.sql" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblAddress.sql" dialect="TSQL" />
-    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblCart.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblCustomer.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblHauntedEvent.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblHauntedLocation.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblMember.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblMerch.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblMerchType.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblMerchTypeMerch.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblNewsLetter.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblOrder.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblOrderItem.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblParticipant.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblTier.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblTour.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblUser.sql" dialect="TSQL" />
+    <file url="PROJECT" dialect="TSQL" />
   </component>
 </project>

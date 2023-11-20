@@ -57,15 +57,11 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="PostDeploy" />
-    <Folder Include="PostDeploy\DefaultData" />
     <Folder Include="PreDeploy" />
-    <Folder Include="Tables" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PostDeploy\DefaultData\Address.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="PostDeploy\DefaultData\Cart.sql" />
+    <None Include="PostDeploy\DefaultData\User.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PostDeploy\DefaultData\Customer.sql" />
@@ -83,6 +79,8 @@
     <None Include="PostDeploy\DefaultData\Merch.sql" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="PostDeploy\DefaultData\MerchType.sql" />
+    <None Include="PostDeploy\DefaultData\MerchTypeMerch.sql" />
     <None Include="PostDeploy\DefaultData\NewsLetter.sql" />
   </ItemGroup>
   <ItemGroup>
@@ -105,14 +103,16 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\tblAddress.sql" />
-    <Build Include="Tables\tblCart.sql" />
     <Build Include="Tables\tblCustomer.sql" />
     <Build Include="Tables\tblHauntedEvent.sql" />
     <Build Include="Tables\tblHauntedLocation.sql" />
     <Build Include="Tables\tblMember.sql" />
     <Build Include="Tables\tblMerch.sql" />
+    <Build Include="Tables\tblMerchType.sql" />
+    <Build Include="Tables\tblMerchTypeMerch.sql" />
     <Build Include="Tables\tblNewsLetter.sql" />
     <Build Include="Tables\tblOrder.sql" />
+    <Build Include="Tables\tblOrderItem.sql" />
     <Build Include="Tables\tblParticipant.sql" />
     <Build Include="Tables\tblTier.sql" />
     <Build Include="Tables\tblTour.sql" />

@@ -9,13 +9,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Items[0].MerchName)
+                @Html.DisplayNameFor(model => model.Items[0].ProductName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Items[0].Cost)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Items[0].ImagePath)
+                @Html.DisplayNameFor(model => model.Items[0].ProductImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Items[0].Quantity)
             </th>
             <th></th>
         </tr>
@@ -24,18 +27,48 @@
 @foreach (var item in Model.Items) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.MerchName)
+                @Html.DisplayFor(modelItem => item.ProductName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Cost)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ImagePath)
+                @Html.DisplayFor(modelItem => item.ProductImage)
             </td>
             <td>
-                <a asp-action="Remove" asp-route-id="@item.Id">Remove from Cart</a>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.ActionLink("Remove", "Remove", new {  id=item.MerchId  })
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<dl class="row ms-2">
+    <dt class="col-sm-1">
+        @Html.DisplayNameFor(model => model.SubTotal)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.SubTotal)
+    </dd>
+</dl>
+
+<dl class="row ms-2">
+    <dt class="col-sm-1">
+        @Html.DisplayNameFor(model => model.Tax)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Tax)
+    </dd>
+</dl>
+
+<dl class="row ms-2">
+    <dt class="col-sm-1">
+        @Html.DisplayNameFor(model => model.Total)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Total)
+    </dd>
+</dl>

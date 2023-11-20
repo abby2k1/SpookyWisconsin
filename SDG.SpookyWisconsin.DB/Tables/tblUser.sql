@@ -1,6 +1,10 @@
 ﻿CREATE TABLE [dbo].[tblUser]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+	[FirstName] NVARCHAR(50) NOT NULL,
+    [LastName] NVARCHAR(50) NOT NULL,
+    [Email] NVARCHAR(255) NOT NULL,
     [Username] VARCHAR(50) NOT NULL, 
-    [Password] VARCHAR(50) NOT NULL
+    [Password] NVARCHAR(255) NOT NULL,
+    [RoleId] UNIQUEIDENTIFIER NOT NULL
 )
