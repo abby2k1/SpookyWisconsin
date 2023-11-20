@@ -14,7 +14,8 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
         // GET: TierController
         public ActionResult Index()
         {
-            return View(TierManager.Load());
+            //return View(TierManager.Load());
+            return View();
         }
 
         // GET: TierController/Details/5

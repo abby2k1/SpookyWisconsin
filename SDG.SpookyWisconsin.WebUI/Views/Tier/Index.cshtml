@@ -4,37 +4,62 @@
     ViewData["Title"] = "Tier List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
-
-<table class="table">
-    96
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TierName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TierLevel)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TierName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TierLevel)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Spooky Tiers!</h1>
+    <p class="lead">Start your spooky tours off on the right foot with our exclusive newsletter! We also offer other benefits for those who want to support the website more.</p>
+</div>
+<div class="container tierList">
+    <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow tiers">
+            <div class="card-header">
+                <h4>Bronze</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">
+                    $0.99
+                    <small class="text-muted">/ mo</small>
+                </h1>
+            </div>
+            <ul class="list-unstyled mt-3 mb-4">
+                <li>Monthly Newsletter</li>
+                <li><br /></li>
+                <li><br /></li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up Now!</button>
+        </div>
+        <div class="card mb-4 box-shadow tiers">
+            <div class="card-header">
+                <h4>Silver</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">
+                    $4.99
+                    <small class="text-muted">/ mo</small>
+                </h1>
+            </div>
+            <ul class="list-unstyled mt-3 mb-4">
+                <li>Monthly Newsletter</li>
+                <li>Spooky Website Themes</li>
+                <li><br /></li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up Now!</button>
+        </div>
+        <div class="card mb-4 box-shadow tiers">
+            <div class="card-header">
+                <h4>Gold</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">
+                    $9.99
+                    <small class="text-muted">/ mo</small>
+                </h1>
+            </div>
+            <ul class="list-unstyled mt-3 mb-4">
+                <li>Monthly Newsletter</li>
+                <li>Spooky Website Themes</li>
+                <li>Priority Tour Sign Up</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up Now!</button>
+        </div>
+    </div>
+</div>
