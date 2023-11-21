@@ -20,7 +20,7 @@ Post-Deployment Script Template
 :r .\DefaultData\MerchTypeMerch.sql
 :r .\DefaultData\NewsLetter.sql
 :r .\DefaultData\Order.sql
---:r .\DefaultData\OrderItem.sql
+:r .\DefaultData\OrderItem.sql
 :r .\DefaultData\Participant.sql
 :r .\DefaultData\Tier.sql
 :r .\DefaultData\Tour.sql

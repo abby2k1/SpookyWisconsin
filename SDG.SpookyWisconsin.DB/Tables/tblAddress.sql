@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[tblAddress]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
-    [Street] VARCHAR(150) NOT NULL, 
+    [Street] VARCHAR(50) NOT NULL, 
     [City] VARCHAR(50) NOT NULL, 
     [County] VARCHAR(50) NOT NULL, 
     [State] VARCHAR(2) NOT NULL, 

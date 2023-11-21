@@ -1,3 +1,3 @@
-﻿--BEGIN
+﻿BEGIN
 	
---END
+END
