@@ -37,9 +37,8 @@ namespace SDG.SpookyWisconsin.BL
                     tblOrder row = new tblOrder();
                     //Fill the table - TODO: Fill in other columns when the database is connected
                     row.Id = new Guid();
-                    row.InCartId = order.CartId;
                     row.OrderDate = order.OrderDate;
-                    row.DeliveryDate = order.DeliverDate;
+                    //row.ShipDate = order.ShipDate;
 
 
                     order.Id = row.Id;
@@ -71,9 +70,8 @@ namespace SDG.SpookyWisconsin.BL
 
                     //TODO: Fill in the updated fields once the database is completed
                     //ex: row.State = order.State...
-                    row.InCartId = order.CartId;
                     row.OrderDate = order.OrderDate;
-                    row.DeliveryDate = order.DeliverDate;
+                    //row.ShipDate = order.ShipDate;
 
 
                     results = dc.SaveChanges();
@@ -103,8 +101,7 @@ namespace SDG.SpookyWisconsin.BL
                                    Id = pd.Id,
                                    OrderDate = pd.OrderDate,
                                    CustomerId = pd.CustomerId,
-                                   DeliveryDate = pd.DeliveryDate,
-                                   CartId = pd.InCartId,
+                                   //ShipDate = pd.ShipDate,
                                    CustomerName = c.Firstname + " " + c.Lastname
                                    
 
@@ -116,10 +113,8 @@ namespace SDG.SpookyWisconsin.BL
                             Id = row.Id,
                             OrderDate = row.OrderDate,
                             CustomerId = row.CustomerId,
-                            DeliverDate = row.DeliveryDate,
-                            CartId = row.CartId,
-                            CustomerName= row.CustomerName
-                            
+                            //ShipDate = row.ShipDate,
+                            //CustomerName= row.CustomerName
                         };
                     }
                     else
@@ -148,8 +143,7 @@ namespace SDG.SpookyWisconsin.BL
                                           Id = pd.Id,
                                           OrderDate = pd.OrderDate,
                                           CustomerId = pd.CustomerId,
-                                          DeliveryDate = pd.DeliveryDate,
-                                          CartId = pd.InCartId,
+                                          //ShipDate = pd.ShipDate,
                                           CustomerName = c.Firstname + " " + c.Lastname
 
                                       }).ToList();
@@ -158,9 +152,8 @@ namespace SDG.SpookyWisconsin.BL
                     Id = pd.Id,
                     OrderDate = pd.OrderDate,
                     CustomerId = pd.CustomerId,
-                    DeliverDate = pd.DeliveryDate,
-                    CartId = pd.CartId,
-                    CustomerName = pd.CustomerName,
+                    //ShipDate = pd.ShipDate,
+                    //CustomerName = pd.CustomerName,
 
                 }));
             }
