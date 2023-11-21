@@ -58,6 +58,8 @@
     <Folder Include="Properties" />
     <Folder Include="PostDeploy" />
     <Folder Include="PreDeploy" />
+    <Folder Include="PostDeploy\DefaultData\" />
+    <Folder Include="Tables\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PostDeploy\DefaultData\Address.sql" />
@@ -117,5 +119,6 @@
     <Build Include="Tables\tblTier.sql" />
     <Build Include="Tables\tblTour.sql" />
     <Build Include="Tables\tblUser.sql" />
+    <None Include="PostDeploy\DefaultData\OrderItem.sql" />
   </ItemGroup>
 </Project>
