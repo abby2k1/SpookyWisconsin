@@ -1,8 +1,7 @@
 ﻿CREATE TABLE [dbo].[tblHauntedEvent]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
-    [HauntedLocationId] UNIQUEIDENTIFIER NOT NULL, 
-    [ParticipantId] UNIQUEIDENTIFIER NOT NULL, 
+    [HauntedLocationId] UNIQUEIDENTIFIER NOT NULL,
     [Name] VARCHAR(50) NOT NULL, 
     [Date] DATETIME NOT NULL, 
     [Description] VARCHAR(250) NOT NULL, 

@@ -25,4 +25,10 @@
 	(NEWID(), '100 High Ave', 'Oshkosh', 'Winnebago', 'WI', '54901'),
 	(NEWID(), '4100 Treffert Dr', 'Oshkosh', 'Winnebago', 'WI', '54901'),
 	(NEWID(), '2304 S Galvin Ave', 'Marshfield', 'Wood', 'WI', '54449')
+	INSERT INTO tblAddress (Id, Street, City, County, State, ZIP)
+	VALUES
+	(NEWID(), '3420 E Calumet St', 'Appleton', 'Calumet', 'WI', '54915'),
+	(NEWID(), '3400 E Calumet St', 'Appleton', 'Calumet', 'WI', '54915'),
+	(NEWID(), '3330 E Calumet St', 'Appleton', 'Calumet', 'WI', '54915'),
+	(NEWID(), '3310 E Calumet St', 'Appleton', 'Calumet', 'WI', '54915')
 END
