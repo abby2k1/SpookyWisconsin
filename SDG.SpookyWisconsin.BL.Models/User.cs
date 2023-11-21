@@ -11,7 +11,7 @@ namespace SDG.SpookyWisconsin.BL.Models
     {
         public Guid Id { get; set; }
         [DisplayName("Username")]
-        public string UserName { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
     }
 }
