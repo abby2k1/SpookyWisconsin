@@ -1,181 +1,181 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using SDG.SpookyWisconsin.BL.Models;
-using SDG.SpookyWisconsin.PL;
-using SDG.SpookyWisconsin.PL.Entities;
-using SGD.SpookyWisconsin.BL;
-using System.Xml.Linq;
+﻿//using Microsoft.EntityFrameworkCore;
+//using Microsoft.EntityFrameworkCore.Storage;
+//using SDG.SpookyWisconsin.BL.Models;
+//using SDG.SpookyWisconsin.PL;
+//using SDG.SpookyWisconsin.PL.Entities;
+//using SGD.SpookyWisconsin.BL;
+//using System.Xml.Linq;
 
-namespace SDG.SpookyWisconsin.BL
-{
-    public class MerchManager : GenericManager<tblMerch>
-    {
-        private const string NOTFOUND_MESSAGE = "Row does not exist";
-        //injecting the connection string 
-        public MerchManager(DbContextOptions<SpookyWisconsinEntities> options) : base(options)
-        {
+//namespace SDG.SpookyWisconsin.BL
+//{
+//    public class MerchManager : GenericManager<tblMerch>
+//    {
+//        private const string NOTFOUND_MESSAGE = "Row does not exist";
+//        //injecting the connection string 
+//        public MerchManager(DbContextOptions<SpookyWisconsinEntities> options) : base(options)
+//        {
 
-        }
+//        }
 
-        public static int Insert(Merch merch, bool rollback = false)
-        {
-            try
-            {
-                int results = 0;
-                using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
-                {
-                    IDbContextTransaction dbContextTransaction = null;
-                    if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
+//        public static int Insert(Merch merch, bool rollback = false)
+//        {
+//            try
+//            {
+//                int results = 0;
+//                using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
+//                {
+//                    IDbContextTransaction dbContextTransaction = null;
+//                    if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblMerch row = new tblMerch();
-                    //Fill the table - TODO: Fill in other columns when the database is connected
-                    row.Id = new Guid();
-                    row.MerchName = merch.MerchName;
-                    row.InStkQty = merch.InStkQty;
-                    row.Description = merch.Description;
-                    row.Cost = merch.Cost;
+//                    tblMerch row = new tblMerch();
+//                    //Fill the table - TODO: Fill in other columns when the database is connected
+//                    row.Id = new Guid();
+//                    row.MerchName = merch.MerchName;
+//                    row.InStkQty = merch.InStkQty;
+//                    row.Description = merch.Description;
+//                    row.Cost = merch.Cost;
 
 
-                    merch.Id = row.Id;
-                    dc.tblMerches.Add(row);
-                    results = dc.SaveChanges();
+//                    merch.Id = row.Id;
+//                    dc.tblMerches.Add(row);
+//                    results = dc.SaveChanges();
 
-                    if (rollback) dbContextTransaction.Rollback();
+//                    if (rollback) dbContextTransaction.Rollback();
 
-                }
-                return results;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+//                }
+//                return results;
+//            }
+//            catch (Exception)
+//            {
+//                throw;
+//            }
 
-        }
-        public static int Update(Merch merch, bool rollback = false)
-        {
-            try
-            {
-                int results = 0;
-                using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
-                {
-                    IDbContextTransaction dbContextTransaction = null;
-                    if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
+//        }
+//        public static int Update(Merch merch, bool rollback = false)
+//        {
+//            try
+//            {
+//                int results = 0;
+//                using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
+//                {
+//                    IDbContextTransaction dbContextTransaction = null;
+//                    if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblMerch row = dc.tblMerches.FirstOrDefault(d => d.Id == merch.Id);
+//                    tblMerch row = dc.tblMerches.FirstOrDefault(d => d.Id == merch.Id);
 
-                    row.MerchName = merch.MerchName;
-                    row.InStkQty = merch.InStkQty;
-                    row.Description = merch.Description;
-                    row.Cost = merch.Cost;
+//                    row.MerchName = merch.MerchName;
+//                    row.InStkQty = merch.InStkQty;
+//                    row.Description = merch.Description;
+//                    row.Cost = merch.Cost;
 
-                    results = dc.SaveChanges();
+//                    results = dc.SaveChanges();
 
-                    if (rollback) dbContextTransaction.Rollback();
+//                    if (rollback) dbContextTransaction.Rollback();
 
-                }
-                return results;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+//                }
+//                return results;
+//            }
+//            catch (Exception)
+//            {
+//                throw;
+//            }
+//        }
 
-        public static Merch LoadById(Guid id)
-        {
-            try
-            {
-                using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
-                {
-                    var row = (from pd in dc.tblMerches
-                               where pd.Id == id
-                               select new
-                               {
-                                   Id = pd.Id,
-                                   MerchName = pd.MerchName,
-                                   InStkQty = pd.InStkQty,
-                                   Description = pd.Description,
-                                   Cost = pd.Cost
+//        public static Merch LoadById(Guid id)
+//        {
+//            try
+//            {
+//                using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
+//                {
+//                    var row = (from pd in dc.tblMerches
+//                               where pd.Id == id
+//                               select new
+//                               {
+//                                   Id = pd.Id,
+//                                   MerchName = pd.MerchName,
+//                                   InStkQty = pd.InStkQty,
+//                                   Description = pd.Description,
+//                                   Cost = pd.Cost
 
-                               }).FirstOrDefault();
-                    if (row != null)
-                    {
-                        return new Merch
-                        {
-                            Id = row.Id,
-                            MerchName = row.MerchName,
-                            InStkQty = row.InStkQty,
-                            Description = row.Description,
-                            Cost = row.Cost
-                        };
-                    }
-                    else
-                    {
-                        throw new Exception(NOTFOUND_MESSAGE);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+//                               }).FirstOrDefault();
+//                    if (row != null)
+//                    {
+//                        return new Merch
+//                        {
+//                            Id = row.Id,
+//                            MerchName = row.MerchName,
+//                            InStkQty = row.InStkQty,
+//                            Description = row.Description,
+//                            Cost = row.Cost
+//                        };
+//                    }
+//                    else
+//                    {
+//                        throw new Exception(NOTFOUND_MESSAGE);
+//                    }
+//                }
+//            }
+//            catch (Exception)
+//            {
+//                throw;
+//            }
+//        }
 
-        public static List<Merch> Load()
-        {
-            List<Merch> rows = new List<Merch>();
+//        public static List<Merch> Load()
+//        {
+//            List<Merch> rows = new List<Merch>();
 
-            using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
-            {
-                var merches = (from pd in dc.tblMerches
-                                      orderby pd.MerchName
-                                      select new
-                                      {
-                                          Id = pd.Id,
-                                          MerchName = pd.MerchName,
-                                          InStkQty = pd.InStkQty,
-                                          Description = pd.Description,
-                                          Cost = pd.Cost
+//            using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
+//            {
+//                var merches = (from pd in dc.tblMerches
+//                                      orderby pd.MerchName
+//                                      select new
+//                                      {
+//                                          Id = pd.Id,
+//                                          MerchName = pd.MerchName,
+//                                          InStkQty = pd.InStkQty,
+//                                          Description = pd.Description,
+//                                          Cost = pd.Cost
 
-                                      }).ToList();
-                merches.ForEach(pd => rows.Add(new Merch
-                {
-                    Id = pd.Id,
-                    MerchName = pd.MerchName,
-                    InStkQty = pd.InStkQty,
-                    Description = pd.Description,
-                    Cost = pd.Cost
-                }));
-            }
-            return rows;
-        }
+//                                      }).ToList();
+//                merches.ForEach(pd => rows.Add(new Merch
+//                {
+//                    Id = pd.Id,
+//                    MerchName = pd.MerchName,
+//                    InStkQty = pd.InStkQty,
+//                    Description = pd.Description,
+//                    Cost = pd.Cost
+//                }));
+//            }
+//            return rows;
+//        }
 
-        public static int Delete(Guid id, bool rollback = false)
-        {
-            try
-            {
-                int results = 0;
-                using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
-                {
-                    IDbContextTransaction dbContextTransaction = null;
-                    if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
+//        public static int Delete(Guid id, bool rollback = false)
+//        {
+//            try
+//            {
+//                int results = 0;
+//                using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
+//                {
+//                    IDbContextTransaction dbContextTransaction = null;
+//                    if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblMerch row = dc.tblMerches.FirstOrDefault(d => d.Id == id);
+//                    tblMerch row = dc.tblMerches.FirstOrDefault(d => d.Id == id);
 
-                    dc.tblMerches.Remove(row);
-                    results = dc.SaveChanges();
+//                    dc.tblMerches.Remove(row);
+//                    results = dc.SaveChanges();
 
-                    if (rollback) dbContextTransaction.Rollback();
+//                    if (rollback) dbContextTransaction.Rollback();
 
-                }
-                return results;
-            }
-            catch (Exception)
-            {
+//                }
+//                return results;
+//            }
+//            catch (Exception)
+//            {
 
-                throw;
-            }
+//                throw;
+//            }
 
-        }
-    }
-}
+//        }
+//    }
+//}
