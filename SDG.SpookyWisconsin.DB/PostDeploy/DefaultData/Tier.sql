@@ -1,7 +1,7 @@
 ﻿BEGIN
 	INSERT INTO tblTier (Id, TierName, TierLevel)
 	VALUES
-	(1, 'Bronze', 1),
-	(2, 'Silver', 2),
-	(3, 'Gold', 3)
+	(NEWID(), 'Bronze', 1),
+	(NEWID(), 'Silver', 2),
+	(NEWID(), 'Gold', 3)
 END

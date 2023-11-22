@@ -119,5 +119,6 @@
     <Build Include="Tables\tblTier.sql" />
     <Build Include="Tables\tblTour.sql" />
     <Build Include="Tables\tblUser.sql" />
+    <None Include="PostDeploy\DefaultData\OrderItem.sql" />
   </ItemGroup>
 </Project>

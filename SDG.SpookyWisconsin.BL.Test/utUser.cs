@@ -22,7 +22,7 @@ namespace SDG.SpookyWisconsin.BL.Test
         {
             User user = new User
             {
-                UserName = "Test",
+                Username = "Test",
                 Password = "password"
             };
             int result = new UserManager(options).Insert(user, true);
@@ -32,7 +32,7 @@ namespace SDG.SpookyWisconsin.BL.Test
         [TestMethod]
         public void LoginSuccess()
         {
-            //User user = new User { UserName = "", Password = ""};
+            //User user = new User { Username = "", Password = ""};
             // bool result = new UserManager(options).Login(User);
             //Assert.IsTrue(result)
         }
@@ -42,7 +42,7 @@ namespace SDG.SpookyWisconsin.BL.Test
         {
          /*   try
             {
-                User user = new User { UserName = "", Password = ""};
+                User user = new User { Username = "", Password = ""};
                 new UserManager(options).Login(user);
                 Assert.Fail();
             }

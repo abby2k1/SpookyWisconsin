@@ -5,6 +5,6 @@
     [UserId] UNIQUEIDENTIFIER NOT NULL, 
     [FirstName] VARCHAR(50) NOT NULL, 
     [LastName] VARCHAR(50) NOT NULL, 
-    [Address] VARCHAR(75) NOT NULL, 
+    [AddressId] UNIQUEIDENTIFIER NOT NULL, 
     [Email] VARCHAR(50) NOT NULL
 )

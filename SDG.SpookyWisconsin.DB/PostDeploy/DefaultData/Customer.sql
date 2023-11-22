@@ -1,8 +1,29 @@
 ﻿BEGIN
-	INSERT INTO tblCustomer (Id, MemberId, UserId, FirstName, LastName, Address, Email)
+	DECLARE @UserId uniqueidentifier
+	DECLARE @MemberId uniqueidentifier
+	DECLARE @AddressId uniqueidentifier
+	SELECT @UserId = Id FROM tblUser WHERE Username = 'pricev31'
+	SELECT @MemberId = Id FROM tblMember WHERE NewsLetterOpt = 'Yes' AND MemberOpt = 'Yes'
+	SELECT @AddressId = Id FROM tblAddress WHERE Street = '3420 E Calumet St'
+	INSERT INTO tblCustomer (Id, MemberId, UserId, FirstName, LastName, AddressId, Email)
 	VALUES
-	(NEWID(), 1, 1, 'Vincent', 'Price', '12 North Ln', 'pricev31@gmail.com'),
-	(NEWID(), 2, 2, 'Michael', 'Jackson', '35 Castle Dr', 'kingpop1984@yahoo.com'),
-	(NEWID(), 3, 3, 'Morticia', 'Addams', '74 Dream St', 'mortaddams11@gmail.com'),
-	(NEWID(), 4, 4, 'Wednesday', 'Addams', '98 Woodland Rd', 'wedaddams.1600@hotmail.com')
+	(NEWID(), @MemberId, @UserId, 'Vincent', 'Price', @AddressId, 'pricev31@gmail.com')
+	SELECT @MemberId = Id FROM tblMember WHERE NewsLetterOpt = 'Yes' AND MemberOpt = 'No'
+	SELECT @UserId = Id FROM tblUser WHERE Username = 'kingpop1984'
+	SELECT @AddressId = Id FROM tblAddress WHERE Street = '3400 E Calumet St'
+	INSERT INTO tblCustomer (Id, MemberId, UserId, FirstName, LastName, AddressId, Email)
+	VALUES
+	(NEWID(), @MemberId, @UserId, 'Michael', 'Jackson', @AddressId, 'kingpop1984@yahoo.com')
+	SELECT @MemberId = Id FROM tblMember WHERE NewsLetterOpt = 'No' AND MemberOpt = 'Yes'
+	SELECT @UserId = Id FROM tblUser WHERE Username = 'mortaddams11'
+	SELECT @AddressId = Id FROM tblAddress WHERE Street = '3330 E Calumet St'
+	INSERT INTO tblCustomer (Id, MemberId, UserId, FirstName, LastName, AddressId, Email)
+	VALUES
+	(NEWID(), @MemberId, @UserId, 'Morticia', 'Addams', @AddressId, 'mortaddams11@gmail.com')
+	SELECT @MemberId = Id FROM tblMember WHERE NewsLetterOpt = 'No' AND MemberOpt = 'No'
+	SELECT @UserId = Id FROM tblUser WHERE Username = 'wedaddams.1600'
+	SELECT @AddressId = Id FROM tblAddress WHERE Street = '3310 E Calumet St'
+	INSERT INTO tblCustomer (Id, MemberId, UserId, FirstName, LastName, AddressId, Email)
+	VALUES
+	(NEWID(), @MemberId, @UserId, 'Wednesday', 'Addams', @AddressId, 'wedaddams.1600@hotmail.com')
 END

@@ -10,17 +10,17 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 :r .\DefaultData\Address.sql
-:r .\DefaultData\Customer.sql
 :r .\DefaultData\User.sql
-:r .\DefaultData\HauntedEvent.sql
+:r .\DefaultData\Tier.sql
 :r .\DefaultData\HauntedLocation.sql
+:r .\DefaultData\HauntedEvent.sql
+:r .\DefaultData\NewsLetter.sql
 :r .\DefaultData\Member.sql
+:r .\DefaultData\Customer.sql
+:r .\DefaultData\Tour.sql
+:r .\DefaultData\Participant.sql
 :r .\DefaultData\Merch.sql
 :r .\DefaultData\MerchType.sql
 :r .\DefaultData\MerchTypeMerch.sql
-:r .\DefaultData\NewsLetter.sql
 :r .\DefaultData\Order.sql
 :r .\DefaultData\OrderItem.sql
-:r .\DefaultData\Participant.sql
-:r .\DefaultData\Tier.sql
-:r .\DefaultData\Tour.sql

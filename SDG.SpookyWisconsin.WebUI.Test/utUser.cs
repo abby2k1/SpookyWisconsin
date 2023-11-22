@@ -43,7 +43,7 @@ namespace SDG.SpookyWisconsin.UI.Test
         //    UserController controller = new UserController();
         //    User User = new User();
         //    User.Id = new Guid();
-        //    User.UserName = "TestUserName";
+        //    User.Username = "TestUsername";
         //    User.Password = "TestPassword";
         //    var results = controller.Create(User, true) as RedirectToActionResult;
         //    Assert.AreEqual("Index", results.ActionName);
@@ -56,7 +56,7 @@ namespace SDG.SpookyWisconsin.UI.Test
         //    UserController controller = new UserController();
         //    var results = controller.Details(UserManager.Load().FirstOrDefault().Id) as ViewResult;
         //    User User = results.Model as User;
-        //    User.UserName = "EditTestUserName";
+        //    User.Username = "EditTestUsername";
         //    User.Password = "EditTestPassword";
         //    var results2 = controller.Edit(User.Id, User, true) as RedirectToActionResult;
         //    Assert.AreEqual("Index", results2.ActionName);

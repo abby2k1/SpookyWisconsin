@@ -14,7 +14,7 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
             HttpContext.Session.SetObject("user", user);
             if (user != null)
             {
-                HttpContext.Session.SetObject("fullname", "Welcome " + user.UserName);
+                HttpContext.Session.SetObject("fullname", "Welcome " + user.Username);
             }
             else
             {
