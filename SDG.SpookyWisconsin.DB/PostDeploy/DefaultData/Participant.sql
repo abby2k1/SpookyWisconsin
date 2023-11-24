@@ -1,27 +1,27 @@
 ﻿BEGIN
 	DECLARE @HauntedEventId uniqueidentifier
-	DECLARE @CustomerId uniqueidentifier
+	DECLARE @CustomerId1 uniqueidentifier
 	SELECT @HauntedEventId = Id FROM tblHauntedEvent WHERE Name = 'Veteran Walk-Through in Forest Hill Cemetery'
-	SELECT @CustomerId = Id FROM tblCustomer WHERE FirstName = 'Vincent'
+	SELECT @CustomerId1 = Id FROM tblCustomer WHERE FirstName = 'Vincent'
 	INSERT INTO tblParticipant (Id, HauntedEventId, CustomerId)
 	VALUES
-	(NEWID(), @HauntedEventId, @CustomerId)
+	(NEWID(), @HauntedEventId, @CustomerId1)
 
 	SELECT @HauntedEventId = Id FROM tblHauntedEvent WHERE Name = 'Kate Blood Gravestone Story Time'
-	SELECT @CustomerId = Id FROM tblCustomer WHERE FirstName = 'Michael'
+	SELECT @CustomerId1 = Id FROM tblCustomer WHERE FirstName = 'Michael'
 	INSERT INTO tblParticipant (Id, HauntedEventId, CustomerId)
 	VALUES
-	(NEWID(), @HauntedEventId, @CustomerId)
+	(NEWID(), @HauntedEventId, @CustomerId1)
 
 	SELECT @HauntedEventId = Id FROM tblHauntedEvent WHERE Name = 'Keeping Up with the Circus'
-	SELECT @CustomerId = Id FROM tblCustomer WHERE FirstName = 'Morticia'
+	SELECT @CustomerId1 = Id FROM tblCustomer WHERE FirstName = 'Morticia'
 	INSERT INTO tblParticipant (Id, HauntedEventId, CustomerId)
 	VALUES
-	(NEWID(), @HauntedEventId, @CustomerId)
+	(NEWID(), @HauntedEventId, @CustomerId1)
 
 	SELECT @HauntedEventId = Id FROM tblHauntedEvent WHERE Name = 'Stay the Night for a Fright'
-	SELECT @CustomerId = Id FROM tblCustomer WHERE FirstName = 'Wednesday'
+	SELECT @CustomerId1 = Id FROM tblCustomer WHERE FirstName = 'Wednesday'
 	INSERT INTO tblParticipant (Id, HauntedEventId, CustomerId)
 	VALUES
-	(NEWID(), @HauntedEventId, @CustomerId)
+	(NEWID(), @HauntedEventId, @CustomerId1)
 END
