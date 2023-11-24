@@ -396,3 +396,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/SDG.SpookyWisconsin.DB/local.publish.xml

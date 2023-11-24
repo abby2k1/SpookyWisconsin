@@ -2,8 +2,8 @@
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
     [HauntedLocationId] UNIQUEIDENTIFIER NOT NULL,
-    [Name] VARCHAR(50) NOT NULL, 
+    [Name] VARCHAR(255) NOT NULL, 
     [Date] DATETIME NOT NULL, 
-    [Description] VARCHAR(250) NOT NULL, 
-    [ImagePath] VARCHAR(250) NOT NULL
+    [Description] VARCHAR(255) NOT NULL, 
+    [ImagePath] VARCHAR(255) NOT NULL
 )
