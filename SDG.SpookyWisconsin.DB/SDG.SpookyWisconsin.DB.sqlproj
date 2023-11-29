@@ -65,6 +65,7 @@
     <None Include="PostDeploy\DefaultData\Address.sql" />
     <None Include="PostDeploy\DefaultData\User.sql" />
     <None Include="local.publish.xml" />
+    <None Include="remote.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PostDeploy\DefaultData\Customer.sql" />
