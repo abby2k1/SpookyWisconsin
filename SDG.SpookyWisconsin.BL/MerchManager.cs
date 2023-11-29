@@ -215,7 +215,7 @@ namespace SDG.SpookyWisconsin.BL
                                           MerchName = pd.MerchName,
                                           InStkQty = pd.InStkQty,
                                           Description = pd.Description,
-                                          Cost = pd.Cost
+                                          Cost = (decimal)pd.Cost
 
                                       }).ToList();
                 merches.ForEach(pd => rows.Add(new Merch
@@ -223,8 +223,8 @@ namespace SDG.SpookyWisconsin.BL
                     Id = pd.Id,
                     MerchName = pd.MerchName,
                     InStkQty = pd.InStkQty,
-                    Description = pd.Description//,
-                    //Cost = pd.Cost
+                    Description = pd.Description,
+                    Cost = (decimal)pd.Cost
                 }));
             }
             return rows;
