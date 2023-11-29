@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -77,16 +80,16 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
                     </ul>
-                   @*  @{
+                    @{
                         SDG.SpookyWisconsin.BL.UserManager.Seed();
-                        var fullname = HttpContextAccessor.HttpContext?.Session.GetString("fullname");
+                         var fullname = HttpContextAccessor.HttpContext?.Session.GetString("fullname");
                     }
                     <ul class="navbar-nav">
                         @if (fullname == null)
                         {
                             <li class="nav-link text-light ms-2"><a asp-controller="User" asp-action="Login">Login</a></li>
                         }
-                        else if (fullname.Contains("W"))
+                        else if (fullname.Contains("W")) //fullname variable includes "Welcome" + Username so it should always have a W when they are signed in.
                         {
                             <li class="nav-link text-light ms-2"><a asp-controller="User" asp-action="Logout">Logout</a></li>
                         }
@@ -104,7 +107,7 @@
                             }
                             <a class="nav-link text-light">@fullname</a>
                         </li>
-                    </ul> *@
+                    </ul>
                 </div>
             </div>
         </nav>
