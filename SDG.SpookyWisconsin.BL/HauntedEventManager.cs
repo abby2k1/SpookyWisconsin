@@ -17,7 +17,7 @@ namespace SDG.SpookyWisconsin.BL
 
         }
 
-        public static int Insert(HauntedEvent hauntedEvent, bool rollback = false)
+        public int Insert(HauntedEvent hauntedEvent, bool rollback = false)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace SDG.SpookyWisconsin.BL
             }
 
         }
-        public static int Update(HauntedEvent hauntedEvent, bool rollback = false)
+        public int Update(HauntedEvent hauntedEvent, bool rollback = false)
         {
             try
             {
@@ -81,7 +81,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static HauntedEvent LoadById(Guid id)
+        public HauntedEvent LoadById(Guid id)
         {
             try
             {
@@ -124,7 +124,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static List<HauntedEvent> Load()
+        public List<HauntedEvent> Load()
         {
             List<HauntedEvent> rows = new List<HauntedEvent>();
 
@@ -155,7 +155,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public static int Delete(Guid id, bool rollback = false)
+        public int Delete(Guid id, bool rollback = false)
         {
             try
             {

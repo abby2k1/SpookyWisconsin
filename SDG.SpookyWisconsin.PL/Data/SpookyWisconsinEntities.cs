@@ -42,14 +42,14 @@ namespace SDG.SpookyWisconsin.PL
         public virtual DbSet<tblHauntedEvent> tblHauntedEvents { get; set; }
         public virtual DbSet<tblHauntedLocation> tblHauntedLocations { get; set; }
         public virtual DbSet<tblMember> tblMemberships { get; set; }
-        public virtual DbSet<tblMerch> TblMerches { get; set; }
+        public virtual DbSet<tblMerch> tblMerches { get; set; }
         // public virtual DbSet<tblMerchType> tblmerchTypes { get; set; }
         // public virtual DbSet<tblMerchTypeMerch> tblMerchesTypeMerch { get; set; }
-        public virtual DbSet<tblNewsLetter> TblNewsLetters { get; set; }
+        public virtual DbSet<tblNewsLetter> tblNewLetters { get; set; }
         public virtual DbSet<tblOrder> tblOrders { get; set; }
         // public virtual DbSet<tblOrderItem> tblOrderItems { get; set; }
         public virtual DbSet<tblParticipant> tblParticipants { get; set; }
-        public virtual DbSet<tblTier> TblTiers { get; set; }
+        public virtual DbSet<tblTier> tblTiers { get; set; }
         public virtual DbSet<tblTour> tblTours { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
 

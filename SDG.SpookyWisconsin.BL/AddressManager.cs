@@ -21,7 +21,7 @@ namespace SDG.SpookyWisconsin.BL
 
         }
 
-        public static int Insert(Address address, bool rollback = false)
+        public int Insert(Address address, bool rollback = false)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace SDG.SpookyWisconsin.BL
             }
 
         }
-        public static int Update(Address address, bool rollback = false)
+        public int Update(Address address, bool rollback = false)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static Address LoadById(Guid id)
+        public Address LoadById(Guid id)
         {
             try
             {
@@ -133,7 +133,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static List<Address> Load()
+        public List<Address> Load()
         {
             List<Address> rows = new List<Address>();
 
@@ -163,7 +163,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public static int Delete(Guid id, bool rollback = false)
+        public int Delete(Guid id, bool rollback = false)
         {
             try
             {

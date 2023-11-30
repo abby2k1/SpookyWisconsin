@@ -17,7 +17,7 @@ namespace SDG.SpookyWisconsin.BL
 
         }
         
-        public static List<Merch> Load(int? merchTypeId = null)
+        public List<Merch> Load(int? merchTypeId = null)
         {
             if (merchTypeId == null)
             {
@@ -98,7 +98,7 @@ namespace SDG.SpookyWisconsin.BL
             return null;
         }
 
-        public static int Insert(Merch merch, bool rollback = false)
+        public int Insert(Merch merch, bool rollback = false)
         {
             try
             {
@@ -131,7 +131,7 @@ namespace SDG.SpookyWisconsin.BL
                 throw;
             }
         }
-        public static int Update(Merch merch, bool rollback = false)
+        public int Update(Merch merch, bool rollback = false)
         {
             try
             {
@@ -161,7 +161,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static Merch LoadById(Guid id)
+        public Merch LoadById(Guid id)
         {
             try
             {
@@ -201,7 +201,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static List<Merch> Load()
+        public List<Merch> Load()
         {
             List<Merch> rows = new List<Merch>();
 
@@ -230,7 +230,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public static int Delete(Guid id, bool rollback = false)
+        public int Delete(Guid id, bool rollback = false)
         {
             try
             {

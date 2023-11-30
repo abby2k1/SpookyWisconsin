@@ -24,7 +24,7 @@ namespace SDG.SpookyWisconsin.BL
 
         }
 
-        public static int Insert(Tier tier, bool rollback = false)
+        public int Insert(Tier tier, bool rollback = false)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace SDG.SpookyWisconsin.BL
 
 
                     tier.Id = row.Id;
-                    dc.tblTier.Add(row);
+                    dc.tblTiers.Add(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();
@@ -56,7 +56,7 @@ namespace SDG.SpookyWisconsin.BL
             }
 
         }
-        public static int Update(Tier tier, bool rollback = false)
+        public int Update(Tier tier, bool rollback = false)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblTier row = dc.tblTier.FirstOrDefault(d => d.Id == tier.Id);
+                    tblTier row = dc.tblTiers.FirstOrDefault(d => d.Id == tier.Id);
 
                     row.TierLevel = tier.TierLevel;
                     row.TierName = tier.TierName;
@@ -84,13 +84,13 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static Tier LoadById(Guid id)
+        public Tier LoadById(Guid id)
         {
             try
             {
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
-                    var row = (from pd in dc.tblTier
+                    var row = (from pd in dc.tblTiers
                                where pd.Id == id
                                select new
                                {
@@ -120,14 +120,14 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static List<Tier> Load()
+        public List<Tier> Load()
         {
             List<Tier> rows = new List<Tier>();
 
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
-                var tieres = (from pd in dc.tblTier
-                                      orderby pd.TierLevel
+                var tieres = (from pd in dc.tblTiers
+                              orderby pd.TierLevel
                                       select new
                                       {
                                           Id = pd.Id,
@@ -144,7 +144,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public static int Delete(Guid id, bool rollback = false)
+        public int Delete(Guid id, bool rollback = false)
         {
             try
             {
@@ -154,9 +154,9 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblTier row = dc.tblTier.FirstOrDefault(d => d.Id == id);
+                    tblTier row = dc.tblTiers.FirstOrDefault(d => d.Id == id);
 
-                    dc.tblTier.Remove(row);
+                    dc.tblTiers.Remove(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();

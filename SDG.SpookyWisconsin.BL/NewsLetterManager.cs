@@ -16,7 +16,7 @@ namespace SDG.SpookyWisconsin.BL
 
         }
 
-        public static int Insert(NewsLetter newsLetter, bool rollback = false)
+        public int Insert(NewsLetter newsLetter, bool rollback = false)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace SDG.SpookyWisconsin.BL
 
 
                     newsLetter.Id = row.Id;
-                    dc.tblNewsLetter.Add(row);
+                    dc.tblNewLetters.Add(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();
@@ -49,7 +49,7 @@ namespace SDG.SpookyWisconsin.BL
             }
 
         }
-        public static int Update(NewsLetter newsLetter, bool rollback = false)
+        public int Update(NewsLetter newsLetter, bool rollback = false)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblNewsLetter row = dc.tblNewsLetter.FirstOrDefault(d => d.Id == newsLetter.Id);
+                    tblNewsLetter row = dc.tblNewLetters.FirstOrDefault(d => d.Id == newsLetter.Id);
 
                     row.HauntedEventId = newsLetter.HauntedEventId;
                     row.Description = newsLetter.Description;
@@ -79,13 +79,13 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static NewsLetter LoadById(Guid id)
+        public NewsLetter LoadById(Guid id)
         {
             try
             {
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
-                    var row = (from pd in dc.tblNewsLetter
+                    var row = (from pd in dc.tblNewLetters
                                join he in dc.tblHauntedEvents on pd.HauntedEventId equals he.Id
                                where pd.Id == id
                                select new
@@ -124,13 +124,13 @@ namespace SDG.SpookyWisconsin.BL
         /// Get news letters from the database
         /// </summary>
         /// <returns>A list of the news letters and associated fields from the database</returns>
-        public static List<NewsLetter> Load()
+        public List<NewsLetter> Load()
         {
             List<NewsLetter> rows = new List<NewsLetter>();
 
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
-                var newsLetteres = (from pd in dc.tblNewsLetter
+                var newsLetteres = (from pd in dc.tblNewLetters
                                     join he in dc.tblHauntedEvents on pd.HauntedEventId equals he.Id
                                       orderby pd.Date
                                       select new
@@ -154,7 +154,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public static int Delete(Guid id, bool rollback = false)
+        public int Delete(Guid id, bool rollback = false)
         {
             try
             {
@@ -164,9 +164,9 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblNewsLetter row = dc.tblNewsLetter.FirstOrDefault(d => d.Id == id);
+                    tblNewsLetter row = dc.tblNewLetters.FirstOrDefault(d => d.Id == id);
 
-                    dc.tblNewsLetter.Remove(row);
+                    dc.tblNewLetters.Remove(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();

@@ -24,7 +24,7 @@ namespace SDG.SpookyWisconsin.BL
 
         }
 
-        public static int Insert(Order order, bool rollback = false)
+        public int Insert(Order order, bool rollback = false)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace SDG.SpookyWisconsin.BL
             }
 
         }
-        public static int Update(Order order, bool rollback = false)
+        public int Update(Order order, bool rollback = false)
         {
             try
             {
@@ -87,7 +87,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static Order LoadById(Guid id)
+        public Order LoadById(Guid id)
         {
             try
             {
@@ -129,7 +129,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static List<Order> Load()
+        public List<Order> Load()
         {
             List<Order> rows = new List<Order>();
 
@@ -160,7 +160,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public static int Delete(Guid id, bool rollback = false)
+        public int Delete(Guid id, bool rollback = false)
         {
             try
             {
