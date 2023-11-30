@@ -24,44 +24,44 @@ namespace SDG.SpookyWisconsin.BL.Test
                 ZIP = "54911"
                 
             };
-            AddressManager.Insert(address);
-            Guid result = AddressManager.Load().FirstOrDefault().Id;
-            Assert.IsTrue(result != Guid.Empty);
+            int result = new AddressManager(options).Insert(address, true);
+            Assert.IsTrue(result > 0);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            Address address = AddressManager.Load().FirstOrDefault();
+            Address address = new AddressManager(options).Load().FirstOrDefault();
             address.Street = "Test";
 
-            Assert.IsTrue(AddressManager.Update(address, true) > 0);
+            Assert.IsTrue(new AddressManager(options).Update(address, true) > 0);
 
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            Guid id = AddressManager.Load().FirstOrDefault().Id;
-            Address address = AddressManager.LoadById(id);
-            Assert.AreEqual(id, address.Id);
+            Address addresses = new AddressManager(options).Load().FirstOrDefault();
+            Assert.AreEqual(new AddressManager(options).LoadById(addresses.Id).Id, addresses.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            List<Address> addresses = AddressManager.Load();
+            List<Address> addresses = new AddressManager(options).Load();
             int expected = 3;
-
             Assert.AreEqual(expected, addresses.Count);
         }
 
         [TestMethod]
         public void DeleteTest()
         {
-            Address address = AddressManager.Load().FirstOrDefault();
+            Address address = new AddressManager(options)
+                               .Load()
+                               .Where(d => d.Street == "Other")
+                               .FirstOrDefault();
 
-            Assert.IsTrue(AddressManager.Delete(address.Id, true) > 0);
+            Assert.IsTrue(new AddressManager(options).Delete(address.Id, true) > 0);
         }
 
 

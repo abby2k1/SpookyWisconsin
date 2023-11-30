@@ -17,7 +17,7 @@ namespace SDG.SpookyWisconsin.BL.Test
         {
             HauntedLocation hauntedLocation = new HauntedLocation
             {
-                AddressId = new AddressManager(options).Load().FirstOrDefault(),
+                AddressId = new AddressManager(options).Load().FirstOrDefault().Id,
                 Name = "Appleton"
             };
             int result = new HauntedLocationManager(options).Insert(hauntedLocation, true);

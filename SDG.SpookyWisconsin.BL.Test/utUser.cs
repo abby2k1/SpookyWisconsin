@@ -22,7 +22,7 @@ namespace SDG.SpookyWisconsin.BL.Test
         {
             User user = new User
             {
-                Username = "Test",
+                UserName = "Test",
                 Password = "password"
             };
             int result = new UserManager(options).Insert(user, true);

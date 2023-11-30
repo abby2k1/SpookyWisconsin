@@ -31,8 +31,8 @@ namespace SDG.SpookyWisconsin.PL.Test
 
             // Set the properties
             newrow.Id = Guid.NewGuid();
-            newrow.TierId = sc.tblTier.FirstOrDefault().Id;
-            newrow.NewsLetterId = sc.tblNewsLetter.FirstOrDefault().Id;
+            newrow.TierId = sc.tblTiers.FirstOrDefault().Id;
+            newrow.NewsLetterId = sc.tblNewLetters.FirstOrDefault().Id;
             newrow.NewsLetterOpt = "Tomorrow";
             newrow.MemberOpt = "Pro";
 
@@ -55,8 +55,8 @@ namespace SDG.SpookyWisconsin.PL.Test
             if (row == null)
             {
                 // Set the properties
-                row.TierId = sc.tblTier.OrderByDescending(t => t.TierLevel).FirstOrDefault().Id;
-                row.NewsLetterId = sc.tblNewsLetter.OrderByDescending(n => n.Date).FirstOrDefault().Id;
+                row.TierId = sc.tblTiers.OrderByDescending(t => t.TierLevel).FirstOrDefault().Id;
+                row.NewsLetterId = sc.tblNewLetters.OrderByDescending(n => n.Date).FirstOrDefault().Id;
                 row.NewsLetterOpt = "Test";
                 row.MemberOpt = "Test";
 

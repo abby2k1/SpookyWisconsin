@@ -31,7 +31,7 @@ namespace SDG.SpookyWisconsin.BL.Test
             HauntedEvent hauntedEvent = new HauntedEventManager(options).Load().FirstOrDefault();
             hauntedEvent.Description = "Test";
 
-            Assert.IsTrue(new HauntedEventManager(options).Equals(hauntedEvent, true) > 0);
+            Assert.IsTrue(new HauntedEventManager(options).Update(hauntedEvent, true) > 0);
         }
 
         [TestMethod]

@@ -51,7 +51,7 @@ namespace SDG.SpookyWisconsin.BL.Test
         public void DeleteTest()
         {
             Participant participant = new ParticipantManager(options).Load().FirstOrDefault();
-            Assert.IsTrue(new ParticipantManager(options).Delete(participant.Id, participant) > 0);
+            Assert.IsTrue(new ParticipantManager(options).Delete(participant.Id, true) > 0);
         }
     }
 }

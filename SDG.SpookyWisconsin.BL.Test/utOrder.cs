@@ -17,9 +17,9 @@ namespace SDG.SpookyWisconsin.BL.Test
         {
             Order order = new Order
             { 
-                CustomerId = new CustomerManager(options).Load().FirstOrDefault(),
+                CustomerId = new CustomerManager(options).Load().FirstOrDefault().Id,
                 OrderDate = DateTime.Now,
-                DeliverDate = DateTime.Now
+                ShipDate = DateTime.Now
             };
             var result = new OrderManager(options).Insert(order, true);
             Assert.IsTrue(result > 0);
@@ -31,7 +31,7 @@ namespace SDG.SpookyWisconsin.BL.Test
             Order order = new OrderManager(options).Load().FirstOrDefault();
             order.OrderDate = DateTime.Now;
 
-            Assert.IsTrue(new OrderManager(options).Update(order, true));
+            Assert.IsTrue(new OrderManager(options).Update(order, true) > 0);
         }
 
         [TestMethod]
@@ -44,7 +44,7 @@ namespace SDG.SpookyWisconsin.BL.Test
         [TestMethod]
         public void LoadTest()
         {
-            List<Order> orders = new OrderManager(options).Load().FirstOrDefault();
+            List<Order> orders = new OrderManager(options).Load();
             int expected = 2;
 
             Assert.AreEqual(expected, orders.Count);

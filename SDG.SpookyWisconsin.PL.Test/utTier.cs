@@ -19,7 +19,7 @@ namespace SDG.SpookyWisconsin.PL.Test
             //How many I expected
             int expected = 3;
             //How many I did get back
-            var tiers = sc.tblTier;
+            var tiers = sc.tblTiers;
 
             Assert.AreEqual(expected, tiers.Count());
 
@@ -37,7 +37,7 @@ namespace SDG.SpookyWisconsin.PL.Test
             newrow.TierLevel = 3;
 
             // Insert row into table
-            sc.tblTier.Add(newrow);
+            sc.tblTiers.Add(newrow);
             int result = sc.SaveChanges();
 
             Assert.AreEqual(1, result);
@@ -49,7 +49,7 @@ namespace SDG.SpookyWisconsin.PL.Test
         {
             InsertTest();
             // Get a row update
-            tblTier row = sc.tblTier.FirstOrDefault();
+            tblTier row = sc.tblTiers.FirstOrDefault();
 
             if (row == null)
             {
@@ -70,12 +70,12 @@ namespace SDG.SpookyWisconsin.PL.Test
         {
             InsertTest();
 
-            tblTier row = (from a in sc.tblTier
-                                  select a).FirstOrDefault();
+            tblTier row = (from a in sc.tblTiers
+                           select a).FirstOrDefault();
 
             if (row == null)
             {
-                sc.tblTier.Remove(row);
+                sc.tblTiers.Remove(row);
                 int result = sc.SaveChanges();
                 Assert.IsTrue(result == 1);
             }

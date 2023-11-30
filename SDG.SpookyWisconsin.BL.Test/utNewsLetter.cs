@@ -30,7 +30,7 @@ namespace SDG.SpookyWisconsin.BL.Test
             NewsLetter newsLetter = new NewsLetterManager(options).Load().FirstOrDefault();
             newsLetter.Description = "Test";
 
-            Assert.IsTrue(new NewsLetterManager(options).Equals(newsLetter, true) > 0);
+            Assert.IsTrue(new NewsLetterManager(options).Update(newsLetter, true) > 0);
         }
 
         [TestMethod]

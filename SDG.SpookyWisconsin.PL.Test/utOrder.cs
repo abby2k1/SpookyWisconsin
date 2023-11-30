@@ -52,7 +52,7 @@ namespace SDG.SpookyWisconsin.PL.Test
         {
             InsertTest();
             // Get a row update
-            //tblOrder row = sc.tblOrders.FirstOrDefault();
+            tblOrder row = sc.tblOrders.FirstOrDefault();
 
             if (row == null)
             {

@@ -19,7 +19,7 @@ namespace SDG.SpookyWisconsin.PL.Test
             //How many I expected
             int expected = 3;
             //How many I did get back
-            var newsLetters = sc.tblNewsLetter;
+            var newsLetters = sc.tblNewLetters;
 
             Assert.AreEqual(expected, newsLetters.Count());
 
@@ -39,7 +39,7 @@ namespace SDG.SpookyWisconsin.PL.Test
 
 
             // Insert row into table
-            sc.tblNewsLetter.Add(newrow);
+            sc.tblNewLetters.Add(newrow);
             int result = sc.SaveChanges();
 
             Assert.AreEqual(1, result);
@@ -52,7 +52,7 @@ namespace SDG.SpookyWisconsin.PL.Test
             InsertTest();
 
             // Get a row update
-            tblNewsLetter row = sc.tblNewsLetter.FirstOrDefault();  
+            tblNewsLetter row = sc.tblNewLetters.FirstOrDefault();  
 
             if (row == null)
             {
@@ -72,12 +72,12 @@ namespace SDG.SpookyWisconsin.PL.Test
         {
             InsertTest();
 
-            tblNewsLetter row = (from a in sc.tblNewsLetter
-                            select a).FirstOrDefault();
+            tblNewsLetter row = (from a in sc.tblNewLetters
+                                 select a).FirstOrDefault();
 
             if (row == null)
             {
-                sc.tblNewsLetter.Remove(row);
+                sc.tblNewLetters.Remove(row);
                 int result = sc.SaveChanges();
                 Assert.IsTrue(result == 1);
             }
