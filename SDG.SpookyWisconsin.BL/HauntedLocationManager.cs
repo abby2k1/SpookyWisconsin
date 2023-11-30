@@ -17,7 +17,7 @@ namespace SDG.SpookyWisconsin.BL
 
         }
 
-        public int Insert(HauntedLocation hauntedLocation, bool rollback = false)
+        public static int Insert(HauntedLocation hauntedLocation, bool rollback = false)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace SDG.SpookyWisconsin.BL
             }
 
         }
-        public int Update(HauntedLocation hauntedLocation, bool rollback = false)
+        public static int Update(HauntedLocation hauntedLocation, bool rollback = false)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public HauntedLocation LoadById(Guid id)
+        public static HauntedLocation LoadById(Guid id)
         {
             try
             {
@@ -116,7 +116,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public List<HauntedLocation> Load()
+        public static List<HauntedLocation> Load()
         {
             List<HauntedLocation> rows = new List<HauntedLocation>();
 
@@ -145,7 +145,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public int Delete(Guid id, bool rollback = false)
+        public static int Delete(Guid id, bool rollback = false)
         {
             try
             {

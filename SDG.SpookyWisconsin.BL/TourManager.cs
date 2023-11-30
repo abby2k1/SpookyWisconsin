@@ -15,7 +15,7 @@ namespace SDG.SpookyWisconsin.BL
         {
 
         }
-        public int Insert(Tour tour, bool rollback = false)
+        public static int Insert(Tour tour, bool rollback = false)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace SDG.SpookyWisconsin.BL
             }
 
         }
-        public int Update(Tour tour, bool rollback = false)
+        public static int Update(Tour tour, bool rollback = false)
         {
             try
             {
@@ -80,7 +80,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public Tour LoadById(Guid id)
+        public static Tour LoadById(Guid id)
         {
             try
             {
@@ -122,7 +122,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public List<Tour> Load()
+        public static List<Tour> Load()
         {
             List<Tour> rows = new List<Tour>();
 
@@ -154,7 +154,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public int Delete(Guid id, bool rollback = false)
+        public static int Delete(Guid id, bool rollback = false)
         {
             try
             {
@@ -182,7 +182,7 @@ namespace SDG.SpookyWisconsin.BL
 
         }
 
-        public int Delete(Guid id, Tour tour)
+        public static int Delete(Guid id, Tour tour)
         {
             throw new NotImplementedException();
         }

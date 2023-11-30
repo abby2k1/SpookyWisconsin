@@ -35,7 +35,7 @@ namespace SDG.SpookyWisconsin.BL
             public LoginFailureException(string message) : base(message) { }
         }
 
-        private string GetHash(string password)
+        private static string GetHash(string password)
         {
             using (var hasher = SHA1.Create())
             {
@@ -43,7 +43,7 @@ namespace SDG.SpookyWisconsin.BL
                 return Convert.ToBase64String(hasher.ComputeHash(hashbytes));
             }
         }
-        public void Seed()
+        public static void Seed()
         {
             //seed is used like default data
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
@@ -52,37 +52,37 @@ namespace SDG.SpookyWisconsin.BL
                 {
                     User user = new User
                     {
-                        UserName = "cwitthuhn",
+                        Username = "cwitthuhn",
                         Password = "colbypassword"
                     };
                     Insert(user);
                     user = new User
                     {
-                        UserName = "tlee",
+                        Username = "tlee",
                         Password = "thaypassword"
                     };
                     Insert(user);
                     user = new User
                     {
-                        UserName = "cmarohl",
+                        Username = "cmarohl",
                         Password = "cadinpassword"
                     };
                     Insert(user);
                     user = new User
                     {
-                        UserName = "cperez",
+                        Username = "cperez",
                         Password = "crystalpassword"
                     };
                     Insert(user);
                     user = new User
                     {
-                        UserName = "athompson",
+                        Username = "athompson",
                         Password = "abbypassword"
                     };
                     Insert(user);
                     user = new User
                     {
-                        UserName = "kxiong",
+                        Username = "kxiong",
                         Password = "kathypassword"
                     };
                     Insert(user);
@@ -90,17 +90,17 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public bool Login(User user)
+        public static bool Login(User user)
         {
             try
             {
-                if (!string.IsNullOrEmpty(user.UserName))
+                if (!string.IsNullOrEmpty(user.Username))
                 {
                     if (!string.IsNullOrEmpty(user.Password))
                     {
                         using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                         {
-                            tblUser tblUser = dc.tblUsers.FirstOrDefault(u => u.Username == user.UserName);
+                            tblUser tblUser = dc.tblUsers.FirstOrDefault(u => u.Username == user.Username);
 
                             if (tblUser != null)
                             {
@@ -137,7 +137,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public int Insert(User user, bool rollback = false)
+        public static int Insert(User user, bool rollback = false)
         {
             try
             {
@@ -150,7 +150,7 @@ namespace SDG.SpookyWisconsin.BL
                     tblUser row = new tblUser();
                     //Fill the table
                     row.Id = new Guid(); //dc.tblUsers.Any() ? dc.tblUsers.Max(d => d.Id) + 1 : 1;
-                    row.Username = user.UserName;
+                    row.Username = user.Username;
                     row.Password = GetHash(user.Password);
 
                     dc.tblUsers.Add(row);
@@ -167,7 +167,7 @@ namespace SDG.SpookyWisconsin.BL
             }
 
         }
-        public int Update(User user, bool rollback = false)
+        public static int Update(User user, bool rollback = false)
         {
             try
             {
@@ -179,7 +179,7 @@ namespace SDG.SpookyWisconsin.BL
 
                     tblUser row = dc.tblUsers.FirstOrDefault(d => d.Id == user.Id);
                     
-                    row.Username = user.UserName;
+                    row.Username = user.Username;
                     row.Password = GetHash(user.Password);
 
                     results = dc.SaveChanges();
@@ -195,7 +195,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public User LoadById(Guid id)
+        public static User LoadById(Guid id)
         {
             try
             {
@@ -215,7 +215,7 @@ namespace SDG.SpookyWisconsin.BL
                         return new User
                         {
                             Id = row.Id,
-                            UserName = row.Username,
+                            Username = row.Username,
                             Password = row.Password
                         };
                     }
@@ -231,7 +231,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public List<User> Load()
+        public static List<User> Load()
         {
             List<User> rows = new List<User>();
 
@@ -250,7 +250,7 @@ namespace SDG.SpookyWisconsin.BL
                 {
                     Id = pd.Id,
                     Password = pd.Password,
-                    UserName = pd.Username
+                    Username = pd.Username
                 }));
             }
             return rows;

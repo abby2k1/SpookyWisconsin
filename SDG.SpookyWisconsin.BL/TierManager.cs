@@ -24,7 +24,7 @@ namespace SDG.SpookyWisconsin.BL
 
         }
 
-        public int Insert(Tier tier, bool rollback = false)
+        public static int Insert(Tier tier, bool rollback = false)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace SDG.SpookyWisconsin.BL
             }
 
         }
-        public int Update(Tier tier, bool rollback = false)
+        public static int Update(Tier tier, bool rollback = false)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public Tier LoadById(Guid id)
+        public static Tier LoadById(Guid id)
         {
             try
             {
@@ -120,7 +120,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public List<Tier> Load()
+        public static List<Tier> Load()
         {
             List<Tier> rows = new List<Tier>();
 
@@ -144,7 +144,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public int Delete(Guid id, bool rollback = false)
+        public static int Delete(Guid id, bool rollback = false)
         {
             try
             {

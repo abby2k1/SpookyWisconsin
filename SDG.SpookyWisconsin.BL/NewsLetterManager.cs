@@ -16,7 +16,7 @@ namespace SDG.SpookyWisconsin.BL
 
         }
 
-        public int Insert(NewsLetter newsLetter, bool rollback = false)
+        public static int Insert(NewsLetter newsLetter, bool rollback = false)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace SDG.SpookyWisconsin.BL
             }
 
         }
-        public int Update(NewsLetter newsLetter, bool rollback = false)
+        public static int Update(NewsLetter newsLetter, bool rollback = false)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public NewsLetter LoadById(Guid id)
+        public static NewsLetter LoadById(Guid id)
         {
             try
             {
@@ -124,7 +124,7 @@ namespace SDG.SpookyWisconsin.BL
         /// Get news letters from the database
         /// </summary>
         /// <returns>A list of the news letters and associated fields from the database</returns>
-        public List<NewsLetter> Load()
+        public static List<NewsLetter> Load()
         {
             List<NewsLetter> rows = new List<NewsLetter>();
 
@@ -154,7 +154,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public int Delete(Guid id, bool rollback = false)
+        public static int Delete(Guid id, bool rollback = false)
         {
             try
             {
