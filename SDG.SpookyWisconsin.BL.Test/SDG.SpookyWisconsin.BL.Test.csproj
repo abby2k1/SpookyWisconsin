@@ -40,7 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SDG.SpookyWisconsin.BL.Models\SDG.SpookyWisconsin.BL.Models.csproj" />
     <ProjectReference Include="..\SDG.SpookyWisconsin.BL\SDG.SpookyWisconsin.BL.csproj" />
   </ItemGroup>
 

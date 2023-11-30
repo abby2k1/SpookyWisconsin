@@ -11,9 +11,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.12" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\SDG.SpookyWisconsin.BL.Models\SDG.SpookyWisconsin.BL.Models.csproj" />
-    <ProjectReference Include="..\SDG.SpookyWisconsin.DB\SDG.SpookyWisconsin.DB.sqlproj" />
-  </ItemGroup>
-
 </Project>

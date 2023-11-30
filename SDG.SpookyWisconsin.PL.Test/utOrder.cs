@@ -34,9 +34,9 @@ namespace SDG.SpookyWisconsin.PL.Test
 
             // Set the properties
             newrow.Id = Guid.NewGuid();
-            newrow.InCartId = sc.tblCarts.FirstOrDefault().Id;
+            //newrow.UserId = sc.tblCarts.FirstOrDefault().Id;
             newrow.OrderDate = new System.DateTime(2023, 12, 1);
-            newrow.DeliveryDate = new System.DateTime(2023, 12, 7);
+            newrow.ShipDate = new System.DateTime(2023, 12, 7);
 
 
             // Insert row into table
@@ -52,12 +52,12 @@ namespace SDG.SpookyWisconsin.PL.Test
         {
             InsertTest();
             // Get a row update
-            tblOrder row = sc.tblOrders.FirstOrDefault();
+            //tblOrder row = sc.tblOrders.FirstOrDefault();
 
             if (row == null)
             {
                 // Set the properties
-                row.InCartId = sc.tblCarts.FirstOrDefault().Id;
+                row.UserId = sc.tblCarts.FirstOrDefault().Id;
 
                 // Update the row into table
                 int result = sc.SaveChanges();
