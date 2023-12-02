@@ -12,49 +12,52 @@ namespace SDG.SpookyWisconsin.BL.Test
     [TestClass]
     public class utOrder : utBase
     {
+        List<Order> orders = OrderManager.Load();
+        List<Customer> customers = CustomerManager.Load();
+
         [TestMethod]
         public void InsertTest()
         {
             Order order = new Order
             { 
-                CustomerId = new CustomerManager(options).Load().FirstOrDefault().Id,
+                CustomerId = customers.FirstOrDefault().Id,
                 OrderDate = DateTime.Now,
                 ShipDate = DateTime.Now
             };
-            var result = new OrderManager(options).Insert(order, true);
+            var result = OrderManager.Insert(order, true);
             Assert.IsTrue(result > 0);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            Order order = new OrderManager(options).Load().FirstOrDefault();
+            Order order = orders.FirstOrDefault();
             order.OrderDate = DateTime.Now;
 
-            Assert.IsTrue(new OrderManager(options).Update(order, true) > 0);
+            Assert.IsTrue(OrderManager.Update(order, true) > 0);
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            Order order = new OrderManager(options).Load().FirstOrDefault();
-            Assert.AreEqual(new OrderManager(options).LoadById(order.Id).Id, order.Id);
+            Order order = orders.FirstOrDefault();
+            Assert.AreEqual(OrderManager.LoadById(order.Id).Id, order.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            List<Order> orders = new OrderManager(options).Load();
+            List<Order> order = orders;
             int expected = 2;
 
-            Assert.AreEqual(expected, orders.Count);
+            Assert.AreEqual(expected, order.Count);
         }
 
         [TestMethod]
         public void DeleteTest()
         {
-            Order order = new OrderManager(options).Load().FirstOrDefault();
-            Assert.IsTrue(new OrderManager(options).Delete(order.Id, true) > 0);
+            Order order = orders.FirstOrDefault();
+            Assert.IsTrue(OrderManager.Delete(order.Id, true) > 0);
         }
     }
 }

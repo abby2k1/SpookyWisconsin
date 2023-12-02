@@ -11,6 +11,9 @@ namespace SDG.SpookyWisconsin.BL.Test
     [TestClass]
     public class utMerch : utBase
     {
+        List<Merch> merchs = MerchManager.Load();
+
+
         [TestMethod]
         public void InsertTest()
         {
@@ -21,7 +24,7 @@ namespace SDG.SpookyWisconsin.BL.Test
                 Description = "T-Shirt",
                 Cost = 23
             };
-            int result = new MerchManager(options).Insert(merch, true);
+            int result = MerchManager.Insert(merch, true);
             Assert.IsTrue(result > 0);
 
         }
@@ -29,33 +32,33 @@ namespace SDG.SpookyWisconsin.BL.Test
         [TestMethod]
         public void UpdateTest()
         {
-            Merch merch = new MerchManager(options).Load().FirstOrDefault();
+            Merch merch = merchs.FirstOrDefault();
             merch.MerchName = "Test";
 
-            Assert.IsTrue(new MerchManager(options).Update(merch, true) > 0);    
+            Assert.IsTrue(MerchManager.Update(merch, true) > 0);    
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            Merch merch = new MerchManager(options).Load().FirstOrDefault();
-            Assert.AreEqual(new MerchManager(options).LoadById(merch.Id).Id, merch.Id);
+            Merch merch = merchs.FirstOrDefault();
+            Assert.AreEqual(MerchManager.LoadById(merch.Id).Id, merch.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            List<Merch> merches = new MerchManager(options).Load();
+            List<Merch> merch = merchs;
             int expected = 3;
 
-            Assert.AreEqual(expected, merches.Count);
+            Assert.AreEqual(expected, merch.Count);
         }
 
         [TestMethod]
         public void DeleteTest()
         {
-            Merch merch = new MerchManager(options).Load().FirstOrDefault();
-            Assert.IsTrue(new MerchManager(options).Delete(merch.Id, true) > 0);
+            Merch merch = merchs.FirstOrDefault();
+            Assert.IsTrue(MerchManager.Delete(merch.Id, true) > 0);
         }
     }
 }

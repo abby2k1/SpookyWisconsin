@@ -10,38 +10,42 @@ namespace SDG.SpookyWisconsin.BL.Test
 {
     public class utParticipant : utBase
     {
+        List<Participant> participants = ParticipantManager.Load();
+        List<HauntedEvent> hauntedEvents = HauntedEventManager.Load();
+        List<Customer> customers = CustomerManager.Load();
+
         [TestMethod]
         public void InsertTest()
         {
             Participant participant = new Participant
             {
-                HauntedEventId = new HauntedEventManager(options).Load().FirstOrDefault().Id,
-                CustomerId = new CustomerManager(options).Load().FirstOrDefault().Id
+                HauntedEventId = hauntedEvents.FirstOrDefault().Id,
+                CustomerId = customers.FirstOrDefault().Id
             };
-            int result = new ParticipantManager(options).Insert(participant, true);
+            int result = ParticipantManager.Insert(participant, true);
             Assert.IsTrue(result > 0);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            Participant participant = new ParticipantManager(options).Load().FirstOrDefault();
+            Participant participant = participants.FirstOrDefault();
             participant.CustomerId = Guid.NewGuid();
 
-            Assert.IsTrue(new ParticipantManager(options).Update(participant, true) > 0);
+            Assert.IsTrue(ParticipantManager.Update(participant, true) > 0);
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            Participant participant = new ParticipantManager(options).Load().FirstOrDefault();
-            Assert.AreEqual(new ParticipantManager(options).LoadById(participant.Id).Id, participant.Id);
+            Participant participant = participants.FirstOrDefault();
+            Assert.AreEqual(ParticipantManager.LoadById(participant.Id).Id, participant.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            List<Participant> participant = new ParticipantManager(options).Load();
+            List<Participant> participant = participants;
             int expected = 3;
 
             Assert.AreEqual(expected, participant.Count);
@@ -50,8 +54,8 @@ namespace SDG.SpookyWisconsin.BL.Test
         [TestMethod]
         public void DeleteTest()
         {
-            Participant participant = new ParticipantManager(options).Load().FirstOrDefault();
-            Assert.IsTrue(new ParticipantManager(options).Delete(participant.Id, true) > 0);
+            Participant participant = participants.FirstOrDefault();
+            Assert.IsTrue(ParticipantManager.Delete(participant.Id, true) > 0);
         }
     }
 }

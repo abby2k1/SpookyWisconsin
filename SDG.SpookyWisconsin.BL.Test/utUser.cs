@@ -10,11 +10,13 @@ namespace SDG.SpookyWisconsin.BL.Test
 {
     public class utUser : utBase
     {
+        List<User> users = UserManager.Load();
+
         [TestMethod]
         public void LoadTest()
         {
-            List<User> users = new UserManager(options).Load();
-            Assert.IsTrue(users.Count > 0);
+            List<User> user = users;
+            Assert.IsTrue(user.Count > 0);
         }
 
         [TestMethod]
@@ -25,7 +27,7 @@ namespace SDG.SpookyWisconsin.BL.Test
                 Username = "Test",
                 Password = "password"
             };
-            int result = new UserManager(options).Insert(user, true);
+            int result = UserManager.Insert(user, true);
             Assert.IsTrue(result > 0);
         }
 

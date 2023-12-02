@@ -11,49 +11,52 @@ namespace SDG.SpookyWisconsin.BL.Test
     [TestClass]
     public class utNewsLetter : utBase
     {
+        List<NewsLetter> newsLetters = NewsLetterManager.Load();
+        List<HauntedEvent> hauntedEvents = HauntedEventManager.Load();
+
         [TestMethod]
         public void InsertTest()
         {
             NewsLetter newsLetter = new NewsLetter
             {
-                HauntedEventId = new HauntedEventManager(options).Load().FirstOrDefault().Id,
+                HauntedEventId = hauntedEvents.FirstOrDefault().Id,
                 Description = "Local Man Vanishes",
                 Date = DateTime.Now
             };
-            int result = new NewsLetterManager(options).Insert(newsLetter, true);
+            int result = NewsLetterManager.Insert(newsLetter, true);
             Assert.IsTrue(result > 0);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            NewsLetter newsLetter = new NewsLetterManager(options).Load().FirstOrDefault();
+            NewsLetter newsLetter = newsLetters.FirstOrDefault();
             newsLetter.Description = "Test";
 
-            Assert.IsTrue(new NewsLetterManager(options).Update(newsLetter, true) > 0);
+            Assert.IsTrue(NewsLetterManager.Update(newsLetter, true) > 0);
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            NewsLetter newsLetter = new NewsLetterManager(options).Load().FirstOrDefault();
-            Assert.AreEqual(new NewsLetterManager(options).LoadById(newsLetter.Id).Id, newsLetter.Id);
+            NewsLetter newsLetter = newsLetters.FirstOrDefault();
+            Assert.AreEqual(NewsLetterManager.LoadById(newsLetter.Id).Id, newsLetter.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            List<NewsLetter> newsLetters = new NewsLetterManager(options).Load();
+            List<NewsLetter> newsLetter = newsLetters;
             int expected = 3;
 
-            Assert.AreEqual(expected, newsLetters.Count);
+            Assert.AreEqual(expected, newsLetter.Count);
         }
 
         [TestMethod]
         public void DeleteTest()
         {
-            NewsLetter newsletter = new NewsLetterManager(options).Load().FirstOrDefault();
-            Assert.IsTrue(new NewsLetterManager(options).Delete(newsletter.Id, true) > 0);    
+            NewsLetter newsletter = newsLetters.FirstOrDefault();
+            Assert.IsTrue(NewsLetterManager.Delete(newsletter.Id, true) > 0);    
         }
     }
 }

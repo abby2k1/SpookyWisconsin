@@ -8,53 +8,57 @@ using System.Threading.Tasks;
 
 namespace SDG.SpookyWisconsin.BL.Test
 {
+    
     [TestClass]
     public class utHauntedEvent : utBase
     {
+        List<HauntedEvent> hauntedEvents = HauntedEventManager.Load();
+        List<Participant> participants = ParticipantManager.Load();
+
         [TestMethod]
         public void InsertTest()
         {
             HauntedEvent hauntedEvent = new HauntedEvent
             {
-                HauntedLocationId = new HauntedLocationManager(options).Load().FirstOrDefault().Id,
-                ParticipantId = new ParticipantManager(options).Load().FirstOrDefault().Id,
+                HauntedLocationId = hauntedEvents.FirstOrDefault().Id,
+                ParticipantId = participants.FirstOrDefault().Id,
                 Date = DateTime.Now,
                 Description = "Test"
             };
-            int result = new HauntedEventManager(options).Insert(hauntedEvent, true);
+            int result = HauntedEventManager.Insert(hauntedEvent, true);
             Assert.IsTrue(result > 0);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            HauntedEvent hauntedEvent = new HauntedEventManager(options).Load().FirstOrDefault();
+            HauntedEvent hauntedEvent = hauntedEvents.FirstOrDefault();
             hauntedEvent.Description = "Test";
 
-            Assert.IsTrue(new HauntedEventManager(options).Update(hauntedEvent, true) > 0);
+            Assert.IsTrue(HauntedEventManager.Update(hauntedEvent, true) > 0);
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            HauntedEvent hauntedEvent = new HauntedEventManager(options).Load().FirstOrDefault();
-            Assert.AreEqual(new HauntedEventManager(options).LoadById(hauntedEvent.Id).Id, hauntedEvent.Id);
+            HauntedEvent hauntedEvent = hauntedEvents.FirstOrDefault();
+            Assert.AreEqual(HauntedEventManager.LoadById(hauntedEvent.Id).Id, hauntedEvent.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            List<HauntedEvent> hauntedEvents = new HauntedEventManager(options).Load();
+            List<HauntedEvent> hauntedEvent = hauntedEvents;
             int expected = 9;
 
-            Assert.AreEqual(expected, hauntedEvents.Count);
+            Assert.AreEqual(expected, hauntedEvent.Count);
         }
 
         [TestMethod]
         public void DeleteTest()
         {
-            HauntedEvent hauntedEvent = new HauntedEventManager(options).Load().FirstOrDefault();
-            Assert.IsTrue(new HauntedEventManager(options).Delete(hauntedEvent.Id, true) > 0);
+            HauntedEvent hauntedEvent = hauntedEvents.FirstOrDefault();
+            Assert.IsTrue(HauntedEventManager.Delete(hauntedEvent.Id, true) > 0);
         }
     }
 }

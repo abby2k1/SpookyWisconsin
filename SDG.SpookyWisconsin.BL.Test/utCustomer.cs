@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SDG.SpookyWisconsin.BL.Models;
 using System;
 using System.Collections.Generic;
@@ -11,55 +12,63 @@ namespace SDG.SpookyWisconsin.BL.Test
     [TestClass]
     public class utCustomer : utBase
     {
+        List<Member> members = MemberManager.Load();
+        List<User> users = UserManager.Load();
+        List<Address> addresses = AddressManager.Load();
+        List<Customer> customers = CustomerManager.Load();
+
         [TestMethod]
         public void InsertTest()
         {
+            
             Customer customer = new Customer
             {
-                MemberId = new MemberManager(options).Load().FirstOrDefault().Id,
-                UserId = new UserManager(options).Load().FirstOrDefault().Id,
+                
+                MemberId = members.FirstOrDefault().Id,
+                UserId = users.FirstOrDefault().Id,
                 FirstName = "Mark",
                 LastName = "Johnson",
-                AddressId = new AddressManager(options).Load().FirstOrDefault().Id,
+                AddressId = addresses.FirstOrDefault().Id,
                 Email = "Mark_Johnson@gmail.com"
             };
-            int result = new CustomerManager(options).Insert(customer, true);
+            //int result = new CustomerManager(options).Insert(customer, true);
+            int result = CustomerManager.Insert(customer, true);
             Assert.IsTrue(result > 0);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            Customer customer = new CustomerManager(options).Load().FirstOrDefault();
+            Customer customer = customers.FirstOrDefault();
             customer.FirstName = "Test";
 
-            Assert.IsTrue(new CustomerManager(options).Update(customer, true) > 0);
+            Assert.IsTrue(CustomerManager.Update(customer, true) > 0);
 
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-            Customer customer = new CustomerManager(options).Load().FirstOrDefault();
+            Customer customer = customers.FirstOrDefault();
 
-            Assert.AreEqual(new CustomerManager(options).LoadById(customer.Id).Id, customer.Id);
+            Assert.AreEqual(CustomerManager.LoadById(customer.Id).Id, customer.Id);
         }
 
         [TestMethod]
         public void LoadTest()
         {
-            List<Customer> customers = new CustomerManager(options).Load();
+            List<Customer> customer = customers;
             int expected = 8;
 
-            Assert.AreEqual(expected, customers.Count);
+            Assert.AreEqual(expected, customer.Count);
         }
 
         [TestMethod]
         public void DeleteTest()
         {
-            Customer customer = new CustomerManager(options).Load().FirstOrDefault();
+            Customer customer = customers.FirstOrDefault();
 
-            Assert.IsTrue(new CustomerManager(options).Delete(customer.Id, true) > 0);
+            Assert.IsTrue(CustomerManager.Delete(customer.Id, true) > 0);
         }
 
     }
