@@ -256,7 +256,7 @@ namespace SDG.SpookyWisconsin.BL
             return rows;
         }
 
-        public int Delete(Guid id, bool rollback = false)
+        public static int Delete(Guid id, bool rollback = false)
         {
             try
             {
