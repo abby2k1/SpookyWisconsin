@@ -9,15 +9,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDG.SpookyWisconsin.BL", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDG.SpookyWisconsin.BL.Models", "SDG.SpookyWisconsin.BL.Models\SDG.SpookyWisconsin.BL.Models.csproj", "{5CFEA994-D0F0-4D90-8484-93CF374D2D88}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDG.SpookyWisconsin.PL", "SDG.SpookyWisconsin.PL\SDG.SpookyWisconsin.PL.csproj", "{529051A1-E447-4C3E-822D-104BB436013D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDG.SpookyWisconsin.BL.Test", "SDG.SpookyWisconsin.BL.Test\SDG.SpookyWisconsin.BL.Test.csproj", "{642F3D97-674E-4168-AB39-53CF47FE7D50}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDG.SpookyWisconsin.PL.Test", "SDG.SpookyWisconsin.PL.Test\SDG.SpookyWisconsin.PL.Test.csproj", "{8ED531BA-5C12-486D-B124-83B95BBAA13C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E78174A9-A998-4B37-8E25-3B3D724BE59B} = {E78174A9-A998-4B37-8E25-3B3D724BE59B}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDG.SpookyWisconsin.WebUI.Test", "SDG.SpookyWisconsin.WebUI.Test\SDG.SpookyWisconsin.WebUI.Test.csproj", "{DABDD8FC-921F-49EB-89A4-AF75A3C5BEA6}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SDG.SpookyWisconsin.DB", "SDG.SpookyWisconsin.DB\SDG.SpookyWisconsin.DB.sqlproj", "{DE2890DE-DE31-4316-835B-577B4A26400A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDG.SpookyWisconsin.PL", "SDG.SpookyWisconsin.PL\SDG.SpookyWisconsin.PL.csproj", "{E78174A9-A998-4B37-8E25-3B3D724BE59B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +40,6 @@ Global
 		{5CFEA994-D0F0-4D90-8484-93CF374D2D88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CFEA994-D0F0-4D90-8484-93CF374D2D88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CFEA994-D0F0-4D90-8484-93CF374D2D88}.Release|Any CPU.Build.0 = Release|Any CPU
-		{529051A1-E447-4C3E-822D-104BB436013D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{529051A1-E447-4C3E-822D-104BB436013D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{529051A1-E447-4C3E-822D-104BB436013D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{529051A1-E447-4C3E-822D-104BB436013D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{642F3D97-674E-4168-AB39-53CF47FE7D50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{642F3D97-674E-4168-AB39-53CF47FE7D50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{642F3D97-674E-4168-AB39-53CF47FE7D50}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -59,6 +58,10 @@ Global
 		{DE2890DE-DE31-4316-835B-577B4A26400A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE2890DE-DE31-4316-835B-577B4A26400A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DE2890DE-DE31-4316-835B-577B4A26400A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{E78174A9-A998-4B37-8E25-3B3D724BE59B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E78174A9-A998-4B37-8E25-3B3D724BE59B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E78174A9-A998-4B37-8E25-3B3D724BE59B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E78174A9-A998-4B37-8E25-3B3D724BE59B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

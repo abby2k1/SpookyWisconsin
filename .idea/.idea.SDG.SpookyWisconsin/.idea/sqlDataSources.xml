@@ -15,15 +15,15 @@
               <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblHauntedLocation.sql" />
               <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblMember.sql" />
               <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblMerch.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblMerchType.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblMerchTypeMerch.sql" />
               <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblNewsLetter.sql" />
               <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblOrder.sql" />
+              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblOrderItem.sql" />
               <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblParticipant.sql" />
               <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblTier.sql" />
               <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblTour.sql" />
               <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblUser.sql" />
-              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblOrderItem.sql" />
-              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblMerchTypeMerch.sql" />
-              <option value="file://$PROJECT_DIR$/SDG.SpookyWisconsin.DB/Tables/tblMerchType.sql" />
             </array>
           </option>
           <option name="remarks" value="Database Project" />
