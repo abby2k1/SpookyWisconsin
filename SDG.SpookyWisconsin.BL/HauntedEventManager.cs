@@ -97,7 +97,6 @@ namespace SDG.SpookyWisconsin.BL
                         {
                             Id = row.Id,
                             HauntedLocationId= row.HauntedLocationId,
-                            ParticipantId = row.ParticipantId,
                             LocationName = row.LocationName,
                             Date = row.Date,
                             Description = row.Description
@@ -136,7 +135,6 @@ namespace SDG.SpookyWisconsin.BL
                 {
                     Id = pd.Id,
                     HauntedLocationId = pd.HauntedLocationId,
-                    ParticipantId = pd.ParticipantId,
                     LocationName = pd.LocationName,
                     Date = pd.Date,
                     Description = pd.Description

@@ -133,8 +133,8 @@ namespace SDG.SpookyWisconsin.BL
                                  {
                                      Id = pd.Id,
                                      MemberId = pd.MemberId,
-                                     FirstName = pd.Firstname,
-                                     LastName = pd.Lastname,
+                                     FirstName = pd.FirstName,
+                                     LastName = pd.LastName,
                                      AddressId = pd.AddressId,
                                      Email = pd.Email
                                      //TODO - Joins and other fields
