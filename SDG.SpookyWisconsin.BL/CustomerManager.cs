@@ -2,21 +2,14 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.PL;
-using SDG.SpookyWisconsin.PL.Entities;
-using SGD.SpookyWisconsin.BL;
 using System.Xml.Linq;
 
 namespace SDG.SpookyWisconsin.BL
 {
-    public class CustomerManager : GenericManager<tblCustomer>
+    public class CustomerManager
     {
         private const string NOTFOUND_MESSAGE = "Row does not exist";
 
-        //injecting the connection string 
-        public CustomerManager(DbContextOptions<SpookyWisconsinEntities> options) : base(options)
-        {
-
-        }
 
         public static int Insert(Customer customer, bool rollback = false)
         {
@@ -34,8 +27,8 @@ namespace SDG.SpookyWisconsin.BL
                     row.MemberId = customer.MemberId;
                     row.AddressId = customer.AddressId;
                     row.Email = customer.Email;
-                    row.Firstname = customer.FirstName;
-                    row.Lastname = customer.LastName;
+                    row.FirstName = customer.FirstName;
+                    row.LastName = customer.LastName;
 
 
                     customer.Id = row.Id;
@@ -68,8 +61,8 @@ namespace SDG.SpookyWisconsin.BL
                     row.MemberId = customer.MemberId;
                     row.AddressId = customer.AddressId;
                     row.Email = customer.Email;
-                    row.Firstname = customer.FirstName;
-                    row.Lastname = customer.LastName;
+                    row.FirstName = customer.FirstName;
+                    row.LastName = customer.LastName;
 
                     results = dc.SaveChanges();
 
@@ -96,8 +89,8 @@ namespace SDG.SpookyWisconsin.BL
                                {
                                    Id = pd.Id,
                                    MemberId = pd.MemberId,
-                                   FirstName = pd.Firstname,
-                                   LastName = pd.Lastname,
+                                   FirstName = pd.FirstName,
+                                   LastName = pd.LastName,
                                    AddressId = pd.AddressId,
                                    Email = pd.Email
                                    //TODO - Joins and other fields
@@ -135,7 +128,7 @@ namespace SDG.SpookyWisconsin.BL
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
                 var customeres = (from pd in dc.tblCustomers
-                                 orderby pd.Lastname
+                                 orderby pd.LastName
                                  select new
                                  {
                                      Id = pd.Id,

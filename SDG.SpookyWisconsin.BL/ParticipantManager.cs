@@ -2,19 +2,12 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.PL;
-using SDG.SpookyWisconsin.PL.Entities;
-using SGD.SpookyWisconsin.BL;
 
 namespace SDG.SpookyWisconsin.BL
 {
-    public class ParticipantManager : GenericManager<tblParticipant>
+    public class ParticipantManager
     {
         private const string NOTFOUND_MESSAGE = "Row does not exist";
-        //injecting the connection string 
-        public ParticipantManager(DbContextOptions<SpookyWisconsinEntities> options) : base(options)
-        {
-
-        }
 
         public static int Insert(Participant participant, bool rollback = false)
         {
@@ -91,7 +84,7 @@ namespace SDG.SpookyWisconsin.BL
                                    Id = pd.Id,
                                    CustomerId = pd.CustomerId,
                                    HauntedEventId = pd.HauntedEventId,
-                                   CustomerName = c.Firstname + " " + c.Lastname,
+                                   CustomerName = c.FirstName + " " + c.LastName,
                                    HauntedEventName = he.Name
 
                                }).FirstOrDefault();
@@ -133,7 +126,7 @@ namespace SDG.SpookyWisconsin.BL
                                           Id = pd.Id,
                                           CustomerId = pd.CustomerId,
                                           HauntedEventId = pd.HauntedEventId,
-                                          CustomerName = c.Firstname + " " + c.Lastname,
+                                          CustomerName = c.FirstName + " " + c.LastName,
                                           HauntedEventName = he.Name
 
                                       }).ToList();

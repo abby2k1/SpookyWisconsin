@@ -2,19 +2,12 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.PL;
-using SDG.SpookyWisconsin.PL.Entities;
-using SGD.SpookyWisconsin.BL;
 
 namespace SDG.SpookyWisconsin.BL
 {
-    public class NewsLetterManager : GenericManager<tblNewsLetter>
+    public class NewsLetterManager
     {
         private const string NOTFOUND_MESSAGE = "Row does not exist";
-        //injecting the connection string 
-        public NewsLetterManager(DbContextOptions<SpookyWisconsinEntities> options) : base(options)
-        {
-
-        }
 
         public static int Insert(NewsLetter newsLetter, bool rollback = false)
         {
@@ -35,7 +28,7 @@ namespace SDG.SpookyWisconsin.BL
 
 
                     newsLetter.Id = row.Id;
-                    dc.tblNewLetters.Add(row);
+                    dc.tblNewsLetters.Add(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();
@@ -59,7 +52,7 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblNewsLetter row = dc.tblNewLetters.FirstOrDefault(d => d.Id == newsLetter.Id);
+                    tblNewsLetter row = dc.tblNewsLetters.FirstOrDefault(d => d.Id == newsLetter.Id);
 
                     row.HauntedEventId = newsLetter.HauntedEventId;
                     row.Description = newsLetter.Description;
@@ -85,7 +78,7 @@ namespace SDG.SpookyWisconsin.BL
             {
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
-                    var row = (from pd in dc.tblNewLetters
+                    var row = (from pd in dc.tblNewsLetters
                                join he in dc.tblHauntedEvents on pd.HauntedEventId equals he.Id
                                where pd.Id == id
                                select new
@@ -130,7 +123,7 @@ namespace SDG.SpookyWisconsin.BL
 
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
-                var newsLetteres = (from pd in dc.tblNewLetters
+                var newsLetteres = (from pd in dc.tblNewsLetters
                                     join he in dc.tblHauntedEvents on pd.HauntedEventId equals he.Id
                                       orderby pd.Date
                                       select new
@@ -164,9 +157,9 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblNewsLetter row = dc.tblNewLetters.FirstOrDefault(d => d.Id == id);
+                    tblNewsLetter row = dc.tblNewsLetters.FirstOrDefault(d => d.Id == id);
 
-                    dc.tblNewLetters.Remove(row);
+                    dc.tblNewsLetters.Remove(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();

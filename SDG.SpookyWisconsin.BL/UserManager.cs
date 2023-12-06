@@ -2,8 +2,6 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.PL;
-using SDG.SpookyWisconsin.PL.Entities;
-using SGD.SpookyWisconsin.BL;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -20,14 +18,9 @@ namespace SDG.SpookyWisconsin.BL
 
         }
     }
-    public class UserManager : GenericManager<tblUser>
+    public class UserManager
     {
         private const string NOTFOUND_MESSAGE = "Row does not exist";
-        //injecting the connection string 
-        public UserManager(DbContextOptions<SpookyWisconsinEntities> options) : base(options)
-        {
-
-        }
 
         public class LoginFailureException : Exception
         {

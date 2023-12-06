@@ -2,20 +2,13 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.PL;
-using SDG.SpookyWisconsin.PL.Entities;
-using SGD.SpookyWisconsin.BL;
 using System.Xml.Linq;
 
 namespace SDG.SpookyWisconsin.BL
 {
-    public class MemberManager : GenericManager<tblMember>
+    public class MemberManager
     {
         private const string NOTFOUND_MESSAGE = "Row does not exist";
-        //injecting the connection string 
-        public MemberManager(DbContextOptions<SpookyWisconsinEntities> options) : base(options)
-        {
-
-        }
 
         public static int Insert(Member member, bool rollback = false)
         {
@@ -37,7 +30,7 @@ namespace SDG.SpookyWisconsin.BL
 
 
                     member.Id = row.Id;
-                    dc.tblMemberships.Add(row);
+                    dc.tblMembers.Add(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();
@@ -61,7 +54,7 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblMember row = dc.tblMemberships.FirstOrDefault(d => d.Id == member.Id);
+                    tblMember row = dc.tblMembers.FirstOrDefault(d => d.Id == member.Id);
 
                     row.TierId = member.TierId;
                     row.NewsLetterId = member.NewsLetterId;
@@ -87,7 +80,7 @@ namespace SDG.SpookyWisconsin.BL
             {
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
-                    var row = (from pd in dc.tblMemberships
+                    var row = (from pd in dc.tblMembers
                                where pd.Id == id
                                select new
                                {
@@ -127,7 +120,7 @@ namespace SDG.SpookyWisconsin.BL
 
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
-                var memberes = (from pd in dc.tblMemberships
+                var memberes = (from pd in dc.tblMembers
                                       orderby pd.Id
                                       select new
                                       {
@@ -160,9 +153,9 @@ namespace SDG.SpookyWisconsin.BL
                     IDbContextTransaction dbContextTransaction = null;
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
-                    tblMember row = dc.tblMemberships.FirstOrDefault(d => d.Id == id);
+                    tblMember row = dc.tblMembers.FirstOrDefault(d => d.Id == id);
 
-                    dc.tblMemberships.Remove(row);
+                    dc.tblMembers.Remove(row);
                     results = dc.SaveChanges();
 
                     if (rollback) dbContextTransaction.Rollback();

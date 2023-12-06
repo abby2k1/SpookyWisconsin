@@ -2,24 +2,12 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.PL;
-using SDG.SpookyWisconsin.PL.Entities;
-using SGD.SpookyWisconsin.BL;
 
 namespace SDG.SpookyWisconsin.BL
 {
-    public class AddressManager : GenericManager<tblAddress>
+    public class AddressManager
     {
         private const string NOTFOUND_MESSAGE = "Row does not exist";
-
-        //injecting the connection string 
-        public AddressManager(DbContextOptions<SpookyWisconsinEntities> options) : base(options)
-        {
-
-        }
-        public AddressManager()
-        {
-
-        }
 
         public static int Insert(Address address, bool rollback = false)
         {

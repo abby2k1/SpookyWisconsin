@@ -9,20 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml;
-using SDG.SpookyWisconsin.PL.Entities;
-using SGD.SpookyWisconsin.BL;
 using Microsoft.EntityFrameworkCore;
 
 namespace SDG.SpookyWisconsin.BL
 {
-    public class TierManager : GenericManager<tblTier>
+    public class TierManager
     {
         private const string NOTFOUND_MESSAGE = "Row does not exist";
-        //injecting the connection string 
-        public TierManager(DbContextOptions<SpookyWisconsinEntities> options) : base(options)
-        {
-
-        }
 
         public static int Insert(Tier tier, bool rollback = false)
         {

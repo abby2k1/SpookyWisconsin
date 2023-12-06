@@ -14,6 +14,6 @@ namespace SDG.SpookyWisconsin.BL.Models
         [DisplayName("Haunted Event")]
         public string HauntedEventName { get; set; }
         public string Description { get; set; }
-        public DateTime Date { get; set; }
+        public DateOnly Date { get; set; }
     }
 }

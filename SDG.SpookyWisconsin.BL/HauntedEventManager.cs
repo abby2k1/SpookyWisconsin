@@ -2,20 +2,14 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using SDG.SpookyWisconsin.BL.Models;
 using SDG.SpookyWisconsin.PL;
-using SDG.SpookyWisconsin.PL.Entities;
-using SGD.SpookyWisconsin.BL;
 using System.Xml.Linq;
 
 namespace SDG.SpookyWisconsin.BL
 {
-    public class HauntedEventManager : GenericManager<tblHauntedEvent>
+    public class HauntedEventManager
     {
         private const string NOTFOUND_MESSAGE = "Row does not exist";
-        //injecting the connection string 
-        public HauntedEventManager(DbContextOptions<SpookyWisconsinEntities> options) : base(options)
-        {
-
-        }
+        
 
         public static int Insert(HauntedEvent hauntedEvent, bool rollback = false)
         {
@@ -31,7 +25,6 @@ namespace SDG.SpookyWisconsin.BL
                     //Fill the table - TODO: Fill in other columns when the database is connected
                     row.Id = new Guid();
                     row.HauntedLocationId = hauntedEvent.HauntedLocationId;
-                    row.ParticipantId = hauntedEvent.ParticipantId;
                     row.Date = hauntedEvent.Date;
                     row.Description = hauntedEvent.Description;
 
@@ -64,7 +57,6 @@ namespace SDG.SpookyWisconsin.BL
                     tblHauntedEvent row = dc.tblHauntedEvents.FirstOrDefault(d => d.Id == hauntedEvent.Id);
 
                     row.HauntedLocationId = hauntedEvent.HauntedLocationId;
-                    row.ParticipantId = hauntedEvent.ParticipantId;
                     row.Date = hauntedEvent.Date;
                     row.Description = hauntedEvent.Description;
 
@@ -94,7 +86,6 @@ namespace SDG.SpookyWisconsin.BL
                                {
                                    Id = pd.Id,
                                    HauntedLocationId = pd.HauntedLocationId,
-                                   ParticipantId = pd.ParticipantId,
                                    LocationName = l.Name,
                                    Date = pd.Date,
                                    Description = pd.Description
@@ -137,7 +128,6 @@ namespace SDG.SpookyWisconsin.BL
                                   {
                                       Id = pd.Id,
                                       HauntedLocationId = pd.HauntedLocationId,
-                                      ParticipantId = pd.ParticipantId,
                                       LocationName = l.Name,
                                       Date = pd.Date,
                                       Description = pd.Description
