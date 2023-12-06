@@ -11,5 +11,5 @@ public partial class tblNewsLetter
 
     public string Description { get; set; } = null!;
 
-    public DateOnly Date { get; set; }
+    public DateTime Date { get; set; }
 }
