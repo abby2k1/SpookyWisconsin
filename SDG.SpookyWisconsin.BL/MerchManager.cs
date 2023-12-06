@@ -10,87 +10,6 @@ namespace SDG.SpookyWisconsin.BL
     {
         private const string NOTFOUND_MESSAGE = "Row does not exist";
         
-        public static List<Merch> Load(int? merchTypeId = null)
-        {
-            if (merchTypeId == null)
-            {
-                try
-                {
-                    List<Merch> rows = new List<Merch>();
-
-                    SpookyWisconsinEntities dc = new SpookyWisconsinEntities();
-
-                    var merchs = (from m in dc.tblMerches
-                                  select new
-                                  {
-                                      MerchId = m.Id,
-                                      MerchTitle = m.MerchName,
-                                      MerchDescription = m.Description,
-                                      MerchCost = m.Cost,
-                                      MerchInStkQty = m.InStkQty//,
-                                      //MerchImagePath = m.ImagePath
-                                  }).ToList();
-
-                    merchs.ForEach(m => rows.Add(new Models.Merch
-                    {
-                        Id = m.MerchId,
-                        MerchName = m.MerchTitle,
-                        Description = m.MerchDescription,
-                        //Cost = m.MerchCost,
-                        InStkQty = m.MerchInStkQty//,
-                        //ImagePath = m.MerchImagePath
-                    }));
-
-                    return rows;
-                }
-                catch (Exception ex)
-                {
-                    return null;
-                }
-            }
-            else
-            {
-                /*try
-                {
-                    List<Merch> rows = new List<Merch>();
-
-                    SpookyWisconsinEntities dc = new SpookyWisconsinEntities();
-
-                    var merchs = (from mtm in dc.tblMerchTypeMerches
-                                  join m in dc.tblMerches on mtm.MerchId equals m.Id
-                                  where mtm.MerchTypeId == merchTypeId || merchTypeId == null
-                                  orderby m.Id
-                                  select new
-                                  {
-                                      MerchId = m.Id,
-                                      MerchTitle = m.Title,
-                                      MerchDescription = m.Description,
-                                      MerchCost = m.Cost,
-                                      MerchInStkQty = m.InStkQty,
-                                      MerchImagePath = m.ImagePath
-                                  }).ToList();
-
-                    merchs.ForEach(m => rows.Add(new Models.Merch
-                    {
-                        Id = m.MerchId,
-                        MerchName = m.MerchTitle,
-                        Description = m.MerchDescription,
-                        Cost = m.MerchCost,
-                        InStkQty = m.MerchInStkQty,
-                        ImagePath = m.MerchImagePath
-                    }));
-
-                    return rows;
-                }
-                catch (Exception e)
-                {
-                    return null;
-                }*/
-            }
-
-            return null;
-        }
-
         public static int Insert(Merch merch, bool rollback = false)
         {
             try
@@ -98,8 +17,8 @@ namespace SDG.SpookyWisconsin.BL
                 int results = 0;
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
-                    //IdbContextTransaction dbContextTransaction = null;
-                    //if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
+                    IDbContextTransaction dbContextTransaction = null;
+                    if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
                     tblMerch row = new tblMerch();
                     //Fill the table - TODO: Fill in other columns when the database is connected
@@ -107,14 +26,15 @@ namespace SDG.SpookyWisconsin.BL
                     row.MerchName = merch.MerchName;
                     row.InStkQty = merch.InStkQty;
                     row.Description = merch.Description;
-                    //row.Cost = merch.Cost;
+                    row.Cost = merch.Cost;
+                    row.ImagePath = merch.ImagePath;
 
 
                     merch.Id = row.Id;
                     dc.tblMerches.Add(row);
                     results = dc.SaveChanges();
 
-                    //if (rollback) dbContextTransaction.Rollback();
+                    if (rollback) dbContextTransaction.Rollback();
 
                 }
                 return results;
@@ -131,19 +51,20 @@ namespace SDG.SpookyWisconsin.BL
                 int results = 0;
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
-                    //IdbContextTransaction dbContextTransaction = null;
-                    //if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
+                    IDbContextTransaction dbContextTransaction = null;
+                    if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
                     tblMerch row = dc.tblMerches.FirstOrDefault(d => d.Id == merch.Id);
 
                     row.MerchName = merch.MerchName;
-                    row.InStkQty = merch.InStkQty;
                     row.Description = merch.Description;
-                    //row.Cost = merch.Cost;
+                    row.InStkQty = merch.InStkQty;
+                    row.Cost = merch.Cost;
+                    row.ImagePath = merch.ImagePath;
 
                     results = dc.SaveChanges();
 
-                    //if (rollback) dbContextTransaction.Rollback();
+                    if (rollback) dbContextTransaction.Rollback();
 
                 }
                 return results;
@@ -160,17 +81,7 @@ namespace SDG.SpookyWisconsin.BL
             {
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
-                    var row = (from pd in dc.tblMerches
-                               where pd.Id == id
-                               select new
-                               {
-                                   Id = pd.Id,
-                                   MerchName = pd.MerchName,
-                                   InStkQty = pd.InStkQty,
-                                   Description = pd.Description,
-                                   Cost = pd.Cost
-
-                               }).FirstOrDefault();
+                    tblMerch row = dc.tblMerches.FirstOrDefault(dt => dt.Id == id);
                     if (row != null)
                     {
                         return new Merch
@@ -178,8 +89,9 @@ namespace SDG.SpookyWisconsin.BL
                             Id = row.Id,
                             MerchName = row.MerchName,
                             InStkQty = row.InStkQty,
-                            Description = row.Description//,
-                            //Cost = row.Cost
+                            Description = row.Description,
+                            Cost = row.Cost,
+                            ImagePath = row.ImagePath
                         };
                     }
                     else
@@ -194,33 +106,75 @@ namespace SDG.SpookyWisconsin.BL
             }
         }
 
-        public static List<Merch> Load()
+        public static List<Merch> Load(Guid? merchTypeId = null)
         {
-            List<Merch> rows = new List<Merch>();
-
-            using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
+            if (merchTypeId == null)
             {
-                var merches = (from pd in dc.tblMerches
-                                      orderby pd.MerchName
-                                      select new
-                                      {
-                                          Id = pd.Id,
-                                          MerchName = pd.MerchName,
-                                          InStkQty = pd.InStkQty,
-                                          Description = pd.Description,
-                                          Cost = (decimal)pd.Cost
-
-                                      }).ToList();
-                merches.ForEach(pd => rows.Add(new Merch
+                try
                 {
-                    Id = pd.Id,
-                    MerchName = pd.MerchName,
-                    InStkQty = pd.InStkQty,
-                    Description = pd.Description,
-                    Cost = (decimal)pd.Cost
-                }));
+                    List<Merch> rows = new List<Merch>();
+
+                    SpookyWisconsinEntities dc = new SpookyWisconsinEntities();
+
+                    var merches = dc.tblMerches
+                        .ToList();
+
+                    merches.ForEach(m => rows.Add(new Models.Merch
+                    {
+                        Id = m.Id,
+                        MerchName = m.MerchName,
+                        Description = m.Description,
+                        InStkQty = m.InStkQty,
+                        Cost = m.Cost,
+                        ImagePath = m.ImagePath
+                    }));
+
+                    return rows;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
             }
-            return rows;
+            else
+            {
+                try
+                {
+                    List<Merch> rows = new List<Merch>();
+
+                    SpookyWisconsinEntities dc = new SpookyWisconsinEntities();
+
+                    var merches = (from mg in dc.tblMerchTypeMerches
+                                  join m in dc.tblMerches on mg.MerchId equals m.Id
+                                  where mg.MerchTypeId == merchTypeId || merchTypeId == null
+                                  orderby m.Id
+                                  select new
+                                  {
+                                      Id = m.Id,
+                                      MerchName = m.MerchName,
+                                      Description = m.Description,
+                                      InStkQty = m.InStkQty,
+                                      Cost = m.Cost,
+                                      ImagePath = m.ImagePath
+                                  }).ToList();
+
+                    merches.ForEach(m => rows.Add(new Models.Merch
+                    {
+                        Id = m.Id,
+                        MerchName = m.MerchName,
+                        Description = m.Description,
+                        InStkQty = m.InStkQty,
+                        Cost = m.Cost,
+                        ImagePath = m.ImagePath
+                    }));
+
+                    return rows;
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
         }
 
         public static int Delete(Guid id, bool rollback = false)
@@ -230,15 +184,15 @@ namespace SDG.SpookyWisconsin.BL
                 int results = 0;
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
-                    //IdbContextTransaction dbContextTransaction = null;
-                    //if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
+                    IDbContextTransaction dbContextTransaction = null;
+                    if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
                     tblMerch row = dc.tblMerches.FirstOrDefault(d => d.Id == id);
 
                     dc.tblMerches.Remove(row);
                     results = dc.SaveChanges();
 
-                    //if (rollback) dbContextTransaction.Rollback();
+                    if (rollback) dbContextTransaction.Rollback();
                 }
                 return results;
             }
