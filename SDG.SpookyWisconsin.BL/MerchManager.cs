@@ -21,7 +21,6 @@ namespace SDG.SpookyWisconsin.BL
                     if (rollback) { dbContextTransaction = dc.Database.BeginTransaction(); }
 
                     tblMerch row = new tblMerch();
-                    //Fill the table - TODO: Fill in other columns when the database is connected
                     row.Id = new Guid();
                     row.MerchName = merch.MerchName;
                     row.InStkQty = merch.InStkQty;
