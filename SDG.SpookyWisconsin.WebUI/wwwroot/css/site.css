@@ -48,11 +48,17 @@ a {
 }
 
 a:hover {
-    color: red;
+    background: red;
+    color: white;
 }
 
-li a:hover{
+td a {
+    color: black;
+}
+
+li a:hover, footer a:hover, td a:hover{
     background:red;
+    color: white;
 }
 
 h2{
