@@ -98,7 +98,7 @@ namespace SDG.SpookyWisconsin.BL
 
                             if (tblUser != null)
                             {
-                                if (tblUser.Password == GetHash(user.Password))
+                                if (tblUser.Password == /*GetHash(*/user.Password/*)*/)
                                 {
                                     //Valid Login
                                     user.Id = tblUser.Id;
@@ -145,7 +145,7 @@ namespace SDG.SpookyWisconsin.BL
                     //Fill the table
                     row.Id = Guid.NewGuid(); //dc.tblUsers.Any() ? dc.tblUsers.Max(d => d.Id) + 1 : 1;
                     row.Username = user.Username;
-                    row.Password = GetHash(user.Password);
+                    row.Password = /*GetHash(*/user.Password/*)*/;
 
                     dc.tblUsers.Add(row);
                     results = dc.SaveChanges();
