@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SDG.SpookyWisconsin.BL.Models.HauntedEvent>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Haunted Events";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -19,9 +19,9 @@
                 </div>
                 <div class="card-body">
                     <div class="card-img">
-                        <img src="~/images/@item.ImagePath"
+                        <img src="/images/locations/@item.ImagePath"
                              class="card-img"
-                             onclick="on('/images/@item.ImagePath')"
+                             onclick="on('/images/locations/@item.ImagePath')"
                              alt="@item.Name" />
                     </div>
                     <h5>@Html.DisplayFor(modelItem => item.Date)</h5>
