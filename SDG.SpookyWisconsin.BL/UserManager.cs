@@ -41,6 +41,7 @@ namespace SDG.SpookyWisconsin.BL
             //seed is used like default data
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
+
                 if (!dc.tblUsers.Any())
                 {
                     User user = new User
@@ -142,7 +143,7 @@ namespace SDG.SpookyWisconsin.BL
 
                     tblUser row = new tblUser();
                     //Fill the table
-                    row.Id = new Guid(); //dc.tblUsers.Any() ? dc.tblUsers.Max(d => d.Id) + 1 : 1;
+                    row.Id = Guid.NewGuid(); //dc.tblUsers.Any() ? dc.tblUsers.Max(d => d.Id) + 1 : 1;
                     row.Username = user.Username;
                     row.Password = GetHash(user.Password);
 
