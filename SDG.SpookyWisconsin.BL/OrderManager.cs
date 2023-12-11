@@ -22,6 +22,7 @@ namespace SDG.SpookyWisconsin.BL
             try
             {
                 int results = 0;
+                int results2 = 0;
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
                     IDbContextTransaction dbContextTransaction = null;
@@ -31,13 +32,27 @@ namespace SDG.SpookyWisconsin.BL
                     //Fill the table - TODO: Fill in other columns when the database is connected
                     row.Id = new Guid();
                     row.OrderDate = order.OrderDate;
-                    //row.ShipDate = order.ShipDate;
+                    row.ShipDate = order.ShipDate;
+                    row.CustomerId = order.CustomerId;
+                    row.UserId = order.UserId;
 
 
                     order.Id = row.Id;
                     dc.tblOrders.Add(row);
                     results = dc.SaveChanges();
 
+                    tblOrderItem row2 = new tblOrderItem();
+
+                    foreach (OrderItem oi in order.OrderItems)
+                    {
+                        row2.Id = new Guid();
+                        row2.OrderId = order.Id;
+                        row2.MerchId = oi.MerchId;
+                        row2.Quantity = oi.Quantity;
+                        row2.Cost = oi.Cost;
+                        dc.tblOrderItems.Add(row2);
+                        results2 += dc.SaveChanges();
+                    }
                     if (rollback) dbContextTransaction.Rollback();
 
                 }
@@ -47,7 +62,6 @@ namespace SDG.SpookyWisconsin.BL
             {
                 throw;
             }
-
         }
         public static int Update(Order order, bool rollback = false)
         {
