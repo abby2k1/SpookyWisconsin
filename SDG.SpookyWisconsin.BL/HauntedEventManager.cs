@@ -27,6 +27,7 @@ namespace SDG.SpookyWisconsin.BL
                     row.HauntedLocationId = hauntedEvent.HauntedLocationId;
                     row.Date = hauntedEvent.Date;
                     row.Description = hauntedEvent.Description;
+                    row.ImagePath = hauntedEvent.ImagePath;
 
 
                     hauntedEvent.Id = row.Id;
@@ -59,6 +60,7 @@ namespace SDG.SpookyWisconsin.BL
                     row.HauntedLocationId = hauntedEvent.HauntedLocationId;
                     row.Date = hauntedEvent.Date;
                     row.Description = hauntedEvent.Description;
+                    row.ImagePath = hauntedEvent.ImagePath;
 
                     results = dc.SaveChanges();
 
@@ -88,7 +90,8 @@ namespace SDG.SpookyWisconsin.BL
                                    HauntedLocationId = pd.HauntedLocationId,
                                    LocationName = l.Name,
                                    Date = pd.Date,
-                                   Description = pd.Description
+                                   Description = pd.Description,
+                                   ImagePath = pd.ImagePath
 
                                }).FirstOrDefault();
                     if (row != null)
@@ -99,7 +102,8 @@ namespace SDG.SpookyWisconsin.BL
                             HauntedLocationId= row.HauntedLocationId,
                             LocationName = row.LocationName,
                             Date = row.Date,
-                            Description = row.Description
+                            Description = row.Description,
+                            ImagePath = row.ImagePath
                         };
                     }
                     else
