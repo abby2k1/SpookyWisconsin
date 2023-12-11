@@ -3,7 +3,7 @@
 	SELECT @HauntedLocationId = Id FROM tblHauntedLocation WHERE Name = 'Forest Hill Cemetery'
 	INSERT INTO tblHauntedEvent (Id, HauntedLocationId, Name, Date, Description, ImagePath)
 	VALUES
-	(NEWID(), @HauntedLocationId, 'Veteran Walk-Through in Forest Hill Cemetery', '10-31-2024', 'Veteran Walk-Through in Forest Hill Cemetery', 'locations/foresthill2.png')
+	(NEWID(), @HauntedLocationId, 'Veteran Walk-Through in Forest Hill Cemetery', '10-31-2024', 'Veteran Walk-Through in Forest Hill Cemetery', 'foresthill2.png')
 
 	SELECT @HauntedLocationId = Id FROM tblHauntedLocation WHERE Name = 'Riverside Cemetery'
 	INSERT INTO tblHauntedEvent (Id, HauntedLocationId, Name, Date, Description, ImagePath)

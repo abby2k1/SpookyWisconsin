@@ -133,7 +133,8 @@ namespace SDG.SpookyWisconsin.BL
                                       HauntedLocationId = pd.HauntedLocationId,
                                       LocationName = l.Name,
                                       Date = pd.Date,
-                                      Description = pd.Description
+                                      Description = pd.Description,
+                                      ImagePath = pd.ImagePath
                                   }).ToList();
                 hauntedEventes.ForEach(pd => rows.Add(new HauntedEvent
                 {
@@ -141,7 +142,8 @@ namespace SDG.SpookyWisconsin.BL
                     HauntedLocationId = pd.HauntedLocationId,
                     LocationName = pd.LocationName,
                     Date = pd.Date,
-                    Description = pd.Description
+                    Description = pd.Description,
+                    ImagePath = pd.ImagePath
                 }));
             }
             return rows;
