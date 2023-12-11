@@ -86,11 +86,12 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
         // POST: UserController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(User user, bool rollback = false)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                UserManager.Insert(user, rollback);
+                return RedirectToAction(nameof(Index), "Home");
             }
             catch
             {
