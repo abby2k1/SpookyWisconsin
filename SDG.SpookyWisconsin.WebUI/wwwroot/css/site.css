@@ -118,12 +118,12 @@ h2{
 }
 
 
-.card-img {
-    height: 250px;
-    width: 250px;
+/*.card-img {
+    height: 150px;
+    width: 150px;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    /*background-size: cover;*/
 } /*This class is for the images on the merch page*/
   /*Original Image sizes are 600 by 600 px*/
 
