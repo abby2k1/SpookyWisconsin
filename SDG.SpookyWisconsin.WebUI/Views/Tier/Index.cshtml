@@ -27,7 +27,7 @@
                 <li><br /></li>
                 <li><br /></li>
             </ul>
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up Now!</button>
+            <button type="button" value="7.99" onclick="getPrice(this.value)" class="btn btn-lg btn-block btn-outline-primary">Sign up Now!</button>
         </div>
         <div class="card mb-4 box-shadow tiers">
             <div class="card-header">
@@ -46,7 +46,7 @@
                 <li><br /></li>
                 <li><br /></li>
             </ul>
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up Now!</button>
+            <button type="button" value="9.99" onclick="getPrice(this.value)" class="btn btn-lg btn-block btn-outline-primary">Sign up Now!</button>
         </div>
         <div class="card mb-4 box-shadow tiers">
             <div class="card-header">
@@ -65,7 +65,16 @@
                 <li>Special Events & Discounts</li>
                 <li>Monthly Shop Discounts</li>
             </ul>
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up Now!</button>
+            <button type="button" value="15.99" onclick="getPrice(this.value)"  class="btn btn-lg btn-block btn-outline-primary">Sign up Now!</button>
         </div>
     </div>
 </div>
+
+                <script>
+                    function getPrice(val) {
+                        var price = val;
+                        localStorage.setItem("priceValue", price);
+                        console.log(price);
+                        location.href = '@Url.Action("Payment","Tier")'
+                    }
+                </script>

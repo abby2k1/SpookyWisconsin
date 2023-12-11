@@ -18,6 +18,12 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
             return View();
         }
 
+        public ActionResult Payment()
+        {
+            //return View(TierManager.Load());
+            return View();
+        }
+
         // GET: TierController/Details/5
         public ActionResult Details(Guid id)
         {
