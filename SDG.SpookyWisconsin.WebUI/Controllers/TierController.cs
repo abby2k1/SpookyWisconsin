@@ -20,7 +20,18 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
 
         public ActionResult Payment()
         {
-            //return View(TierManager.Load());
+            if (Authenticate.IsAuthenticated(HttpContext))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "User", new { returnUrl = UriHelper.GetDisplayUrl(HttpContext.Request) });
+            }
+        }
+
+        public ActionResult CheckOut()
+        {
             return View();
         }
 
