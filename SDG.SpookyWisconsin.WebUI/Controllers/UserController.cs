@@ -91,7 +91,22 @@ namespace SDG.SpookyWisconsin.WebUI.Controllers
             try
             {
                 UserManager.Insert(user, rollback);
-                return RedirectToAction(nameof(Index), "Home");
+                try
+                {
+                    bool result = UserManager.Login(user);
+                    SetUser(user);
+
+                    if (TempData["returnUrl"] != null)
+                        return Redirect(TempData["returnUrl"]?.ToString());
+                    else
+                        return RedirectToAction(nameof(Index), "Home");
+                }
+                catch (Exception ex)
+                {
+
+                    ViewBag.Error = ex.Message;
+                    return View(user);
+                }
             }
             catch
             {
