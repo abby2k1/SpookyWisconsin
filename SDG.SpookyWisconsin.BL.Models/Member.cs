@@ -11,7 +11,10 @@ namespace SDG.SpookyWisconsin.BL.Models
     {
         public Guid Id { get; set; }
         public Guid TierId { get; set; }
+
         public Guid NewsLetterId { get; set; }
+        [DisplayName("Tier")]
+        public string Tier { get; set; }
         [DisplayName("News Letter Opt")]
         public string NewsLetterOpt { get; set; }
         [DisplayName("Membership Opt")]

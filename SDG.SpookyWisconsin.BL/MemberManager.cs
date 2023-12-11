@@ -81,11 +81,13 @@ namespace SDG.SpookyWisconsin.BL
                 using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
                 {
                     var row = (from pd in dc.tblMembers
+                               join t in dc.tblTiers on pd.TierId equals t.Id
                                where pd.Id == id
                                select new
                                {
                                    Id = pd.Id,
                                    TierId = pd.TierId,
+                                   Tier = t.TierName,
                                    NewsLetterId = pd.NewsLetterId,
                                    MemberOpt = pd.MemberOpt,
                                    NewsLetterOpt = pd.NewsLetterOpt
@@ -97,6 +99,7 @@ namespace SDG.SpookyWisconsin.BL
                         {
                             Id = row.Id,
                             TierId= row.TierId,
+                            Tier = row.Tier,
                             NewsLetterId = row.NewsLetterId,
                             MemberOpt = row.MemberOpt,
                             NewsLetterOpt = row.NewsLetterOpt
@@ -121,11 +124,13 @@ namespace SDG.SpookyWisconsin.BL
             using (SpookyWisconsinEntities dc = new SpookyWisconsinEntities())
             {
                 var memberes = (from pd in dc.tblMembers
-                                      orderby pd.Id
+                                join t in dc.tblTiers on pd.TierId equals t.Id
+                                orderby pd.Id
                                       select new
                                       {
                                           Id = pd.Id,
                                           TierId = pd.TierId,
+                                          Tier = t.TierName,
                                           NewsLetterId = pd.NewsLetterId,
                                           MemberOpt = pd.MemberOpt,
                                           NewsLetterOpt = pd.NewsLetterOpt
@@ -135,6 +140,7 @@ namespace SDG.SpookyWisconsin.BL
                 {
                     Id = pd.Id,
                     TierId = pd.TierId,
+                    Tier = pd.Tier,
                     NewsLetterId = pd.NewsLetterId,
                     MemberOpt = pd.MemberOpt,
                     NewsLetterOpt = pd.NewsLetterOpt
