@@ -127,6 +127,10 @@ h2{
 } /*This class is for the images on the merch page*/
   /*Original Image sizes are 600 by 600 px*/
 
+  .carttext !important {
+      color: white !important; 
+  }
+
 .imagedefault {
     width: 100px;
     height: 150px;

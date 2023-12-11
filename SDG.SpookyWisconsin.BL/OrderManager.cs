@@ -30,7 +30,7 @@ namespace SDG.SpookyWisconsin.BL
 
                     tblOrder row = new tblOrder();
                     //Fill the table - TODO: Fill in other columns when the database is connected
-                    row.Id = new Guid();
+                    row.Id = Guid.NewGuid();
                     row.OrderDate = order.OrderDate;
                     row.ShipDate = order.ShipDate;
                     row.CustomerId = order.CustomerId;
@@ -51,7 +51,7 @@ namespace SDG.SpookyWisconsin.BL
                         row2.Quantity = oi.Quantity;
                         row2.Cost = oi.Cost;
                         dc.tblOrderItems.Add(row2);
-                        results2 += dc.SaveChanges();
+                        //results2 = dc.SaveChanges();
                     }
                     if (rollback) dbContextTransaction.Rollback();
 

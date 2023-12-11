@@ -7,9 +7,9 @@
             @{
                 int count = Model.TotalCount;
                 <input hidden id="cartcount" value="@count" />
-                <a asp-controller="Cart" id="cartcountdisp"
+                <a class="carttext" asp-controller="Cart" id="cartcountdisp"
                    asp-action="Index">@count.ToString() items</a><br/>
-                <a asp-controller="Cart" asp-action="Checkout">Checkout</a>
+                <a class="carttext" asp-controller="Cart" asp-action="Checkout">Checkout</a>
             }
         </dd>
     </d1>
