@@ -5,17 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.HauntedEventId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.HauntedEventName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Date)
@@ -27,10 +22,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.HauntedEventId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => item.HauntedEventName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
@@ -44,3 +36,6 @@
 }
     </tbody>
 </table>
+<p>
+    <a asp-action="Create">Add to the news letter!</a>
+</p>
